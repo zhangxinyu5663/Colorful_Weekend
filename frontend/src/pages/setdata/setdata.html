@@ -1,0 +1,101 @@
+<ion-header>
+  <img src="assets/icon/left.png" alt="" (click)="goBack()">
+  <span>编辑个人资料</span>
+  <button (click)="goTips()">完成</button> <!--同时修改数据库里用户的信息 -->
+</ion-header>
+<ion-content>
+  <div id="content">
+    <img src="assets/imgs/head.jpg" class="head">
+    <ul>
+      <li>
+        <img  src="assets/icon/redme.png" alt="">
+        <input type="text" placeholder="柚子z" class="line">
+      </li>
+      <li>
+        <img src="assets/icon/redsex.png" alt="">
+        <form>
+          <label><input name="sex" type="radio"/>男</label> 
+          <label><input name="sex" type="radio" checked/>女</label>
+        </form>
+        <!-- 该死的第二种方法<ion-grid text-center>
+            <ion-row>
+              <ion-col col-4  *ngFor="let item of list,let i =index" 
+              (click)="chekFun(i)">{{item.value}}&nbsp; 
+              <ion-icon name="checkmark-circle"  
+              [ngClass]="{'button-clear-ios-primary': item.chek,'button-clear-ios-my':!item.chek}"></ion-icon>
+              </ion-col>
+            </ion-row>
+        </ion-grid> -->
+        <!-- 去死的第一种方法<ion-list radio-group [(ngModel)]="relationship">
+            <ion-item>
+              <ion-radio value="male" checked></ion-radio>
+              <ion-label>男</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-radio value="female" checked></ion-radio>
+              <ion-label>女</ion-label>
+            </ion-item>
+        </ion-list>  -->
+      </li>
+      <li>
+        <img src="assets/icon/redbirth.png" alt="">
+          <select style="margin-left:5px;">
+            <option>2018</option><option>2017</option><option>2016</option>
+            <option>2015</option><option>2014</option><option>2013</option>
+            <option>2012</option><option>2011</option><option>2010</option>
+            <option>2009</option><option>2008</option><option>2007</option>
+            <option>2006</option><option>2005</option><option>2004</option>
+            <option>2003</option><option>2002</option><option>2001</option>
+            <option>2000</option><option>1999</option><option>1998</option>
+            <option>1997</option><option>1996</option><option>1995</option>
+            <option>1994</option><option>1993</option><option>1992</option>
+            <option>1991</option><option>1990</option><option>1989</option>
+            <option>1988</option><option>1987</option><option>1986</option>
+            <option>1985</option><option>1984</option><option>1983</option>
+            <option>1982</option><option>1981</option><option>1980</option>
+            <option>1979</option><option>1978</option><option>1977</option>
+            <option>1976</option><option>1975</option><option>1974</option>
+            <option>1973</option><option>1972</option><option>1971</option>
+            <option>1970</option><option></option><option></option>
+            <option></option><option></option><option></option>
+            <option></option><option></option><option></option>
+          </select>
+          <select>
+              <option>1</option><option>2</option><option>3</option>
+              <option>4</option><option>5</option><option>6</option>
+              <option>7</option><option>8</option><option>9</option>
+              <option>10</option><option>11</option><option>12</option>
+          </select>
+          <select>
+              <option>1</option><option>2</option><option>3</option>
+              <option>4</option><option>5</option><option>6</option>
+              <option>7</option><option>8</option><option>9</option>
+              <option>10</option><option>11</option><option>12</option>
+              <option>13</option><option>14</option><option>15</option>
+              <option>16</option><option>17</option><option>18</option>
+              <option>19</option><option>20</option><option>21</option>
+              <option>22</option><option>23</option><option>24</option>
+              <option>25</option><option>26</option><option>27</option>
+              <option>28</option><option>29</option><option>30</option>
+              <option>31</option>
+          </select>
+       </li>
+      <li>
+        <img src="assets/icon/redschool.png" alt="">
+        <input type="text" placeholder="请填写你的院校" class="line">
+      </li>
+      <li>
+        <img src="assets/icon/redemail.png" alt="">
+        <input type="text" placeholder="请填写你的邮箱" class="line">
+      </li>
+      <li>
+        <img src="assets/icon/redplace.png" alt="">
+        <input type="text" placeholder="请填写居住地" class="line">
+      </li>
+      <li style="margin-top:5px;">
+        <img src="assets/icon/redintroduce.png" style="display:inline-block;">
+        <textarea cols="30" rows="5" placeholder="介绍一下自己吧"></textarea>
+      </li>
+    </ul>
+  </div>
+</ion-content>

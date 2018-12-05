@@ -1,0 +1,29 @@
+page-changepw {
+    ion-header{
+        height:50px;
+       img{margin-top:9px;}
+       span{
+            position:absolute;   
+            display: inline-block;
+            font-size: 18px;
+            color:#FD273F;
+            margin-left:33%;margin-top: 13px;
+        }
+    }
+    ion-content{
+       .tishi{
+           position: relative;
+           margin-top:200px;
+           margin-left: 45px;
+           width: 270px;height:155px;
+           border: 1px solid grey;
+           border-radius: 5px;
+           p{width:200px;text-align: center;margin-left: 35px;}
+            input{width:200px;height: 30px;margin-left: 35px;
+                border: 1px solid grey;border-radius: 3px;}
+            button{width:132px;height:40px;margin-top:15px;
+            background-color: white;color: red;
+            border-top:1px solid grey;}
+       }
+    }
+}

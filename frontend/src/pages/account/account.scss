@@ -1,0 +1,36 @@
+page-account {
+    ion-header{
+        height:50px;
+       img{margin-top:9px;}
+       span{
+            position:absolute;   
+            display: inline-block;
+            font-size: 18px;
+            color:#FD273F;
+            margin-left:33%;margin-top: 13px;
+        }
+    }
+    ion-content{ 
+        ul{
+            list-style: none;
+            .first{border-bottom: 1px solid grey;}
+            li{
+                position: relative;
+                // border: 2px solid black;
+                width: 270px;
+                height: 80px;
+                line-height: 80px;
+                img{display: inline-block;margin-top:10px;}
+                .already{width: 50px;border-radius: 50%;}
+                span{
+                    // display: inline-block;
+                    height:30px;
+                    position: absolute;
+                    margin-left:5px;
+                    // border: 2px solid black;
+                }
+            }
+        }
+            
+    }
+}

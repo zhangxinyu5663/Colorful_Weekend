@@ -1,0 +1,28 @@
+page-collection {
+    ion-header{
+        height:50px;
+       img{margin-top:9px;}
+       span{
+            position:absolute;   
+            display: inline-block;
+            font-size: 18px;
+            color:#FD273F;
+            margin-left:33%;margin-top: 13px;
+        }
+    }
+    ion-content{
+        #content{
+                #collection{
+                    display:inline-block;
+                    position: relative;
+                    width: 32%;
+                    height:150px;
+                    margin-left: 0.5%;
+                    margin-top:5px;
+                    border:1px solid black;
+                    span{margin-top:127px;margin-left:3px;float: left;}
+            }
+            
+        }
+    }
+}

@@ -1,0 +1,60 @@
+
+
+
+
+<ion-content >
+  <div class="head">
+    <ion-icon  (click)="close()" ios="ios-arrow-back-outline" md="md-arrow-back"></ion-icon>
+    添加新日程
+  </div>
+
+  <div class="context">
+    <ul no-padding no-margin>
+      <li>
+        <div style="width:100%;height:60px">
+          <ion-icon name="briefcase"></ion-icon>
+          <input type="text" placeholder="&nbsp;点击这里输入事件">
+        </div>
+      </li>
+
+      <li>
+        <div style="width:100%;height:60px">
+          <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon>
+          <div id="date">
+            <ion-item >
+              <ion-label >&nbsp;&nbsp;&nbsp;&nbsp;选择日期</ion-label><ion-datetime displayFormat="MMM DD, YYYY" [(ngModel)]="myDate"></ion-datetime>
+            </ion-item>
+          </div>
+        </div>
+      </li>
+
+      <li>
+          <div style="width:100%;height:60px">
+              <ion-icon ios="ios-folder" md="md-folder"></ion-icon>
+             <ion-list >
+               <div>
+              <ion-item style="background-color: #F8F8F8; border-radius: 20px;">
+                <ion-select [(ngModel)]="typeTxt" (ngModelChange)="switchType()"  interface="popover" style="height:45px;" placeholder="分类选择">
+                    <ion-option value="0">请选择</ion-option>
+                  <ion-option value="1">美食</ion-option>
+                  <ion-option value="2">电影</ion-option>
+                  <ion-option value="3">游玩</ion-option>
+                  <ion-option value="4">唱歌</ion-option>
+                  <ion-option value="5">工作与学习</ion-option>
+                  <ion-option value="6">乘车</ion-option>
+                  <div *ngFor="let typeData of typeDataArr">
+                    <ion-option value="{{typeData?.id}}">{{typeData?.type}}</ion-option>
+                  </div>
+                </ion-select>
+              </ion-item>
+            </div>
+            </ion-list>
+          </div> 
+      </li>
+
+    </ul>
+    <button ion-button block color="">保存</button>
+  </div>
+
+  
+</ion-content>

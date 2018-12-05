@@ -1,0 +1,41 @@
+page-phonenum {
+    padding: 0px;
+    margin:0px;
+    ion-header{
+        height:50px;
+       img{margin-top:9px;}
+       span{
+            position:absolute;   
+            display: inline-block;
+            font-size: 18px;
+            color:#FD273F;
+            margin-left:33%;margin-top: 13px;
+        }
+    }
+    ion-content{
+        p{color: grey;}
+        .security{
+            margin-left:33%;
+            margin-top:50px;
+        }
+        .phone{
+            height:40px;
+            line-height: 40px;
+            border-top:1px solid grey;
+            border-bottom:1px solid grey;
+            img{width: 24px; margin-top: 3px;}
+            .number{float: right;}
+            button{
+                float: right;
+                width: 45px;
+                height: 28px;
+                border: 1px solid red;
+                border-radius: 5px;
+                background-color: white;
+                color: red;
+                margin-top:6px;
+                margin-left: 5px;
+            }
+        }
+    }
+}

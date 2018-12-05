@@ -1,0 +1,58 @@
+
+  
+  
+  <ion-content >
+        <div class="head">
+                <ion-icon  (click)="close()" ios="ios-arrow-back-outline" md="md-arrow-back"></ion-icon>
+                赞
+        </div>
+        <ul class="navList">
+            <li (click)="isClick(0)" [class.first]="isActive==0" >我赞过的</li>
+            <li (click)="isClick(1)" [class.second]="isActive==1">赞过我的</li>
+        </ul>
+
+      <div [ngSwitch]='isActive' id="switch">
+         <ion-list *ngSwitchCase="0">
+             <div class="zan1">
+                   <img src="../../assets/imgs/0.jpg" alt="图片" class="tu1">
+                   <div class="dianzan1">
+                       <span>
+                          <button><ion-icon name="heart"></ion-icon></button>
+                       </span>
+                       <span><p>333</p></span>
+                   </div>
+             </div>
+             <div class="box">
+                  <div class="zan2">
+                      <img src="../../assets/imgs/张一山.jpg" alt="张一山">
+                      <div class="dianzan2">
+                          <span><button><ion-icon name="heart"></ion-icon></button></span>
+                          <span><p>333</p></span>
+                      </div>      
+                  </div>
+             </div>
+             <div class="box1">
+                  <div class="zan3">
+                       <img src="../../assets/imgs/巧克力.jpg">
+                       <div class="dianzan3">
+                           <span><button><ion-icon name="heart"></ion-icon></button></span>
+                           <span><p>333</p></span>
+                       </div>
+                  </div>
+                  <div class="zan3">
+                        <img src="../../assets/imgs/蛋挞.jpg">
+                        <div class="dianzan3">
+                          <span><button><ion-icon name="heart"></ion-icon></button></span>
+                          <span><p>333</p></span>
+                        </div>
+                  </div>
+             </div>
+         </ion-list>
+         <ion-list *ngSwitchCase="1">
+             <ion-item>
+              
+             </ion-item>
+         </ion-list>
+      </div>
+  </ion-content>
+  

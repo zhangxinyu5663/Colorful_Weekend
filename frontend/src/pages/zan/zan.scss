@@ -1,0 +1,134 @@
+page-zan {
+    ion-content{
+        .head{
+            width: 100%;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            font-size: 20px;
+            color: #FD273F;
+            font-weight: 500;
+            ion-icon{
+                // margin-left: 10px;
+                font-size: 30px;
+                color: #FD273F;
+                float: left;
+                line-height: 60px;
+                
+            }
+        }
+        .navList{
+            border-radius:30px;
+            border: #FD273F 1px solid;
+            padding-left: 0!important;
+            margin: 0;
+            height: 35px;
+            line-height: 35px;
+            .first{
+                border-radius:30px  0  0 30px  ;
+                color: white;
+                background-color: #FD273F;
+            }
+            .second{
+                border-radius:0  30px  30px  0 ;
+                color: white;
+                background-color: #FD273F;
+            }
+            li{
+                height: 34px;
+                text-align: center;
+                float: left;
+                width: 50%;
+            }
+        }
+         .zan1{
+             padding: 0;
+             position: relative;
+             float: left;
+             height:180px;
+             width: 100%;
+             .tu1{
+                 padding: 0;
+                 margin: 0;
+                 position: absolute;
+                 width: 100%;
+                 height: 178px;
+             }
+             .dianzan1{
+                padding:140px 20px 25px 70%;
+                float: left;
+                position: absolute;
+                p{
+                    font-size: 16px;
+                    text-align: center;
+                    color:rgb(19, 18, 18);
+                }
+                span{
+                    float: left;
+                    margin: 0px;
+                    padding: 0;
+                }
+            }
+        }
+        .box{
+            width: 48%;
+            height: 300px;
+            margin: 2px;
+            float: left;
+            .zan2{
+                padding: 0%;
+                position: relative;
+                img{
+                    width: 172px;
+                    height: 298px;
+                    position: absolute;
+                }
+                .dianzan2{
+                    padding: 240px 20px 25px 70%;
+                    position: absolute;
+                    float: left;
+                    span{
+                     float: left;
+                     margin: 0px;
+                     padding: 0;
+                    }
+                }
+            }
+        }
+        .box1{
+            width: 48%;
+            height: 300px;
+            margin: 2px;
+            float: left;
+            .zan3{
+                margin: 2px;
+                height: 148px;
+                position: relative;
+                img{
+                 width: 172px;
+                 height: 148px;
+                 position: absolute;
+             }
+                .dianzan3{
+                    position: absolute;
+                    padding: 90px 20px 15px 70%;
+                    span{
+                        padding: 0%;
+                        margin: 0%;
+                        float: left;
+                    }
+                }
+            }
+        }
+         ion-icon{
+               color:rgb(236, 227, 227);
+         }
+         button{
+             width: 15px;
+             height: 15px;
+             background-color: transparent;
+         }
+         
+    }
+ }
+ 
