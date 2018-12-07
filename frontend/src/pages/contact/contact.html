@@ -1,0 +1,41 @@
+<!-- <ion-header>
+  <ion-navbar>
+    <ion-title>
+      Contact
+    </ion-title>
+  </ion-navbar>
+</ion-header> -->
+
+<ion-content>
+  <div>
+    <ion-icon id="icon" ios="ios-bulb" md="md-bulb"></ion-icon>
+    <p>添加你的日程</p>
+  </div>
+  <!-- 
+    <ion-list inset no-lines>
+      <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
+        {{ item }}
+      </button> 
+  </ion-list> 
+-->
+    <ion-list no-lines>
+      <ion-item style="height:43px ;margin-left: 32%;color: #FD273F;font-size:20px;">——2018——</ion-item>
+      <ion-item>
+        <button style="height:43px ;color: #FD273F;font-size:15px;" ion-button color="light" round block   icon-start>
+          <ion-icon style="font-size: 25px" [name]="isName"></ion-icon>{{time}}坐公交车到达北国商城站
+        </button>
+      </ion-item>
+      <ion-item><button  style="height:43px ;color: #FD273F;font-size:15px;"ion-button color="light" round block icon-start><ion-icon style="font-size: 25px" name="car"></ion-icon>{{time}}到达图书馆站</button></ion-item>
+      <ion-item><button  style="height:43px ;color: #FD273F;font-size:15px;"ion-button color="light" round block icon-start><ion-icon style="font-size: 25px" name="flower"></ion-icon>{{time}}游玩</button></ion-item>
+      <ion-item><button  style="height:43px ;color: #FD273F;font-size:15px;"ion-button color="light" round block icon-start><ion-icon style="font-size: 25px" name="book"></ion-icon>{{time}}看书</button></ion-item>
+      <a id="addcalendar">
+          <ion-item>
+              <button  style="height:43px ;font-size:15px;color:gray;" ion-button color="light" round block>
+                <ion-icon style="font-size: 30px" name="add"></ion-icon> 待添加
+              </button>
+          </ion-item> 
+      </a>
+ 
+      
+    </ion-list>
+</ion-content>

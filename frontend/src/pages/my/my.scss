@@ -1,0 +1,40 @@
+page-my {
+    padding: 0px;
+    margin:0px;
+    ion-content{
+        // background: url(../assets/imgs/mybg.png);
+        #head{
+            img{
+                margin-top:50px;
+                width:100px;
+                margin-left: 36%;
+                border-radius: 50%;}
+            ul{
+                padding: 0px;
+                line-height: 30px;
+                text-align: center;
+                list-style: none;
+            }   
+        }
+        #content{
+            ul{
+                padding: 0px;
+                list-style: none;
+                text-align: center;
+                li{
+                    img{display: block;margin-left: 36%;}
+                    padding: 0px;
+                    width: 120px;
+                    height: 70px;
+                    margin-top: 20px;
+                    display: inline-block;
+                }
+            }          
+        }
+        .set{
+            float:right;
+            margin-right: 20px;
+            margin-top:85px;
+        }
+    }
+}

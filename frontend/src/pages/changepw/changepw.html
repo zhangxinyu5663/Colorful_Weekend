@@ -1,0 +1,14 @@
+<ion-header>
+  <img src="assets/icon/left.png" alt="" (click)="goBack()">
+  <span>修改密码</span>
+</ion-header>
+<ion-content>
+<div class="tishi">
+  <p>为保证你的账户安全，修改密码前请填写原始密码</p>
+  <input type="password" placeholder="请输入原始密码">
+  <button (click)="goBack()">取消</button>
+  <button (click)="goDetails()" style="border-left: 1px solid grey;">确认</button>
+</div>
+  
+
+</ion-content>

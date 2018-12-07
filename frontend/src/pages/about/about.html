@@ -1,0 +1,48 @@
+<ion-header text-center>
+      <ion-title>消息</ion-title>
+  </ion-header>
+  
+  <ion-content padding>
+      <ul class="list1">
+           <li (click)="setlist('privateletter')" [class.bottom]="list=='privateletter'">
+                <ion-icon ios="ios-chatboxes" md="md-chatboxes" class="tubiao"></ion-icon><br/><br/>
+                私信
+           </li>
+           <li (click)="gozan()" [class.bottom]="list=='zan'">
+                <ion-icon ios="ios-heart" md="md-heart" class="tubiao"></ion-icon><br/><br/>
+                赞
+           </li>
+           <li (click)="goat()" [class.bottom]="list=='at'">
+                <ion-icon ios="ios-at" md="md-at" class="tubiao"></ion-icon><br/><br/>
+                @我的
+           </li>
+      </ul>
+      <div [ngSwitch]="list">
+          <div *ngSwitchCase="'privateletter'" class="privateletter">
+              <ion-list>
+                  <ion-item>
+                    <ion-thumbnail item-start>
+                    <img src="../../assets/imgs/嘻嘻.jpg" alt="图片">
+                    </ion-thumbnail>
+                    <h4>嘻嘻</h4>
+                    <h4 item-end>15:03<button><ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon></button></h4>
+                  </ion-item>
+                  <ion-item>
+                      <ion-thumbnail item-start>
+                      <img src="../../assets/imgs/张三.jpg" alt="图片">
+                      </ion-thumbnail>
+                      <h4>张三</h4>
+                      <h4 item-end>16:13<button><ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon></button></h4>
+                 </ion-item>
+                 <ion-item>
+                    <ion-thumbnail item-start>
+                    <img src="../../assets/imgs/系统消息.jpg" alt="图片">
+                    </ion-thumbnail>
+                    <h4>系统消息</h4>
+                    <h4 item-end>昨天<button><ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon></button></h4>
+                 </ion-item>
+              </ion-list>
+          </div>
+      </div>
+  </ion-content>
+  
