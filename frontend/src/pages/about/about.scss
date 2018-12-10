@@ -9,9 +9,6 @@ page-about {
         height:90px;
         line-height: 30%;
         list-style: none;
-        .bottom{
-            // border-bottom: 5px solid rgb(247, 244, 245);
-        }
         li{
             width:33%;
             height:80px;
@@ -19,15 +16,14 @@ page-about {
             text-align: center;
         }
     }
+    ion-item{
+        height: 80px;
+    }
     .tubiao{
         color: #ED9B9B;
         font-size: 55px;
     }
     button{
         background: transparent;
-    }
-    img{
-        width: 50px;
-        height: 50px;
     }
 }

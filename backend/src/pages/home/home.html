@@ -1,0 +1,63 @@
+<ion-content>
+  <div id="total">
+    <div id="header">
+      <span><img src="../assets/icon/logo.png" alt=""> </span>
+      <span>玩转周末管理系统</span>
+      <div class="btn">
+          <button><ion-icon name="md-settings"></ion-icon>设置</button>
+          <button>安全退出</button>
+      </div>
+    </div>
+    <div class="left">
+      <ul>
+        <li (click)="fun(1)">账号管理</li>
+        <li (click)="fun(2)">个人活动管理</li>
+        <li (click)="fun(3)">首页作品管理</li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <div class="right" [ngSwitch]="num">
+        <div *ngSwitchCase="1">
+          <!-- <ul>
+            <li *ngFor="let item of user;">
+              {{item.number}} {{item.ID}} {{item.sex}} {{item.birthday}} {{item.college}} {{item.Email}} {{item.address}} {{item.introduction}} {{item.phoneNumber}}
+            </li>
+          </ul> -->
+          <div class="biao1">
+            <table  width="1200" border="0" cellspacing="0" cellpadding="0" id="table1">
+              <tr>
+                <th>序号</th>
+                <th>登录名</th>
+                <!-- <th>性别</th> -->
+                <th>注册手机号</th>
+                <th>ID</th>
+                <th>账号状态</th>
+                <th>是否登录过</th>
+                <th>账号操作</th>
+              </tr>
+              <tr *ngFor="let item of user;let i=index" id="tr">
+                <td>{{item.number}}</td>
+                <td>{{item.userName}}</td>
+                <!-- <td>{{item.sex}}</td> -->
+                <td>{{item.phoneNumber}}</td>
+                <td>{{item.ID}}</td>
+                <td>{{item.userStatus}}</td>
+                <td>{{item.status}}</td>
+                <td><button (click)="ucheck(i)">查看详情</button>&nbsp;|&nbsp;<button class="freeze" (click)="freeze(i)">冻结账号</button>&nbsp;|&nbsp;<button class="unfreeze" (click)="unfreeze(i)">解冻账号</button></td>
+              </tr>
+              </table>
+          </div>
+        </div>
+        <div *ngSwitchCase="2">2</div>
+        <div *ngSwitchCase="3">3</div>
+        <div *ngSwitchCase="4">4</div>
+        <div *ngSwitchCase="5">5</div>
+        <div *ngSwitchCase="6">6</div>
+        <div *ngSwitchCase="7">7</div>
+    </div>
+    
+  </div> 
+</ion-content>

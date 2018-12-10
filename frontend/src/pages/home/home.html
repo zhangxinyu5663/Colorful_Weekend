@@ -2,7 +2,8 @@
     <div class="head">
         <!-- <ion-icon ios="ios-pin" md="md-pin"></ion-icon> -->
         <input id="search" type="text" placeholder="大家都在搜“毒液”">
-        <ion-icon ios="ios-search" md="md-search"></ion-icon>
+        <!-- <ion-icon ios="ios-search" md="md-search"></ion-icon> -->
+        <i class="iconfont icon-sousuo1"></i>
     </div>
     <ul class="navList">
       <li  (click)="isClick(0)" [class.first]="isActive==0" >
@@ -50,7 +51,7 @@
                 <a id="content04"><img src="../assets/imgs/j4.jpg"></a>
                 <span>日本之行感受茶道之美...</span>
                 <div id="below">
-                  <img id="tou" src="../assets/imgs/t4.jpg">不吃辣
+                  <img id="tou" src="../assets/imgs/t4.png">不吃辣
                   <div id="right"> 
                       <ion-icon ios="ios-heart-outline" md="md-heart-outline"></ion-icon>999
                     </div>
@@ -63,28 +64,28 @@
 
       <div *ngSwitchCase='1'>
         <div class="planleft" (click)="goPlan1()">
-            <img src="assets/imgs/plan1.png" alt="">
+            <img src="{{schedule[0]?.imgDetail}}" alt="">
         </div>
         <div class="planright" (click)="goPlan2()">
-            <img src="assets/imgs/plan2.png" alt="">
+            <img src="{{schedule[1]?.imgDetail}}" alt="">
         </div>
         <div class="planleft" (click)="goPlan3()">
-            <img src="assets/imgs/plan3.png" alt="">
+            <img src="{{schedule[2]?.imgDetail}}" alt="">
         </div>
         <div class="planright" (click)="goPlan4()">
-            <img src="assets/imgs/plan4.png" alt="">
+            <img src="{{schedule[3]?.imgDetail}}" alt="">
         </div>
         <div class="planleft" (click)="goPlan5()">
-            <img src="assets/imgs/plan5.png" alt="">
+            <img src="{{schedule[4]?.imgDetail}}" alt="">
         </div>
         <div class="planright" (click)="goPlan6()">
-            <img src="assets/imgs/plan6.png" alt="">
+            <img src="{{schedule[5]?.imgDetail}}" alt="">
         </div>
         <div class="planleft" (click)="goPlan7()">
-            <img src="assets/imgs/plan7.png" alt="">
+            <img src="{{schedule[6]?.imgDetail}}" alt="">
         </div>
         <div class="planright" (click)="goPlan8()">
-            <img src="assets/imgs/plan8.png" alt="">
+            <img src="{{schedule[7]?.imgDetail}}" alt="">
         </div>
       </div>
     </div>

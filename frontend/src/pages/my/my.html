@@ -1,19 +1,20 @@
 <ion-content>
     <div id="head">
-      <img src="assets/imgs/head.jpg" alt="">
+      <img src="{{mine[0]?.head}}" alt="">
       <ul>
-        <li>柚子z</li>
-        <li>id号:005800</li>
+        <li>{{mine[0]?.userName}}</li>
+        <li>ID号:{{mine[0]?.ID}}</li>
       </ul>
     </div>
+
     <div id="content">
       <ul>
-        <li (click)="goCollection()"><img src="assets/icon/star.png" alt="">我的收藏</li>
-        <li (click)="goCreate()"><img src="assets/icon/create.png" alt="">我的发布</li>
-        <li><img src="assets/icon/condition.png" alt="">我的关注</li>
-        <li (click)="goFans()"><img src="assets/icon/fans.png" alt="">我的粉丝</li>
+        <li (click)="goCollection()"><img src="assets/icon/star.png" alt="">我的收藏&nbsp;{{mine[0]?.collect}}</li>
+        <li (click)="goCreate()"><img src="assets/icon/create.png" alt="">我的发布&nbsp;{{mine[0]?.publish}}</li>
+        <li (click)="goGuanzhu()"><img src="assets/icon/condition.png" alt="">我的关注&nbsp;{{mine[0]?.interest}}</li>
+        <li (click)="goFans()"><img src="assets/icon/fans.png" alt="">我的粉丝&nbsp;{{mine[0]?.fans}}</li>
       </ul>
+      <img src="assets/icon/set.png" class="set" (click)="goSet()">
     </div>
-    <img src="assets/icon/set.png" class="set" (click)="goSet()">
   </ion-content>
   

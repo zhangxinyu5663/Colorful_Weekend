@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { PicturePage } from '../picture/picture';
+import { ReleaseonePage } from '../releaseone/releaseone';
 /**
  * Generated class for the AddPage page.
  *
@@ -21,5 +22,7 @@ export class AddPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddPage');
   }
-
+  goSub(){
+    this.navCtrl.push(ReleaseonePage);
+  }
 }
