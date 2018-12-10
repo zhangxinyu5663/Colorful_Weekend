@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { GuanzhuPage } from '../guanzhu/guanzhu';
 /**
  * Generated class for the FollowpersonPage page.
  *
@@ -18,4 +18,10 @@ export class FollowpersonPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad FollowpersonPage');
+  }
+  goguanzhu(){
+    this.navCtrl.popTo(GuanzhuPage);
+  }
 }

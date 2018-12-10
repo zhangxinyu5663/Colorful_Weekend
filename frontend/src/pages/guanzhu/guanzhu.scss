@@ -1,0 +1,41 @@
+page-guanzhu {
+    ul{
+        margin:0px;
+        padding:0px;
+        list-style: none;
+        li{
+            margin:0px;
+            padding:0px;
+            height: 64px;
+           .d{ 
+              padding: 0%;
+              margin:0px;    
+              border: gainsboro 1px solid;
+              height: 60px;
+              img{
+                 float: left;
+                 width: 50px;
+                 height: 50px;
+                 border-radius: 50%;
+              }
+              .right{   
+                 width: 200px;
+                 margin-left: 10px;
+                 float:left;
+                #p1{
+                  font-size:16px;
+                  margin:5px 0 ;
+                  color: gray;
+                  font-weight:600;
+                }
+              }
+              .btn{
+                  float: right;
+                  margin-right:  10px;
+                  margin-top: 15px;
+                  background-color:grey;
+              }
+            }
+        }
+     }
+}

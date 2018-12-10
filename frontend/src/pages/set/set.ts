@@ -5,6 +5,7 @@ import { SetdataPage } from '../setdata/setdata';
 import { AccountPage } from '../account/account';
 import { PhonenumPage } from '../phonenum/phonenum';
 import { MyPage } from '../my/my';
+import { LoginPage } from '../login/login';
 @IonicPage()
 @Component({
   selector: 'page-set',
@@ -19,4 +20,5 @@ export class SetPage {
   goSetdata(){this.navCtrl.push(SetdataPage);}
   goAccount(){this.navCtrl.push(AccountPage);}
   goPhonenum(){this.navCtrl.push(PhonenumPage);}
+  goLogin(){this.navCtrl.push(LoginPage);}
 }

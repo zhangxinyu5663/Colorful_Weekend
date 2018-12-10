@@ -1,0 +1,47 @@
+page-forgetpwd2 {
+    .title{
+        // border:1px solid pink;
+         margin-top:10px;
+         span{
+             color:#fd273f;
+             font-size:20px;
+             text-align: center;
+             display: inline-block;
+             width:300px;
+             //border:1px solid pink;
+         }
+         i{
+             margin-left:10px;
+             color:#FD273F;
+             font-size:20px;
+         }
+     }
+     .input{
+        //border:1px solid black;
+       // border:1px solid pink;
+        width:300px;
+        margin-top:40px;
+        margin-left:50px; 
+        i{
+            color:#FD273F;
+            margin-right:10px;
+        }
+    }
+    
+    .inp{
+        border:1px solid grey;
+        width: 200px;
+        height:30px;
+        border-radius: 8px;
+    }
+    .sure{
+        color:white;
+        font-size:18px;
+        width:150px;
+        height:40px;
+        background-color: #FD273F;
+        margin-left:100px;
+        margin-top:40px;
+        border-radius:5px; 
+    }
+}

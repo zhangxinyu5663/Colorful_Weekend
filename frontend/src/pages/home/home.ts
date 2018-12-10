@@ -9,6 +9,7 @@ import { PlanfivePage } from '../planfive/planfive';
 import { PlansixPage } from '../plansix/plansix';
 import { PlansevenPage } from '../planseven/planseven';
 import { PlaneightPage } from '../planeight/planeight';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'page-home',
@@ -20,6 +21,7 @@ export class HomePage {
   isClick(i){
     this.isActive=i;
   }
+
   goPlan1(){this.navCtrl.push(PlanonePage);}
   goPlan2(){this.navCtrl.push(PlantwoPage);}
   goPlan3(){this.navCtrl.push(PlanthreePage);}
@@ -30,20 +32,29 @@ export class HomePage {
   goPlan8(){this.navCtrl.push(PlaneightPage);}
 
 
-  constructor(public modalCtrl:ModalController,public navCtrl: NavController) {
+  constructor(public modalCtrl:ModalController,public navCtrl: NavController,public http:HttpClient) {
     for (let i = 0; i < 30; i++) {
       this.items.push( this.items.length );
     }
   }
-
-
+  schedule=[];
   ionViewDidLoad(){
+    this.http.get('/api/homeSchedule').subscribe(data=>{
+      this.schedule=Array.prototype.slice.call(data);
+      // for(var i=0;i<this.schedule.length;i++){
+      //   console.log(this.schedule[i].imgDetail);
+      // }
+    });
     document.querySelector('#content02').addEventListener('click',()=>{
       let profileModal=this.modalCtrl.create(Content02Page);
-      profileModal.present();
-      
+      profileModal.present();    
     },false)
   }
-
-
+  // ionViewDidLoad(){
+  //   document.querySelector('#content02').addEventListener('click',()=>{
+  //     let profileModal=this.modalCtrl.create(Content02Page);
+  //     profileModal.present();
+      
+  //   },false)
+  // }
 }

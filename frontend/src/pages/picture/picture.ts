@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FollowpersonPage } from '../followperson/followperson';
+import { ReleaseonePage } from '../releaseone/releaseone';
 /**
- * Generated class for the FollowPage page.
+ * Generated class for the PicturePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,17 +10,19 @@ import { FollowpersonPage } from '../followperson/followperson';
 
 @IonicPage()
 @Component({
-  selector: 'page-follow',
-  templateUrl: 'follow.html',
+  selector: 'page-picture',
+  templateUrl: 'picture.html',
 })
-export class FollowPage {
-
+export class PicturePage {
+  
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
-  Page=FollowPage;
-  goto(strPage){
-    this.Page=strPage;
-    this.navCtrl.push(FollowpersonPage);
-  }
 
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad PicturePage');
+  }
+  
+  goSub(){
+    this.navCtrl.push(ReleaseonePage);
+  }
 }

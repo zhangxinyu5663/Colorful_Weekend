@@ -1,0 +1,29 @@
+
+<ion-content color="light">
+    <div id="logo">
+      <img src="../assets/imgs/logo.png" alt="logo">
+    </div>
+    <div id="input">
+        <div>
+            <i class="iconfont icon-user-o"></i>
+            <!-- (blur)="reminder()" (focus)="reset()" -->
+            <input [(ngModel)]="phone" type="text" placeholder="请输入你的手机号" class="inp">
+        </div>
+        <span style="padding-left:100px;line-height: 30px;color: red;font-size:15px;" id="reminder1"></span>
+        <div>
+            <i class="iconfont icon-key"></i>
+            <input [(ngModel)]="pwd" type="password" placeholder="请输入你的密码" class="inp">
+        </div>
+        <a (click)="forgetPwd()">忘记密码</a>
+        <input type="submit" value="立即登录" id="submit" (click)="login()">
+    </div>
+    <div id="third">
+      <p>——第三方登录——</p>
+      <span style="margin-left:100px;"><i class="iconfont icon-icon" style="color:green;"></i>微信</span>
+      <span style="margin-left:60px;"><i class="iconfont icon-qq" style="color:blue;"></i>qq</span>
+    </div>
+    <div id="register">
+      <a (click)="register()">还没有账号？立即注册</a>
+    </div>
+  </ion-content>
+  

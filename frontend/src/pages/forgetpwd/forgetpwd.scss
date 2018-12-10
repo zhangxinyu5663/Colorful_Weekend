@@ -1,0 +1,99 @@
+page-forgetpwd {
+    .title{
+        // border:1px solid pink;
+         margin-top:10px;
+         span{
+             color:#fd273f;
+             font-size:20px;
+             text-align: center;
+             display: inline-block;
+             width:300px;
+             //border:1px solid pink;
+         }
+         i{
+             margin-left:10px;
+             color:#FD273F;
+             font-size:20px;
+         }
+     }
+     .div1{
+        width:350px;
+        height:40px;
+        margin-top:40px;
+        //border:1px solid red;
+        .span1{
+            width: 60px;
+            display: inline-block;
+            line-height: 40px;
+            font-size:15px;
+            // border: 1px solid pink;
+            text-align: right;
+        }
+        input{
+            height:30px;
+            width:165px;
+            line-height: 50px;
+            border:none;
+             border-bottom:1px solid gray;
+            // border:1px solid gray;
+            // border-radius: 8px;
+        }
+    }
+    .div2{
+        width:350px;
+        height:40px;
+        //border:1px solid red;
+        margin-top:20px;
+        span{
+            width: 60px;
+            font-size:15px;
+            display: inline-block;
+            line-height: 40px;
+            //border: 1px solid pink;
+            text-align: right;
+
+        }
+        button{
+            //border:1px solid pink;
+            color:#FD273F;
+            width:90px;
+            height:50px;
+            font-size:15px;
+            background: none;
+            // border:none;
+            // margin-left:10px;
+        }
+        input{
+            height:30px;
+            width:180px;
+            line-height: 50px;
+            border:none;
+            border-bottom:1px solid gray;
+            // border:1px solid gray;
+            // border-radius: 8px;
+        }
+    }
+    #codeShow{
+        width:180px;
+        height:50px;
+        font-size:25px;
+        font-family: '楷体';
+        text-align: center;
+        line-height: 50px;
+        // border:1px solid #FD273F;
+        opacity:0.8!important ;
+        display: none;
+        margin-top:5px;
+        margin-left:80px;
+    }
+    .next{
+        color:white;
+        font-size:18px;
+        width:150px;
+        height:40px;
+        background-color: #FD273F;
+        margin-left:100px;
+        margin-top:40px;
+        border-radius:5px; 
+    }
+}
