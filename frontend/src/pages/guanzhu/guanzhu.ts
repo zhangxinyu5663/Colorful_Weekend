@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FollowpersonPage } from '../followperson/followperson';
+import { MyPage } from '../my/my';
 /**
  * Generated class for the GuanzhuPage page.
  *
@@ -32,12 +33,8 @@ export class GuanzhuPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  gofollow(){
-    this.navCtrl.push(FollowpersonPage);
-  }
+  gofollow(){this.navCtrl.push(FollowpersonPage);}
+  goMy(){this.navCtrl.push(MyPage);}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad GuanzhuPage');
-  }
 
 }
