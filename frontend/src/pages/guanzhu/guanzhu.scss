@@ -1,4 +1,15 @@
 page-guanzhu {
+    ion-header{
+        height:50px;
+       img{margin-top:9px;}
+       span{
+            position:absolute;   
+            display: inline-block;
+            font-size: 18px;
+            color:#FD273F;
+            margin-left:33%;margin-top: 13px;
+        }
+    }
     ul{
         margin:0px;
         padding:0px;

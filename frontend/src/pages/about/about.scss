@@ -2,6 +2,7 @@ page-about {
     ion-header{
         height: 45px;
         line-height: 45px;
+        ion-title{color:#FD273F;}
     }
     .list1{
         padding-left:0!important; 
@@ -16,8 +17,21 @@ page-about {
             text-align: center;
         }
     }
-    ion-item{
-        height: 80px;
+    ion-list{
+        ion-item{
+            height: 70px;
+            margin-top: 5px;
+            .tou{
+                padding: 0%;
+                margin: 0%;
+                height: 60px;
+                width:60px;
+                img{
+                    height: 55px;
+                    widows: 55px;
+                }
+            }
+        }
     }
     .tubiao{
         color: #ED9B9B;
