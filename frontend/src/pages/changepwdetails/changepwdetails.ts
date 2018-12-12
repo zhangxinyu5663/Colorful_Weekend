@@ -14,8 +14,7 @@ export class ChangepwdetailsPage {
               public navParams: NavParams,
               public alertCtrl: AlertController) {
   }
-  // goBack(){this.navCtrl.push(SetPage);}
-  goChangepw(){this.navCtrl.push(ChangepwPage);}
+  goChangepw(){this.navCtrl.popTo(ChangepwPage);}
   goTips(){
     let alert = this.alertCtrl.create({
       subTitle: '修改成功!',
