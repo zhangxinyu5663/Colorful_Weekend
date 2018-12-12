@@ -12,6 +12,6 @@ export class AccountPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams) {
   }
-  goBack(){this.navCtrl.popTo(SetPage);}
+  goBack(){this.navCtrl.push(SetPage);}
   
 }

@@ -46,7 +46,6 @@ import { ForgetpwdPage } from '../pages/forgetpwd/forgetpwd';
 import { Forgetpwd2Page } from '../pages/forgetpwd2/forgetpwd2';
 import { ChangepwdalertPage } from '../pages/changepwdalert/changepwdalert';
 import { Register2Page } from '../pages/register2/register2';
-import { UserinfoPage } from '../pages/userinfo/userinfo';
 
 
 
@@ -91,8 +90,7 @@ import { UserinfoPage } from '../pages/userinfo/userinfo';
     Register2Page,
     ForgetpwdPage,
     Forgetpwd2Page,
-    ChangepwdalertPage,
-    UserinfoPage
+    ChangepwdalertPage
   ],
   imports: [
     BrowserModule,
@@ -147,8 +145,7 @@ import { UserinfoPage } from '../pages/userinfo/userinfo';
     Register2Page,
     ForgetpwdPage,
     Forgetpwd2Page,
-    ChangepwdalertPage,
-    UserinfoPage
+    ChangepwdalertPage
   ],
   providers: [
     StatusBar,

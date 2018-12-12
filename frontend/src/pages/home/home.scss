@@ -71,18 +71,17 @@ page-home{
                 width: 45%;
                 float: left;
                 margin: 5px 0 5px 3%;
-                .below{
+                #below{
                     font-size: 5px;
                     .ion-ios-heart-outline,.ion-md-heart-outline{
                     color: #FD273F!important;
                     }  
-                    .right{
+                    #right{
                         float: right;
                         line-height: 36px;
                     }
-                    
                 }
-                .tou{
+                #tou{
                     width: 25px;
                     height: 25px;
                     border-radius: 50%;
