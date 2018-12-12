@@ -6,15 +6,10 @@
         <i class="iconfont icon-sousuo1"></i>
     </div>
     <ul class="navList">
-      <li  (click)="isClick(0)" [class.first]="isActive==0" >
-        推荐
-      </li>
-      <li  (click)="isClick(1)" [class.second]="isActive==1" >
-          日程
-      </li>
+      <li  (click)="isClick(0)" [class.first]="isActive==0" >推荐</li>
+      <li  (click)="isClick(1)" [class.second]="isActive==1" >日程</li>
     </ul>
     <div [ngSwitch]='isActive' id="switch">
-
       <div *ngSwitchCase='0' >
         <ul class="goods">
           <li>
@@ -59,33 +54,46 @@
             </li>
         </ul>
       </div>
-
-
-
       <div *ngSwitchCase='1'>
-        <div class="planleft" (click)="goPlan1()">
-            <img src="{{schedule[0]?.imgDetail}}" alt="">
+        <div class="planleft" id="plan1" (click)="goPlan1()">
+            <!-- <img src="{{schedule[0]?.imgDetail}}" alt=""> -->
+            <p class="title">乡水小镇</p>
+            <p class="time">两天</p>
         </div>
-        <div class="planright" (click)="goPlan2()">
-            <img src="{{schedule[1]?.imgDetail}}" alt="">
+        <div class="planright" id="plan2" (click)="goPlan2()">
+            <!-- <img src="{{schedule[1]?.imgDetail}}" alt=""> -->
+            <p class="title">风吹草地见牛羊</p>
+            <p class="time">一天</p>
         </div>
-        <div class="planleft" (click)="goPlan3()">
-            <img src="{{schedule[2]?.imgDetail}}" alt="">
+        <div class="planleft" id="plan3" (click)="goPlan3()">
+            <!-- <img src="{{schedule[2]?.imgDetail}}" alt=""> -->
+            <p class="title">小歌怡情</p>
+            <p class="time">晚间</p>
         </div>
-        <div class="planright" (click)="goPlan4()">
-            <img src="{{schedule[3]?.imgDetail}}" alt="">
+        <div class="planright" id="plan4" (click)="goPlan4()">
+            <!-- <img src="{{schedule[2]?.imgDetail}}" alt=""> -->
+            <p class="title">听海</p>
+            <p class="time">两天</p>
         </div>
-        <div class="planleft" (click)="goPlan5()">
-            <img src="{{schedule[4]?.imgDetail}}" alt="">
+        <div class="planleft" id="plan5" (click)="goPlan5()">
+            <!-- <img src="{{schedule[2]?.imgDetail}}" alt=""> -->
+            <p class="title">风吹麦浪</p>
+            <p class="time">一天</p>
         </div>
-        <div class="planright" (click)="goPlan6()">
-            <img src="{{schedule[5]?.imgDetail}}" alt="">
+        <div class="planright" id="plan6" (click)="goPlan6()">
+            <!-- <img src="{{schedule[2]?.imgDetail}}" alt=""> -->
+            <p class="title">一饱口福</p>
+            <p class="time">一天</p>
         </div>
-        <div class="planleft" (click)="goPlan7()">
-            <img src="{{schedule[6]?.imgDetail}}" alt="">
+        <div class="planleft" id="plan7" (click)="goPlan7()">
+            <!-- <img src="{{schedule[2]?.imgDetail}}" alt=""> -->
+            <p class="title">约拍旅行照</p>
+            <p class="time">一天</p>
         </div>
-        <div class="planright" (click)="goPlan8()">
-            <img src="{{schedule[7]?.imgDetail}}" alt="">
+        <div class="planright" id="plan8" (click)="goPlan8()">
+            <!-- <img src="{{schedule[2]?.imgDetail}}" alt=""> -->
+            <p class="title">罗密欧与朱丽叶</p>
+            <p class="time">两天</p>
         </div>
       </div>
     </div>
