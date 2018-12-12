@@ -1,0 +1,46 @@
+<!--
+  Generated template for the Content02Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+
+<ion-content >
+  <div class="head">
+      <ion-icon  (click)="close()" ios="ios-arrow-back-outline" md="md-arrow-back"></ion-icon>
+      <!-- <i class="iconfont icon-back" (click)="close()"></i> -->
+      <img id="tou" src="../assets/imgs/t4.png">不吃辣
+      <button id="btn" ion-button small item-end [color]="isColor ? 'primary' : 'light'" (click)="change()">关注</button> 
+  </div>
+
+  
+<div class="c">
+  <img src="../assets/imgs/tianjin.jpg">
+  <p>“天气上腾，地气下降，天地不通，闭塞而成冬。”<br>
+    冬季让人瑟瑟生寒，书房的壁炉已点燃。<br>
+    围炉而坐，品茶闻香，<br>
+    我们特别策划了一些别致的课程与各位分享。</p>
+  <div class="icon">
+      <span id="star"><ion-icon ios="ios-star-outline" md="md-star-outline"></ion-icon>收藏数</span>
+      <span id="heart"><ion-icon ios="ios-heart-outline" md="md-heart-outline"></ion-icon>喜欢数</span>
+      <!-- <span id="chat"><ion-icon ios="ios-chatbubbles" md="md-chatbubbles"></ion-icon>评论</span> -->
+  </div>
+
+  <div class="d">
+    <div id="t" ><img src="../assets/imgs/zhuzhu.jpg"></div>
+    <div id="right">
+      <p style="font-size:18px;margin:5px 0 ">啊猪</p>
+      <p style="margin:0  ">去吃过一次，感觉不错~</p>
+      <br>
+      <span style=" margin-left:-10px; font-size:13px">
+        2018年11月29日 09:41
+        <button style="height:25px;width:50px;border-radius: 8px; background-color:white; border:grey 1px solid" >回复</button>
+      </span>
+    </div>
+  </div>
+</div>
+  <input type="text" placeholder="快来写下你的评论吧~">
+  <button style="height:30px;width:50px;border-radius: 8px; background-color:white;color:rgb(253, 39, 63);border:rgb(253, 39, 63) 1px solid" >发布</button>
+</ion-content>

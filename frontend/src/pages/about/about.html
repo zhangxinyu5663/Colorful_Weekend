@@ -18,7 +18,7 @@
       </ul>
       <div [ngSwitch]="list">
           <div *ngSwitchCase="'privateletter'" class="privateletter">
-              <ion-list>
+              <!-- <ion-list>
                   <ion-item>
                     <div class="tou" item-start>
                     <img src="../../assets/imgs/嘻嘻.jpg" alt="图片">
@@ -40,6 +40,53 @@
                     <h4>系统消息</h4>
                     <h4 item-end>昨天<button><ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon></button></h4>
                  </ion-item>
+              </ion-list> -->
+              <ion-list ng-controller="AppCtrl">
+                <ion-item-sliding>
+                  <ion-item>
+                      <ion-avatar item-start>
+                        <img src="../../assets/imgs/张三.jpg">
+                      </ion-avatar>
+                      <h2>张三</h2>
+                      <p>This town ain't big enough for the two of us!</p>
+                      <ion-note item-end>3:43 pm</ion-note>
+                  </ion-item>
+                  <ion-item-options slid="left">
+                      <button ion-button color="primary">
+                          <ion-icon ios="ios-trash" md="md-trash"></ion-icon>删除
+                      </button>
+                  </ion-item-options>
+               </ion-item-sliding>
+               <ion-item-sliding>
+                  <ion-item>
+                    <ion-avatar item-start>
+                      <img src="../../assets/imgs/嘻嘻.jpg">
+                    </ion-avatar>
+                    <h2>嘻嘻</h2>
+                    <p>你这是去哪里了？</p>
+                    <ion-note item-end>5:12 pm</ion-note>
+                  </ion-item>
+                  <ion-item-options slid="left">
+                        <button ion-button color="primary">
+                           <ion-icon ios="ios-trash" md="md-trash"></ion-icon>删除
+                        </button>
+                  </ion-item-options>
+                </ion-item-sliding>
+                <ion-item-sliding>
+                  <ion-item>
+                    <ion-avatar item-start>
+                      <img src="../../assets/imgs/系统消息.jpg">
+                    </ion-avatar>
+                    <h2>官方消息</h2>
+                    <p>系统可以更新啦。</p>
+                    <ion-note item-end>9:43 am</ion-note>
+                  </ion-item>
+                  <ion-item-options>
+                      <button ion-button color="primary">
+                         <ion-icon ios="ios-trash" md="md-trash"></ion-icon>删除
+                      </button>
+                </ion-item-options>
+                </ion-item-sliding>
               </ion-list>
           </div>
       </div>

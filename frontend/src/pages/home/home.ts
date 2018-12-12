@@ -10,7 +10,11 @@ import { PlansixPage } from '../plansix/plansix';
 import { PlansevenPage } from '../planseven/planseven';
 import { PlaneightPage } from '../planeight/planeight';
 import { HttpClient } from '@angular/common/http';
-
+import { Content01Page } from '../content01/content01';
+import { Content03Page } from '../content03/content03';
+import { Content04Page } from '../content04/content04';
+import { Content05Page } from '../content05/content05';
+import { Content06Page } from '../content06/content06';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -45,8 +49,28 @@ export class HomePage {
       //   console.log(this.schedule[i].imgDetail);
       // }
     });
+    document.querySelector('#content01').addEventListener('click',()=>{
+      let profileModal=this.modalCtrl.create(Content01Page);
+      profileModal.present();    
+    },false)
     document.querySelector('#content02').addEventListener('click',()=>{
       let profileModal=this.modalCtrl.create(Content02Page);
+      profileModal.present();    
+    },false)
+    document.querySelector('#content03').addEventListener('click',()=>{
+      let profileModal=this.modalCtrl.create(Content03Page);
+      profileModal.present();    
+    },false)
+    document.querySelector('#content04').addEventListener('click',()=>{
+      let profileModal=this.modalCtrl.create(Content04Page);
+      profileModal.present();    
+    },false)
+    document.querySelector('#content05').addEventListener('click',()=>{
+      let profileModal=this.modalCtrl.create(Content05Page);
+      profileModal.present();    
+    },false)
+    document.querySelector('#content06').addEventListener('click',()=>{
+      let profileModal=this.modalCtrl.create(Content06Page);
       profileModal.present();    
     },false)
   }

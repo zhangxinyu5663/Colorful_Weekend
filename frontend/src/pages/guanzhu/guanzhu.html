@@ -3,46 +3,46 @@
   <span>我的关注</span>
 </ion-header>
   <ion-content>
-    <ul>
+    <ul no-padding>
       <li>
-          <div class="d">
             <img src="../assets/imgs/2.jpg" (click)="gofollow()">
             <div class="right">
               <p id="p1">小可爱</p>
               <p style="margin:0 ;color:gray ">我爱大海</p>
             </div>
             <button class="btn" ion-button small item-end [class.color]="'num'" (click)="change(0)">已关注</button>
-          </div> 
       </li>
       <li>
-        <div class="d">
           <img src="../assets/imgs/fans1.jpg">
           <div class="right">
             <p id="p1">这是昵称</p>
             <p style="margin:0 ;color:gray ">桃花依旧笑春风</p>
           </div>
           <button class="btn" ion-button small item-end [class.color]="'num'" (click)="change(1)">已关注</button>
-        </div> 
       </li>
       <li>
-         <div class="d">
          <img src="../assets/imgs/fans2.jpg">
          <div class="right">
            <p id="p1">芬芳一生</p>
            <p style="margin:0 ;color:gray ">二月春风似剪刀</p>
         </div>
         <button class="btn" ion-button small item-end [class.color]="'num'" (click)="change(2)">已关注</button>
-        </div> 
       </li>
       <li>
-        <div class="d">
           <img src="../assets/imgs/fans3.jpg">
           <div class="right">
             <p id="p1">乖小孩</p>
             <p style="margin:0 ;color:gray ">看我的小眼神~</p>
           </div>
           <button class="btn" ion-button small item-end [class.color]="'num'" (click)="change(3)">已关注</button>
-        </div> 
+      </li>
+      <li>
+        <img src="../assets/imgs/fans2.jpg">
+        <div class="right">
+          <p id="p1">小丸子</p>
+          <p style="margin:0 ;color:gray ">解锁了新的拍照姿势</p>
+        </div>
+        <button class="btn"  ion-button small item-end [class.color]="'num'" (click)="change(4)">已关注</button>
       </li>
     </ul>
   </ion-content>
