@@ -10,50 +10,55 @@
       <li  (click)="isClick(1)" [class.second]="isActive==1" >日程</li>
     </ul>
     <div [ngSwitch]='isActive' id="switch">
-      <div *ngSwitchCase='0' >
-        <ul class="goods">
-          <li>
-            <a id="content01"><img src="../assets/imgs/j1.jpg"></a>
-            <span>初冬不如隆冬神圣庄严...</span>
-            <div id="below">
-              <img id="tou" src="../assets/imgs/t1.jpg">玩在北京
-              <div id="right"> 
-                  <ion-icon ios="ios-heart-outline" md="md-heart-outline"></ion-icon>877
-              </div>
-            </div>
-          </li>
-          <li>
-              <a id="content02"><img src="../assets/imgs/j2.jpg"></a>
-              <span>不用去国外！上海就有..</span>
-              <div id="below">
-                <img id="tou" src="../assets/imgs/t2.jpg">郭九九呢
-                <div id="right"> 
-                  <ion-icon ios="ios-heart-outline" md="md-heart-outline"></ion-icon>233
+        <div *ngSwitchCase='0' >
+            <ul class="goods">
+              <li>
+                <a id="content01"><img src="../assets/imgs/j1.jpg"></a>
+                <span>初冬不如隆冬神圣庄严...</span>
+                <div class="bellow">
+                  <img class="tou" src="../assets/imgs/t1.jpg">玩在北京
+                  <!-- <div class="right"> 
+                      <ion-icon ios="ios-heart-outline" md="md-heart-outline"></ion-icon>877
+                  </div> -->
                 </div>
-              </div>
-            </li>
-            <li>
-              <a id="content03"><img src="../assets/imgs/j3.jpg"></a>
-              <span>最省钱的上海迪士尼游...</span>
-              <div id="below">
-                <img id="tou" src="../assets/imgs/t3.jpg">小丸子的杂货集
-                <div id="right"> 
-                  <ion-icon ios="ios-heart-outline" md="md-heart-outline"></ion-icon>777
-                </div>
-              </div>
-            </li>
-            <li>
-                <a id="content04"><img src="../assets/imgs/j4.jpg"></a>
-                <span>日本之行感受茶道之美...</span>
-                <div id="below">
-                  <img id="tou" src="../assets/imgs/t4.png">不吃辣
-                  <div id="right"> 
-                      <ion-icon ios="ios-heart-outline" md="md-heart-outline"></ion-icon>999
+              </li>
+              <li>
+                  <a id="content02"><img src="../assets/imgs/j2.jpg"></a>
+                  <span>不用去国外！上海就有..</span>
+                  <div class="bellow">
+                    <img class="tou" src="../assets/imgs/t2.jpg">郭九九呢
+                  </div>
+                </li>
+                <li>
+                  <a id="content03"><img src="../assets/imgs/j3.jpg"></a>
+                  <span>最省钱的上海迪士尼游...</span>
+                  <div class="bellow">
+                    <img class="tou" src="../assets/imgs/t3.jpg">小丸子的杂货集
+                  </div>
+                </li>
+                <li>
+                    <a id="content04"><img src="../assets/imgs/tianjin.jpg"></a>
+                    <span>天津之行：桂园餐厅</span>
+                    <div class="bellow">
+                      <img class="tou" src="../assets/imgs/t4.png">不吃辣
                     </div>
-                </div>
-            </li>
-        </ul>
-      </div>
+                </li>
+                <li>
+                    <a id="content05"><img src="../assets/imgs/yunnan.jpg"></a>
+                    <span>一座美的不经意千年古城</span>
+                    <div class="bellow">
+                      <img class="tou" src="../assets/imgs/头像0.jpg">Me
+                    </div>
+                </li>
+                <li>
+                    <a id="content06"><img src="../assets/imgs/6.jpg"></a>
+                    <span>广东东方红创意园~</span>
+                    <div class="bellow">
+                      <img class="tou" src="../assets/imgs/fans3.jpg">Funny
+                    </div>
+                </li>
+            </ul>
+          </div>
       <div *ngSwitchCase='1'>
         <div class="planleft" id="plan1" (click)="goPlan1()">
             <!-- <img src="{{schedule[0]?.imgDetail}}" alt=""> -->

@@ -22,8 +22,23 @@ export class ZanPage {
   isClick(i){
     this.isActive=i;
   }
+
+  heart;
+  flag=true;
+  dianzan(i){
+    if(this.flag==true){
+      this.heart=document.getElementsByClassName('heart')[i];
+      this.heart.style.color="aliceblue";
+    }
+    else{
+      this.heart=document.getElementsByClassName('heart')[i];
+      this.heart.style.color="red";
+    }
+    this.flag=!this.flag;
+  }
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
   
-  good:string="a";
+ 
 }

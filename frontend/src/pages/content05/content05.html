@@ -1,0 +1,46 @@
+<!--
+  Generated template for the Content02Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+
+<ion-content >
+  <div class="head">
+      <ion-icon  (click)="close()" ios="ios-arrow-back-outline" md="md-arrow-back"></ion-icon>
+      <!-- <i class="iconfont icon-back" (click)="close()"></i> -->
+      <img id="tou" src="../assets/imgs/头像0.jpg">Me
+      <button id="btn" ion-button small item-end [color]="isColor ? 'primary' : 'light'" (click)="change()">关注</button> 
+  </div>
+
+  
+<div class="c">
+  <img src="../assets/imgs/yunnan.jpg">
+  <p>大理古城是我最喜欢的古城，没有之一，很值得一去。
+    大理，一座美的不经意千年古城。玉洱银沧，风光绮丽；白族风情，古朴浓郁；古城街巷，古色韵味。大理文化最突出的特点是它的开放性
+    包容性。大理文化(或曰洱海文明)的起源已相当久远，在其文明演进的过程中，土著文化在与周边文化的碰撞和交融之中相互消解也相互吸
+    纳，逐渐形成了一种多元文化并存的格局。</p>
+  <div class="icon">
+      <span id="star"><ion-icon ios="ios-star-outline" md="md-star-outline"></ion-icon>收藏数</span>
+      <span id="heart"><ion-icon ios="ios-heart-outline" md="md-heart-outline"></ion-icon>喜欢数</span>
+      <!-- <span id="chat"><ion-icon ios="ios-chatbubbles" md="md-chatbubbles"></ion-icon>评论</span> -->
+  </div>
+
+  <div class="d">
+    <div id="t" ><img src="../assets/imgs/j2.jpg"></div>
+    <div id="right">
+      <p style="font-size:18px;margin:5px 0 ">小丸子</p>
+      <p style="margin:0  ">解锁了新的拍照姿势</p>
+      <br>
+      <span style=" margin-left:-10px; font-size:13px">
+        2018年11月29日 09:41
+        <button style="height:25px;width:50px;border-radius: 8px; background-color:white; border:grey 1px solid" >回复</button>
+      </span>
+    </div>
+  </div>
+</div>
+  <input type="text" placeholder="快来写下你的评论吧~">
+  <button style="height:30px;width:50px;border-radius: 8px; background-color:white;color:rgb(253, 39, 63);border:rgb(253, 39, 63) 1px solid" >发布</button>
+</ion-content>

@@ -14,5 +14,5 @@ export class PhonenumPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
   goChangePhone(){this.navCtrl.push(ChangephonePage);}
-  goBack(){this.navCtrl.popTo(SetPage);}
+  goBack(){this.navCtrl.push(SetPage);}
 }

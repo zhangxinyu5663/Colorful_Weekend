@@ -46,6 +46,12 @@ import { ForgetpwdPage } from '../pages/forgetpwd/forgetpwd';
 import { Forgetpwd2Page } from '../pages/forgetpwd2/forgetpwd2';
 import { ChangepwdalertPage } from '../pages/changepwdalert/changepwdalert';
 import { Register2Page } from '../pages/register2/register2';
+import { UserinfoPage } from '../pages/userinfo/userinfo';
+import { Content01Page } from '../pages/content01/content01';
+import { Content03Page } from '../pages/content03/content03';
+import { Content04Page } from '../pages/content04/content04';
+import { Content05Page } from '../pages/content05/content05';
+import { Content06Page } from '../pages/content06/content06';
 
 
 
@@ -58,7 +64,12 @@ import { Register2Page } from '../pages/register2/register2';
     TabsPage,
     MyPage,
     AddPage,
+    Content01Page,
     Content02Page,
+    Content03Page,
+    Content04Page,
+    Content05Page,
+    Content06Page,
     PlanonePage,
     PlantwoPage,
     PlanthreePage,
@@ -90,7 +101,8 @@ import { Register2Page } from '../pages/register2/register2';
     Register2Page,
     ForgetpwdPage,
     Forgetpwd2Page,
-    ChangepwdalertPage
+    ChangepwdalertPage,
+    UserinfoPage
   ],
   imports: [
     BrowserModule,
@@ -113,7 +125,12 @@ import { Register2Page } from '../pages/register2/register2';
     TabsPage,
     MyPage,
     AddPage,
+    Content01Page,
     Content02Page,
+    Content03Page,
+    Content04Page,
+    Content05Page,
+    Content06Page,
     PlanonePage,
     PlantwoPage,
     PlanthreePage,
@@ -145,7 +162,8 @@ import { Register2Page } from '../pages/register2/register2';
     Register2Page,
     ForgetpwdPage,
     Forgetpwd2Page,
-    ChangepwdalertPage
+    ChangepwdalertPage,
+    UserinfoPage
   ],
   providers: [
     StatusBar,

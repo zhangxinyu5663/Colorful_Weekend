@@ -13,7 +13,7 @@ export class ChangepwPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
   goBack(){
-    this.navCtrl.popTo(SetPage);
+    this.navCtrl.push(SetPage);
   }
   goDetails(){
     this.navCtrl.push(ChangepwdetailsPage);

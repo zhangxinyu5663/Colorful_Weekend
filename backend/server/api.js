@@ -1,6 +1,9 @@
 const express=require('express');
 const mysql=require('mysql');
 var bodyParser=require('body-parser');
+const fs=require('fs');
+const path=require('path');
+const formidable=require('formidable');
 const app=express();
 const router=express.Router();
 const log=console.log;
@@ -42,6 +45,18 @@ router.post('/api/unfreezeUser',function(req,res){
 
 router.get('/api/info',function(req,res){
   const sql='select info.*,phoneNumber,userStatus,status,userName from info,login,mine where info.ID=login.ID and mine.ID=info.ID';
+  connection.query(sql,function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    //log(results);
+    res.json(results);
+  })
+});
+
+router.get('/api/activity',function(req,res){
+  const sql='select * from mine';
   connection.query(sql,function(err,results){
     if(err){
       console.error(err);
@@ -103,6 +118,37 @@ router.post('/api/search/sex',function(req,res){
     log(results);
     res.json(results);    
   });
+});
+
+router.post('/api/upload',function(req,res){
+    var form = new formidable.IncomingForm();   
+    form.uploadDir = "./public/upload/temp/"; //改变临时目录   
+    console.log(1);
+    form.parse(req, function(error, fields, files) {   
+        for (var key in files) {   
+          var file = files[key];   
+          var fName = (new Date()).getTime();   
+          switch (file.type) {   
+            case "image/jpeg":
+              fName = fName + ".jpg";   
+              break;   
+            case "image/png":   
+              fName = fName + ".png";
+              break;   
+            default:   
+              fName = fName + ".png";   
+              break;   
+          }   
+          console.log(file, file.size);
+          fs.rename(file.path,file.path+fName,function(err){
+            if(err){
+              console.log(err);
+              process.exit(1);
+            }
+            res.json({'message':'success'});
+          });
+        }
+    })
 });
 
 app.use(router);

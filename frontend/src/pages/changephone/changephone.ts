@@ -16,14 +16,14 @@ export class ChangephonePage {
               public alertCtrl: AlertController) {
   }
   // goBack(){this.navCtrl.push(SetPage);}
-  goPhonenum(){this.navCtrl.popTo(PhonenumPage);}
+  goPhonenum(){this.navCtrl.push(PhonenumPage);}
   goTips(){
     let alert = this.alertCtrl.create({
       subTitle: '更换成功!',
       buttons: ['确定']
     });
     alert.present();
-    this.navCtrl.popTo(PhonenumPage);
+    this.navCtrl.push(PhonenumPage);
   }
   
 }

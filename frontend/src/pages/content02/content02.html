@@ -9,8 +9,8 @@
 
 <ion-content >
     <div class="head">
-        <!-- <ion-icon  (click)="close()" ios="ios-arrow-back-outline" md="md-arrow-back"></ion-icon> -->
-        <i class="iconfont icon-back" (click)="close()"></i>
+        <ion-icon  (click)="close()" ios="ios-arrow-back-outline" md="md-arrow-back"></ion-icon>
+        <!-- <i class="iconfont icon-back" (click)="close()"></i> -->
         <img id="tou" src="../assets/imgs/t2.jpg">郭九九
         <button id="btn" ion-button small item-end [color]="isColor ? 'primary' : 'light'" (click)="change()">关注</button> 
     </div>
@@ -20,10 +20,11 @@
     <img src="../assets/imgs/j2.jpg">
     <p>不用去国外！上海就有碧海蓝天，附海边拍照姿!今天给你推荐上海一个超适合拍照和游玩的地方，金山城市沙滩，碧海蓝天，百分百出片，秋天太阳也不晒，很适合去海边兜兜风哦!这个海滩不大，因为是非泳季，海边被铁丝网围起来了，但是边上预留了充分大的地方可以趟趟水，我因为觉得冷就没下去......</p>
     <div class="icon">
-        <span id="star"><ion-icon ios="ios-star-outline" md="md-star-outline"></ion-icon>收藏</span>
-        <span id="heart"><ion-icon ios="ios-heart-outline" md="md-heart-outline"></ion-icon>喜欢</span>
-        <span id="chat"><ion-icon ios="ios-chatbubbles-outline"></ion-icon>评论</span>
+        <span id="star"><ion-icon ios="ios-star-outline" md="md-star-outline"></ion-icon>收藏数</span>
+        <span id="heart"><ion-icon ios="ios-heart-outline" md="md-heart-outline"></ion-icon>喜欢数</span>
+        <!-- <span id="chat"><ion-icon ios="ios-chatbubbles" md="md-chatbubbles"></ion-icon>评论</span> -->
     </div>
+
     <div class="d">
       <div id="t" ><img src="../assets/imgs/j2.jpg"></div>
       <div id="right">
@@ -34,10 +35,9 @@
           2018年11月29日 09:41
           <button style="height:25px;width:50px;border-radius: 8px; background-color:white; border:grey 1px solid" >回复</button>
         </span>
-        
       </div>
-    </div> 
+    </div>
   </div>
-    
-
+    <input type="text" placeholder="快来写下你的评论吧~">
+    <button style="height:30px;width:50px;border-radius: 8px; background-color:white;color:rgb(253, 39, 63);border:rgb(253, 39, 63) 1px solid" >发布</button>
 </ion-content>

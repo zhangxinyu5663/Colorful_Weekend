@@ -71,17 +71,13 @@ page-home{
                 width: 45%;
                 float: left;
                 margin: 5px 0 5px 3%;
-                #below{
+                .below{
                     font-size: 5px;
                     .ion-ios-heart-outline,.ion-md-heart-outline{
                     color: #FD273F!important;
-                    }  
-                    #right{
-                        float: right;
-                        line-height: 36px;
                     }
                 }
-                #tou{
+                .tou{
                     width: 25px;
                     height: 25px;
                     border-radius: 50%;
@@ -112,12 +108,12 @@ page-home{
         .title{font-size:16px;margin-top:42.5%;font-weight: 550;}
         .time{font-size: 12px;}
     }
-    #plan1{background:url(../assets/imgs/homeSchedule/plan1.jpg);}
-    #plan2{background:url(../assets/imgs/homeSchedule/plan2.jpg);}
-    #plan3{background:url(../assets/imgs/homeSchedule/plan3.jpg);}
-    #plan4{background:url(../assets/imgs/homeSchedule/plan4.jpg);}
-    #plan5{background:url(../assets/imgs/homeSchedule/plan5.jpg);}
-    #plan6{background:url(../assets/imgs/homeSchedule/plan6.jpg);}
-    #plan7{background:url(../assets/imgs/homeSchedule/plan7.jpg);}
-    #plan8{background:url(../assets/imgs/homeSchedule/plan8.jpg);}
+    #plan1{background:url(../assets/imgs/homeSchedule/plan1.png);}
+    #plan2{background:url(../assets/imgs/homeSchedule/plan2.png);}
+    #plan3{background:url(../assets/imgs/homeSchedule/plan3.png);}
+    #plan4{background:url(../assets/imgs/homeSchedule/plan4.png);}
+    #plan5{background:url(../assets/imgs/homeSchedule/plan5.png);}
+    #plan6{background:url(../assets/imgs/homeSchedule/plan6.png);}
+    #plan7{background:url(../assets/imgs/homeSchedule/plan7.png);}
+    #plan8{background:url(../assets/imgs/homeSchedule/plan8.png);}
 }
