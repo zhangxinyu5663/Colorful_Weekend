@@ -71,6 +71,7 @@ page-at {
                         textarea{
                             border: 1px solid lightgrey;
                             border-radius: 5px;
+                            width:100%;
                             height: 50px;
                             display: block;
                             font-size: 12px;
@@ -83,15 +84,14 @@ page-at {
                     }
                     .project{
                         margin-top: 1%;
-                        width:56px;
-                        height:56px;
-                        line-height: 56px;
+                        width:20%;
+                        height:4em;
+                        line-height:4em;
                         float:right;
                         text-align: center;
                         color: grey;
-                        border: 1px solid grey;
-                        border-radius: 2px;
-                        img{width:56px;height:56px;}
+                        font-size: 14px;
+                        img{width:100%;height:100%;}
                     } 
                   }
                     
