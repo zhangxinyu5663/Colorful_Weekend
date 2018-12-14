@@ -15,6 +15,12 @@ import { Content03Page } from '../content03/content03';
 import { Content04Page } from '../content04/content04';
 import { Content05Page } from '../content05/content05';
 import { Content06Page } from '../content06/content06';
+import { Content12Page } from '../content12/content12';
+import { Content11Page } from '../content11/content11';
+import { Content10Page } from '../content10/content10';
+import { Content09Page } from '../content09/content09';
+import { Content08Page } from '../content08/content08';
+import { Content07Page } from '../content07/content07';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -42,6 +48,19 @@ export class HomePage {
     }
   }
   schedule=[];
+  num;
+  btn;
+  flag=true;
+  change(i){
+    this.btn=document.getElementsByClassName('btn')[i];
+    if(this.flag==true){
+      this.num=i;
+      this.btn.style.color="black";
+    }else{
+      this.btn.style.color="#fd273f";
+    }
+    this.flag=!this.flag;
+  }
   ionViewDidLoad(){
     this.http.get('/api/homeSchedule').subscribe(data=>{
       this.schedule=Array.prototype.slice.call(data);
@@ -71,6 +90,30 @@ export class HomePage {
     },false)
     document.querySelector('#content06').addEventListener('click',()=>{
       let profileModal=this.modalCtrl.create(Content06Page);
+      profileModal.present();    
+    },false)
+    document.querySelector('#content07').addEventListener('click',()=>{
+      let profileModal=this.modalCtrl.create(Content07Page);
+      profileModal.present();    
+    },false)
+    document.querySelector('#content08').addEventListener('click',()=>{
+      let profileModal=this.modalCtrl.create(Content08Page);
+      profileModal.present();    
+    },false)
+    document.querySelector('#content09').addEventListener('click',()=>{
+      let profileModal=this.modalCtrl.create(Content09Page);
+      profileModal.present();    
+    },false)
+    document.querySelector('#content10').addEventListener('click',()=>{
+      let profileModal=this.modalCtrl.create(Content10Page);
+      profileModal.present();    
+    },false)
+    document.querySelector('#content11').addEventListener('click',()=>{
+      let profileModal=this.modalCtrl.create(Content11Page);
+      profileModal.present();    
+    },false)
+    document.querySelector('#content12').addEventListener('click',()=>{
+      let profileModal=this.modalCtrl.create(Content12Page);
       profileModal.present();    
     },false)
   }

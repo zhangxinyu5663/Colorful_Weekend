@@ -52,6 +52,12 @@ import { Content03Page } from '../pages/content03/content03';
 import { Content04Page } from '../pages/content04/content04';
 import { Content05Page } from '../pages/content05/content05';
 import { Content06Page } from '../pages/content06/content06';
+import { Content12Page } from '../pages/content12/content12';
+import { Content11Page } from '../pages/content11/content11';
+import { Content10Page } from '../pages/content10/content10';
+import { Content09Page } from '../pages/content09/content09';
+import { Content08Page } from '../pages/content08/content08';
+import { Content07Page } from '../pages/content07/content07';
 
 
 
@@ -70,6 +76,12 @@ import { Content06Page } from '../pages/content06/content06';
     Content04Page,
     Content05Page,
     Content06Page,
+    Content07Page,
+    Content08Page,
+    Content09Page,
+    Content10Page,
+    Content11Page,
+    Content12Page,
     PlanonePage,
     PlantwoPage,
     PlanthreePage,
@@ -131,6 +143,12 @@ import { Content06Page } from '../pages/content06/content06';
     Content04Page,
     Content05Page,
     Content06Page,
+    Content07Page,
+    Content08Page,
+    Content09Page,
+    Content10Page,
+    Content11Page,
+    Content12Page,
     PlanonePage,
     PlantwoPage,
     PlanthreePage,
