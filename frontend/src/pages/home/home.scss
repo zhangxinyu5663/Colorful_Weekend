@@ -85,34 +85,78 @@ page-home{
         }
     }
     
-    .planleft{
-        margin-left:40px;
-        margin-top:20px;
-        display: inline-block;
-        border-radius: 50%;
-        width: 120px;
-        height: 120px;
-        p{font-family: "等线";color: white;text-align: center;width: 120px;}
-        .title{font-size:16px;margin-top:42.5%;font-weight: 550;}
-        .time{font-size: 12px;}
+    // .planleft{
+    //     margin-left:40px;
+    //     margin-top:20px;
+    //     display: inline-block;
+    //     border-radius: 50%;
+    //     width: 120px;
+    //     height: 120px;
+    //     p{font-family: "等线";color: white;text-align: center;width: 120px;}
+    //     .title{font-size:16px;margin-top:42.5%;font-weight: 550;}
+    //     .time{font-size: 12px;}
+    // }
+    // .planright{
+    //     margin-left: 30px; 
+    //     margin-top:20px;
+    //     display: inline-block;
+    //     border-radius: 50%;
+    //     width: 120px;
+    //     height: 120px;
+    //     p{font-family: "等线";color: white;text-align: center;width: 120px;}
+    //     .title{font-size:16px;margin-top:42.5%;font-weight: 550;}
+    //     .time{font-size: 12px;}
+    // }
+    // #plan1{background:url(../assets/imgs/homeSchedule/plan1.png);}
+    // #plan2{background:url(../assets/imgs/homeSchedule/plan2.png);}
+    // #plan3{background:url(../assets/imgs/homeSchedule/plan3.png);}
+    // #plan4{background:url(../assets/imgs/homeSchedule/plan4.png);}
+    // #plan5{background:url(../assets/imgs/homeSchedule/plan5.png);}
+    // #plan6{background:url(../assets/imgs/homeSchedule/plan6.png);}
+    // #plan7{background:url(../assets/imgs/homeSchedule/plan7.png);}
+    // #plan8{background:url(../assets/imgs/homeSchedule/plan8.png);}
+    .schedule{
+        margin: 0;
+        padding:0;
+        width:100%;
+        margin:20px auto;
+        height:600px;
+        //border:1px solid blalck;
+        li{
+            width:120px;
+            height: 120px;
+            float: left;
+            margin-left: 35px;
+            margin-bottom:20px;
+            //border:1px solid red;
+            position: relative;
+            img{
+                width:120px;
+                height:120px;
+                //border:1px solid black;
+                border-radius: 50%;
+            }
+            span{
+                display: inline-block;
+                //border:1px solid blue;
+                width:120px;
+                height:20px;
+                position: absolute;
+                color:white;
+            }
+            .title{
+                top:40px;
+                font-size:16px;
+                text-align: center;
+            }
+            .time{
+                top:60px;
+                font-size:14px;
+                text-align: center;
+                margin-top:6px;
+            }
+
+        }
     }
-    .planright{
-        margin-left: 30px; 
-        margin-top:20px;
-        display: inline-block;
-        border-radius: 50%;
-        width: 120px;
-        height: 120px;
-        p{font-family: "等线";color: white;text-align: center;width: 120px;}
-        .title{font-size:16px;margin-top:42.5%;font-weight: 550;}
-        .time{font-size: 12px;}
-    }
-    #plan1{background:url(../assets/imgs/homeSchedule/plan1.png);}
-    #plan2{background:url(../assets/imgs/homeSchedule/plan2.png);}
-    #plan3{background:url(../assets/imgs/homeSchedule/plan3.png);}
-    #plan4{background:url(../assets/imgs/homeSchedule/plan4.png);}
-    #plan5{background:url(../assets/imgs/homeSchedule/plan5.png);}
-    #plan6{background:url(../assets/imgs/homeSchedule/plan6.png);}
-    #plan7{background:url(../assets/imgs/homeSchedule/plan7.png);}
-    #plan8{background:url(../assets/imgs/homeSchedule/plan8.png);}
+
 }

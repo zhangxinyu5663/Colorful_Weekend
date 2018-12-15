@@ -31,15 +31,34 @@ export class HomePage {
   isClick(i){
     this.isActive=i;
   }
-
-  goPlan1(){this.navCtrl.push(PlanonePage);}
-  goPlan2(){this.navCtrl.push(PlantwoPage);}
-  goPlan3(){this.navCtrl.push(PlanthreePage);}
-  goPlan4(){this.navCtrl.push(PlanfourPage);}
-  goPlan5(){this.navCtrl.push(PlanfivePage);}   
-  goPlan6(){this.navCtrl.push(PlansixPage);}
-  goPlan7(){this.navCtrl.push(PlansevenPage);}
-  goPlan8(){this.navCtrl.push(PlaneightPage);}
+  goPlan(i){
+    i=i+1;
+    if(i==1){
+      this.navCtrl.push(PlanonePage);
+    }else if(i==2){
+      this.navCtrl.push(PlantwoPage);
+    }else if(i==3){
+      this.navCtrl.push(PlanthreePage);
+    }else if(i==4){
+      this.navCtrl.push(PlanfourPage);
+    }else if(i==5){
+      this.navCtrl.push(PlanfivePage);
+    }else if(i==6){
+      this.navCtrl.push(PlansixPage);
+    }else if(i==7){
+      this.navCtrl.push(PlansevenPage);
+    }else if(i==8){
+      this.navCtrl.push(PlaneightPage);
+    }
+  }
+  // goPlan1(){this.navCtrl.push(PlanonePage);}
+  // goPlan2(){this.navCtrl.push(PlantwoPage);}
+  // goPlan3(){this.navCtrl.push(PlanthreePage);}
+  // goPlan4(){this.navCtrl.push(PlanfourPage);}
+  // goPlan5(){this.navCtrl.push(PlanfivePage);}   
+  // goPlan6(){this.navCtrl.push(PlansixPage);}
+  // goPlan7(){this.navCtrl.push(PlansevenPage);}
+  // goPlan8(){this.navCtrl.push(PlaneightPage);}
 
 
   constructor(public modalCtrl:ModalController,public navCtrl: NavController,public http:HttpClient) {

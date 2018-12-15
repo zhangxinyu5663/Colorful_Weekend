@@ -135,46 +135,13 @@
             </ul>
           </div>
       <div *ngSwitchCase='1'>
-        <div class="planleft" id="plan1" (click)="goPlan1()">
-            <!-- <img src="{{schedule[0]?.imgDetail}}" alt=""> -->
-            <p class="title">乡水小镇</p>
-            <p class="time">两天</p>
-        </div>
-        <div class="planright" id="plan2" (click)="goPlan2()">
-            <!-- <img src="{{schedule[1]?.imgDetail}}" alt=""> -->
-            <p class="title">风吹草地见牛羊</p>
-            <p class="time">一天</p>
-        </div>
-        <div class="planleft" id="plan3" (click)="goPlan3()">
-            <!-- <img src="{{schedule[2]?.imgDetail}}" alt=""> -->
-            <p class="title">小歌怡情</p>
-            <p class="time">晚间</p>
-        </div>
-        <div class="planright" id="plan4" (click)="goPlan4()">
-            <!-- <img src="{{schedule[2]?.imgDetail}}" alt=""> -->
-            <p class="title">听海</p>
-            <p class="time">两天</p>
-        </div>
-        <div class="planleft" id="plan5" (click)="goPlan5()">
-            <!-- <img src="{{schedule[2]?.imgDetail}}" alt=""> -->
-            <p class="title">风吹麦浪</p>
-            <p class="time">一天</p>
-        </div>
-        <div class="planright" id="plan6" (click)="goPlan6()">
-            <!-- <img src="{{schedule[2]?.imgDetail}}" alt=""> -->
-            <p class="title">一饱口福</p>
-            <p class="time">一天</p>
-        </div>
-        <div class="planleft" id="plan7" (click)="goPlan7()">
-            <!-- <img src="{{schedule[2]?.imgDetail}}" alt=""> -->
-            <p class="title">约拍旅行照</p>
-            <p class="time">一天</p>
-        </div>
-        <div class="planright" id="plan8" (click)="goPlan8()">
-            <!-- <img src="{{schedule[2]?.imgDetail}}" alt=""> -->
-            <p class="title">罗密欧与朱丽叶</p>
-            <p class="time">两天</p>
-        </div>
+          <ul class="schedule">
+              <li *ngFor="let item of schedule;let i=index" (click)="goPlan(i)">
+                  <img src="{{item.img}}" alt="">
+                  <span class="title">{{item.title}}</span>
+                  <span class="time">{{item.time}}</span>
+              </li>
+          </ul>
       </div>
     </div>
 
