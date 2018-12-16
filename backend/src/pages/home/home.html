@@ -1,7 +1,7 @@
 <ion-content>
   <div id="total">
     <div id="header">
-      <span><img src="../assets/icon/logo.png" alt=""> </span>
+      <!-- <span><img src="../assets/icon/logo.png" alt=""> </span> -->
       <span>玩转周末管理系统</span>
       <div class="btn">
           <button><ion-icon name="md-settings"></ion-icon>设置</button>
@@ -9,55 +9,139 @@
       </div>
     </div>
     <div class="left">
-      <ul>
-        <li (click)="fun(1)">账号管理</li>
-        <li (click)="fun(2)">个人活动管理</li>
-        <li (click)="fun(3)">首页作品管理</li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+      <div>
+        <img src="../assets/imgs/head/111112.png" alt="">
+        <span>{{userName}}!<br>欢迎登录</span>
+      </div>
+      <ul class="ul">
+        <li (click)="fun(1)"><i class="iconfont icon-fonts-user"></i>账号管理</li>
+        <li (click)="fun(2)"><i class="iconfont icon-huodong"></i>用户活动管理</li>
+        <li (click)="fun(3)">
+          <i class="iconfont icon-zuopin"></i>首页作品管理
+          <ion-icon name="md-arrow-dropdown" style="padding-left:5px;"></ion-icon>
+        </li>
+        <ul id="hiddenUL1">
+          <li (click)="fun(4)">系统作品管理</li>
+          <li (click)="fun(5)">用户作品管理</li>
+        </ul>
+        <li (click)="fun(6)">
+          <i class="iconfont icon-richeng"></i>日程管理
+          <ion-icon name="md-arrow-dropdown" style="padding-left:38px;"></ion-icon>
+        </li>
+        <ul id="hiddenUL2">
+          <li (click)="fun(7)">推荐日程管理</li>
+          <li (click)="fun(8)">用户日程管理</li>
+        </ul>
+        <li (click)="fun(9)"><i class="iconfont icon-pinglun"></i>评论管理</li>
       </ul>
     </div>
     <div class="right" [ngSwitch]="num">
-        <div *ngSwitchCase="1">
+        <div *ngSwitchCase="1" class="div">
           <!-- <ul>
             <li *ngFor="let item of user;">
               {{item.number}} {{item.ID}} {{item.sex}} {{item.birthday}} {{item.college}} {{item.Email}} {{item.address}} {{item.introduction}} {{item.phoneNumber}}
             </li>
           </ul> -->
-          <div class="biao1">
-            <table  width="1200" border="0" cellspacing="0" cellpadding="0" id="table1">
+            <div id="searchone">
+                <select id="select1" [(ngModel)]="typeTextone" (focus)="clear()">
+                    <option value="all">全部</option>
+                    <option value="phone">手机号</option>
+                    <option value="sex">性别</option>
+                    <option value="userStatus">账号状态</option>
+                    <option value="status">登录情况</option>
+                    <option value="id">ID号</option>
+                </select>
+                <input type="text" [(ngModel)]="textone" placeholder="请输入搜索内容" class="search">
+                <i class="iconfont icon-sousuo" (click)="searchone()"></i>
+            </div>
+            <div class="biao1">
+              <table  width="100%" border="0" cellspacing="0" cellpadding="0" id="table1">
+                <tr>
+                  <th>序号</th>
+                  <th>登录名</th>
+                  <th>性别</th>
+                  <th>注册手机号</th>
+                  <th>ID</th>
+                  <th>账号状态</th>
+                  <th>是否登录过</th>
+                  <th>账号操作</th>
+                </tr>
+                <tr *ngFor="let item of user;let i=index" id="tr">
+                  <td>{{i+1}}</td>
+                  <td>{{item.userName}}</td>
+                  <td>{{item.sex}}</td>
+                  <td>{{item.phoneNumber}}</td>
+                  <td>{{item.ID}}</td>
+                  <td class="userStatus">{{item.userStatus}}</td>
+                  <td>{{item.status}}</td>
+                  <td>
+                    <button (click)="ucheck(i)"><i class="iconfont icon-chakan"></i>查看详情</button>&nbsp;|&nbsp;
+                    <button class="freeze" (click)="freeze(i)"><i class="iconfont icon-snow"></i>冻结账号</button>&nbsp;|&nbsp;
+                    <button class="unfreeze" (click)="unfreeze(i)"><i class="iconfont icon-lock-open"></i>解冻账号</button></td>
+                </tr>
+              </table>
+            </div>
+        </div>
+        <div *ngSwitchCase="2" class="div">
+          <div id="searchtwo">
+            <select id="select2" [(ngModel)]="typeTexttwo" (focus)="clear()">
+                <option value="all" selected="selected">全部</option>
+                <option value="id">ID号</option>
+            </select>
+            <input type="text" [(ngModel)]="texttwo" placeholder="请输入搜索内容" class="search">
+            <i class="iconfont icon-sousuo" (click)="searchtwo()"></i>
+          </div>
+          <div class="biao2">
+            <table  width="100%" border="0" cellspacing="0" cellpadding="0" id="table2">
               <tr>
                 <th>序号</th>
-                <th>登录名</th>
-                <!-- <th>性别</th> -->
-                <th>注册手机号</th>
                 <th>ID</th>
-                <th>账号状态</th>
-                <th>是否登录过</th>
-                <th>账号操作</th>
+                <th>收藏</th>
+                <th>发布</th>
+                <th>粉丝</th>
+                <th>关注</th>
               </tr>
-              <tr *ngFor="let item of user;let i=index" id="tr">
-                <td>{{item.number}}</td>
-                <td>{{item.userName}}</td>
-                <!-- <td>{{item.sex}}</td> -->
-                <td>{{item.phoneNumber}}</td>
+              <tr *ngFor="let item of activity;let i=index" id="tr">
+                <td>{{i+1}}</td>
                 <td>{{item.ID}}</td>
-                <td>{{item.userStatus}}</td>
-                <td>{{item.status}}</td>
-                <td><button (click)="ucheck(i)">查看详情</button>&nbsp;|&nbsp;<button class="freeze" (click)="freeze(i)">冻结账号</button>&nbsp;|&nbsp;<button class="unfreeze" (click)="unfreeze(i)">解冻账号</button></td>
+                <td>{{item.collect}} <button>[详情]</button></td>
+                <td>{{item.publish}}<button>[详情]</button></td>
+                <td>{{item.fans}}<button>[详情]</button></td>
+                <td>{{item.interest}}<button>[详情]</button></td>
+                <!-- <td><button (click)="ucheck(i)">查看详情</button>&nbsp;|&nbsp;<button class="freeze" (click)="freeze(i)">冻结账号</button>&nbsp;|&nbsp;<button class="unfreeze" (click)="unfreeze(i)">解冻账号</button></td> -->
               </tr>
-              </table>
+            </table>
           </div>
         </div>
-        <div *ngSwitchCase="2">2</div>
         <div *ngSwitchCase="3">3</div>
         <div *ngSwitchCase="4">4</div>
         <div *ngSwitchCase="5">5</div>
-        <div *ngSwitchCase="6">6</div>
-        <div *ngSwitchCase="7">7</div>
+        <div *ngSwitchCase="6"></div>
+        <div *ngSwitchCase="7" class="div">
+            <div class="biao7">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" id="table7">
+                  <tr>
+                    <th>序号</th>
+                    <th>推荐日程ID</th>
+                    <th>主题</th>
+                    <th>时长</th>
+                    <th>操作</th>
+                  </tr>
+                  <tr *ngFor="let item of homeSchedule;let i=index" id="tr">
+                    <td>{{i+1}}</td>
+                    <td>{{item.hsID}}</td>
+                    <td>{{item.theme}}</td>
+                    <td>{{item.time}}</td>
+                    <td><button (click)="homeScheduleCheck(i)"><i class="iconfont icon-chakan"></i>查看详情</button></td>
+                  </tr>
+                </table>
+            </div>
+          <!-- <input type="file" id="inp" name="picture">
+          <button id="btn" (click)="upload()">上传</button>
+          <img id="img" src="../assets/imgs/head/111111.png" alt=""> -->
+        </div>
+        <div *ngSwitchCase="8">8</div>
+        <div *ngSwitchCase="9">9</div>
     </div>
-    
-  </div> 
+  </div>
 </ion-content>

@@ -14,13 +14,35 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.alert-wrapper{
+    border-radius: 3px!important;
+    max-width:500px!important;
+    height:170px;
+    border:1px solid #fd273f;
+    .alert-title{
+        color:red;
+        font-size: 23px!important;
+        text-align: center;
+        font-family: '微软雅黑';
+    }
+    .alert-sub-title{
+        font-size:18px;
+    }
+    .alert-button{
+        height:20px;
+        color:red;
+    }
+    .alert-button-group{
+        padding: 8px 8px 8px 24px;
+    }
+}
 @font-face {
     font-family: 'iconfont';  /* project id 950556 */
-    src: url('//at.alicdn.com/t/font_950556_lcj8j92q1q.eot');
-    src: url('//at.alicdn.com/t/font_950556_lcj8j92q1q.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_950556_lcj8j92q1q.woff') format('woff'),
-    url('//at.alicdn.com/t/font_950556_lcj8j92q1q.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_950556_lcj8j92q1q.svg#iconfont') format('svg');
+    src: url('../assets/fonts/iconfont.eot');
+    src: url('../assets/fonts/iconfont.eot?#iefix') format('embedded-opentype'),
+    url('../assets/fonts/iconfont.woff') format('woff'),
+    url('../assets/fonts/iconfont.ttf') format('truetype'),
+    url('../assets/fonts/iconfont.svg#iconfont') format('svg');
   }
 
 .iconfont{
@@ -47,8 +69,25 @@
 
 .icon-shezhi:before { content: "\e600"; } //设置
 
+.icon-xialajiantou:before { content: "\e629"; } //下拉箭头
+
+.icon-richeng:before { content: "\e628"; }  //日程管理
+
+.icon-pinglun:before { content: "\e61e"; } //评论管理
+ 
+.icon-zuopin:before { content: "\e620"; }  //作品管理
+
+.icon-huodong:before { content: "\e98b"; } //活动管理
+
+.icon-fonts-user:before { content: "\e604"; } //账号管理
+
+.icon-lock-open:before { content: "\e7c4"; } //解冻
+
+.icon-snow:before { content: "\e7ce"; } //冻结
+
 .modal-wrapper{  //修改模态框大小
-    left: 250px;
-    width: 1100px;
-    height: 630px;
+    left: 230px;
+    width: 1300px;
+    height: 680px;
+    top:70px;
 }

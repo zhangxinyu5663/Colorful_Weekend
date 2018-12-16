@@ -3,7 +3,7 @@ ion-content{
     button{
         background: none;
         font-size: 22px;
-        color:blue;
+        color:#5f9ea0;
         margin-left: 10px;
         margin-top:10px;
     }
@@ -24,7 +24,9 @@ ion-content{
             border:1px solid gray;
             width:600px;
             height:450px;
+            border-radius: 3px;
             li{
+                padding-left:10px;
                 font-size:18px;
                 width:600px;
                 height:60px;

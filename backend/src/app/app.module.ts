@@ -4,19 +4,25 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import {HttpClientModule} from '@angular/common/http'; 
+import { FormsModule } from '@angular/forms';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { UserdetailPage } from '../pages/userdetail/userdetail';
+import { LoginPage } from '../pages/login/login';
+import { HomeScheduleDetailPage } from '../pages/home-schedule-detail/home-schedule-detail';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    UserdetailPage
+    UserdetailPage,
+    LoginPage,
+    HomeScheduleDetailPage
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
@@ -24,7 +30,9 @@ import { UserdetailPage } from '../pages/userdetail/userdetail';
   entryComponents: [
     MyApp,
     HomePage,
-    UserdetailPage
+    UserdetailPage,
+    LoginPage,
+    HomeScheduleDetailPage
   ],
   providers: [
     StatusBar,
