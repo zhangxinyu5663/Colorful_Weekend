@@ -190,8 +190,7 @@ router.post('/api/homeScheduleDetail',function(req,res){
       console.error(err);
       process.exit(1);
     }
-    log(results);
-    res.json(results);
+    res.json(results); 
   })
 });
 
@@ -217,12 +216,11 @@ router.post('/api/alterHomeSchedule',function(req,res){
       process.exit(1);
     }
   });
-  res.json({status:1});
+  res.json({status:1}); //修改成功
 });
 
-//文件上传
-router.post('/api/ajaxUpload', function(req, res) {
-    log(1);
+//上传首页推荐背景图
+router.post('/api/uploadhsPicture', function(req, res) {
     var form = new formidable.IncomingForm();   //创建上传表单
     form.encoding = 'utf-8';        //设置编辑
     form.uploadDir = AVATAR_UPLOAD_FOLDER+'homeSchedule/';     //设置上传目录
@@ -260,20 +258,76 @@ router.post('/api/ajaxUpload', function(req, res) {
         return;
       }
      // var avatarName = Date.now() + '.' + extName;
-      var avatarName=files.imageIcon.name;
-      console.log(avatarName);
+      var fileNameArr=files.imageIcon.name.split('.');
+      var fileName=fileNameArr[0]+'.'+extName;
+      console.log(fileName);
       //图片写入地址；
-      var newPath = form.uploadDir + avatarName;
+      var newPath = form.uploadDir + fileName;
       //显示地址；
-      var showUrl =domain+'/upload/homeSchedule/'+avatarName;
+      var showUrl =domain+'/upload/homeSchedule/'+fileName;
       console.log("newPath",newPath);
       //console.log(showUrl);
       console.log(files.imageIcon.path);
       fs.renameSync(files.imageIcon.path, newPath);  //重命名
       console.log(showUrl);
       res.send(showUrl);
-      //res.json('/avatar'+avatarName);
     });
+});
+
+//添加首页推荐日程
+router.post('/api/newHomeSchedule',function(req,res){
+  var num1,hsID;
+  var num2,hsDetailID;
+
+  const sql1='select COUNT(*) numone from homeSchedule';
+  connection.query(sql1,function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    num1=results[0].numone;
+    hsID=11+num1;
+    num1=num1+1;
+    log(num1);
+    log(hsID);
+
+    const sql2='insert into homeSchedule values(?,?,?,?,?,?)';
+    connection.query(sql2,[num1,hsID,req.body.theme,req.body.time,req.body.imgUrl,req.body.title],function(err,results){
+      if(err){
+        console.error(err);
+        process.exit(1);
+      }
+    });
+  
+    const sql3='select COUNT(*) numtwo from homeScheduleDetail';
+    connection.query(sql3,function(err,results){
+      if(err){
+        console.error(err);
+        process.exit(1);
+      }
+      num2=results[0].numtwo;
+      hsDetailID=1+num2;
+      log(num2);
+      log(hsDetailID);
+
+      const sql4='insert into homeScheduleDetail values(?,?,?,?)';
+      connection.query(sql4,[hsDetailID,hsID,req.body.detailTimeone,req.body.detailone],function(err,results){
+        if(err){
+          console.error(err);
+          process.exit(1);
+        }
+      });
+
+      const sql5='insert into homeScheduleDetail values(?,?,?,?)';
+      connection.query(sql5,[hsDetailID+1,hsID,req.body.detailTimetwo,req.body.detailtwo],function(err,results){
+        if(err){
+          console.error(err);
+          process.exit(1);
+        }
+      });
+    });   
+  });
+  res.json({status:1});  //添加成功
 });
 
 app.use(router);
