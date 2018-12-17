@@ -3,6 +3,7 @@ import { NavController, ModalController } from 'ionic-angular';
 import { HttpClient} from '@angular/common/http';
 import { UserdetailPage } from '../userdetail/userdetail';
 import { HomeScheduleDetailPage } from '../home-schedule-detail/home-schedule-detail';
+import { NewhomeSchedulePage } from '../newhome-schedule/newhome-schedule';
 
 @Component({
   selector: 'page-home',
@@ -170,7 +171,7 @@ export class HomePage {
   }
 
   hsID; //首页推荐日程id
-  homeScheduleCheck(i){
+  homeScheduleCheck(i){ //查看首页推荐日程详情
     this.hsID=this.homeSchedule[i].hsID;
     console.log(this.hsID);
     localStorage.setItem("hsDetailID",this.hsID);
@@ -178,6 +179,10 @@ export class HomePage {
     profileModal.present();
   }
 
+  newHS(){ //新建首页推荐日程详情
+    let profileModal = this.modalCtrl.create(NewhomeSchedulePage);
+    profileModal.present();
+  }
 
   file;
   img;

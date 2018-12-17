@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 
 /**
@@ -16,7 +16,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomeScheduleDetailPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http:HttpClient) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http:HttpClient,public alertCtrl:AlertController) {
   }
 
   hsID;
@@ -74,14 +74,25 @@ export class HomeScheduleDetailPage {
     btn.removeAttribute('disabled');
   }
 
-  alterBack;
+  alterBack; //修改完成后从后端返回的数据
+  stringone; //修改完后要传到数据库的数据
+  stringtwo;
   save(){
     console.log(this.detailoneID);
     console.log(this.detailtwoID);
-    this.http.post('/api/alterHomeSchedule',{hsID:this.hsID,theme:this.theme,title:this.title,time:this.time,detailTimeone:this.detailTimeone,detailTimetwo:this.detailTimetwo,detailone:this.detailone,detailtwo:this.detailtwo,doneID:this.detailoneID,dtwoID:this.detailtwoID}).subscribe(data=>{
+    this.detailoneArr=this.detailone.split('\n');
+    this.detailtwoArr=this.detailtwo.split('\n');
+    this.stringone=this.detailoneArr.join('|');
+    this.stringtwo=this.detailtwoArr.join('|');
+    this.http.post('/api/alterHomeSchedule',{hsID:this.hsID,theme:this.theme,title:this.title,time:this.time,detailTimeone:this.detailTimeone,detailTimetwo:this.detailTimetwo,detailone:this.stringone,detailtwo:this.stringtwo,doneID:this.detailoneID,dtwoID:this.detailtwoID}).subscribe(data=>{
       this.alterBack=data;
       if(this.alterBack.status==1){
-        console.log('修改成功');
+        const alert = this.alertCtrl.create({
+          title: '修改成功',
+          subTitle: '',
+          buttons: ['OK']
+        });
+        alert.present();
       }
     });
   }
@@ -106,7 +117,7 @@ export class HomeScheduleDetailPage {
     // 3.1创建XMLHttpRequest对象
     var xhr=new XMLHttpRequest();
     // 3.2使用open方法,设置请求
-    xhr.open('POST','/api/ajaxUpload',true)
+    xhr.open('POST','/api/uploadhsPicture',true)
     // 3.3使用send方法发送数据
     xhr.send(fd);
     // 3.4监听发送数据状态

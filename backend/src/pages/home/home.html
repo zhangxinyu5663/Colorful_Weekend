@@ -119,6 +119,17 @@
         <div *ngSwitchCase="5">5</div>
         <div *ngSwitchCase="6"></div>
         <div *ngSwitchCase="7" class="div">
+            <div id="searchseven">
+                <select id="select7" [(ngModel)]="typeTextseven" (focus)="clear()">
+                    <option value="all">全部</option>
+                    <option value="theme">主题</option>
+                    <option value="time">时长</option>
+                    <option value="hsID">日程ID</option>
+                </select>
+                <input type="text" [(ngModel)]="textseven" placeholder="请输入搜索内容" class="search">
+                <i class="iconfont icon-sousuo" (click)="searchseven()"></i>
+                <button id="new" (click)="newHS()">新建</button>
+            </div>
             <div class="biao7">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="table7">
                   <tr>
