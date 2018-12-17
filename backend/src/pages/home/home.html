@@ -33,6 +33,7 @@
           <li (click)="fun(8)">用户日程管理</li>
         </ul>
         <li (click)="fun(9)"><i class="iconfont icon-pinglun"></i>评论管理</li>
+        <li (click)="fun(10)"><i class="iconfont icon-pinglun"></i>数据分析</li>
       </ul>
     </div>
     <div class="right" [ngSwitch]="num">
@@ -142,6 +143,7 @@
         </div>
         <div *ngSwitchCase="8">8</div>
         <div *ngSwitchCase="9">9</div>
+        <div *ngSwitchCase="10">10</div>
     </div>
   </div>
 </ion-content>
