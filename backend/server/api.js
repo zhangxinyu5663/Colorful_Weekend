@@ -11,6 +11,7 @@ const formidable=require('formidable');
         domain = "http://192.168.204.144:8000";
 
 app.use(express.static('./public'));
+
 app.use(bodyParser.json());
 app.use(require('body-parser').urlencoded({extended: true}));
 
