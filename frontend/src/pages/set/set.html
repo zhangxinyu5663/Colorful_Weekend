@@ -3,8 +3,8 @@
 </ion-header>
 <ion-content>
   <ul>
-    <li (click)="goAccount()">账号管理<div>005800</div></li>
-    <li (click)="goPhonenum()">手机号<div>133****5837</div></li>
+    <li (click)="goAccount()">账号管理<div>{{userID}}</div></li>
+    <li (click)="goPhonenum()">手机号<div>{{phoneStr}}</div></li>
     <li (click)="goChangePw()">修改密码<div><ion-icon name="ios-arrow-forward"></ion-icon></div></li>
     <li (click)="goSetdata()">设置个人资料<div><ion-icon name="ios-arrow-forward"></ion-icon></div></li>
   </ul>
