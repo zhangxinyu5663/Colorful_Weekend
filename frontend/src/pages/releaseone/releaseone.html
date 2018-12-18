@@ -14,8 +14,9 @@
 
 <ion-content padding ng-app="starter" ng-controller="actionsheetCtrl">
    <div class="content">
-      <ion-textarea placeholder="来分享你的快乐时光吧~" clearInput="true" ></ion-textarea>
-      <button (click)="showMenu()" class="addpicture"><ion-icon ios="ios-camera" md="md-camera"></ion-icon><br>图片/视频</button><br>
+      <textarea placeholder="来分享你的快乐时光吧~" clearInput="true" [(ngModel)]="avatar"></textarea>
+      <img src="{{avatar}}" alt="">
+      <button (click)="presentActionSheet()" class="addpicture"><ion-icon ios="ios-camera" md="md-camera"></ion-icon><br>图片/视频</button><br>
       <button ion-button class="label" round><ion-icon name="pricetag"></ion-icon>添加标签</button>
       <button ion-button class="place" round><ion-icon name="pin"></ion-icon>添加地点</button>
    </div>
