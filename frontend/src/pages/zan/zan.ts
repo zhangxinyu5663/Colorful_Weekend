@@ -32,7 +32,7 @@ export class ZanPage {
     }
     else{
       this.heart=document.getElementsByClassName('heart')[i];
-      this.heart.style.color="red";
+      this.heart.style.color="#FD273F";
     }
     this.flag=!this.flag;
   }
