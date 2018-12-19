@@ -108,7 +108,7 @@ router.post('/api/register',function(req,res){
   });
 });
 
-//修改密码
+//忘记密码-修改密码
 router.post('/api/changePwd',function(req,res){
   const sql='update login set password=? where phoneNumber=?';
   connection.query(sql,[req.body.pwd,req.body.phone],function(err,results){
@@ -120,6 +120,20 @@ router.post('/api/changePwd',function(req,res){
     res.json({status:1}); //修改密码成功
   });    
 });
+
+//重新设置密码
+router.post('/api/changePwdtwo',function(req,res){
+  const sql='update login set password=? where ID=?';
+  connection.query(sql,[req.body.pwd,req.body.id],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    //log(results); 
+    res.json({status:1}); //修改密码成功
+  });    
+});
+
 
 //查询我的表
 router.post('/api/mine',function(req,res){
@@ -216,9 +230,60 @@ router.post('/api/addMySchedule',function(req,res){
     res.json({status:1}); //添加成功
   });
 });
+
+//查询手机号
+router.post('/api/queryPhone',function(req,res){ 
+  const sql='select phoneNumber from login where ID=?'
+  connection.query(sql,[req.body.id],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    res.json(results); //返回查询的结果
+  });
+});
+
+//查询密码
+router.post('/api/queryPwd',function(req,res){ 
+  const sql='select password from login where ID=?'
+  connection.query(sql,[req.body.id],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    res.json(results); //返回查询的结果
+  });
+});
+
+//查询头像
+router.post('/api/queryHead',function(req,res){ 
+  const sql='select head,userName from mine where ID=?'
+  connection.query(sql,[req.body.id],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    res.json(results); //返回查询的结果
+  });
+});
+
+
+//更换手机号
+router.post('/api/changePhone',function(req,res){ 
+  const sql='update login set phoneNumber=? where ID=?'
+  connection.query(sql,[req.body.phone,req.body.id],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    res.json({status:1}); //更换手机号成功
+  });
+});
+
+
+
 app.use(router);
 
 app.listen(8080);
-
 
 
