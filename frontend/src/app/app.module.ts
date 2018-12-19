@@ -11,6 +11,10 @@ import { TabsPage } from '../pages/tabs/tabs';
 import {HttpClientModule} from '@angular/common/http'; 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
+import {Camera,CameraOptions} from "@ionic-native/camera";
+import {ImagePicker,ImagePickerOptions} from "@ionic-native/image-picker";
+
 import { AddPage } from '../pages/add/add';
 import { Content02Page } from '../pages/content02/content02';
 import { PlanonePage } from '../pages/planone/planone';
@@ -118,15 +122,13 @@ import { Content07Page } from '../pages/content07/content07';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    // IonicModule.forRoot(MyApp),
     HttpClientModule,
-    // IonicModule.forRoot(MyApp,{
-    //   backButtonText: '',
-    //   backButtonIcon:'ios-arrow-back',
-    //   tabsHideOnSubPages:true, //跳转之后隐藏下面的导航栏
-
-    //    iconMode: 'ios',
-    // })
+    IonicModule.forRoot(MyApp,{
+      backButtonText: '',
+      backButtonIcon:'',
+      tabsHideOnSubPages:true //跳转之后隐藏下面的导航栏
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -186,7 +188,9 @@ import { Content07Page } from '../pages/content07/content07';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Camera,
+    ImagePicker
   ]
 })
 export class AppModule {}

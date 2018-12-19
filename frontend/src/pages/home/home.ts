@@ -26,6 +26,9 @@ import { Content07Page } from '../content07/content07';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  obj=[];//用于盛放后端传回的首页推荐作品的类数组对象
+  imgs;//用于盛放从后端传回来的图片路径数组
+  projectId;//标记是哪个作品
   items=[];
   isActive=0;
   isClick(i){
@@ -51,14 +54,7 @@ export class HomePage {
       this.navCtrl.push(PlaneightPage);
     }
   }
-  // goPlan1(){this.navCtrl.push(PlanonePage);}
-  // goPlan2(){this.navCtrl.push(PlantwoPage);}
-  // goPlan3(){this.navCtrl.push(PlanthreePage);}
-  // goPlan4(){this.navCtrl.push(PlanfourPage);}
-  // goPlan5(){this.navCtrl.push(PlanfivePage);}   
-  // goPlan6(){this.navCtrl.push(PlansixPage);}
-  // goPlan7(){this.navCtrl.push(PlansevenPage);}
-  // goPlan8(){this.navCtrl.push(PlaneightPage);}
+
 
 
   constructor(public modalCtrl:ModalController,public navCtrl: NavController,public http:HttpClient) {
@@ -83,64 +79,21 @@ export class HomePage {
   ionViewDidLoad(){
     this.http.get('/api/homeSchedule').subscribe(data=>{
       this.schedule=Array.prototype.slice.call(data);
-      // for(var i=0;i<this.schedule.length;i++){
-      //   console.log(this.schedule[i].imgDetail);
-      // }
     });
-    document.querySelector('#content01').addEventListener('click',()=>{
-      let profileModal=this.modalCtrl.create(Content01Page);
-      profileModal.present();    
-    },false)
-    document.querySelector('#content02').addEventListener('click',()=>{
-      let profileModal=this.modalCtrl.create(Content02Page);
-      profileModal.present();    
-    },false)
-    document.querySelector('#content03').addEventListener('click',()=>{
-      let profileModal=this.modalCtrl.create(Content03Page);
-      profileModal.present();    
-    },false)
-    document.querySelector('#content04').addEventListener('click',()=>{
-      let profileModal=this.modalCtrl.create(Content04Page);
-      profileModal.present();    
-    },false)
-    document.querySelector('#content05').addEventListener('click',()=>{
-      let profileModal=this.modalCtrl.create(Content05Page);
-      profileModal.present();    
-    },false)
-    document.querySelector('#content06').addEventListener('click',()=>{
-      let profileModal=this.modalCtrl.create(Content06Page);
-      profileModal.present();    
-    },false)
-    document.querySelector('#content07').addEventListener('click',()=>{
-      let profileModal=this.modalCtrl.create(Content07Page);
-      profileModal.present();    
-    },false)
-    document.querySelector('#content08').addEventListener('click',()=>{
-      let profileModal=this.modalCtrl.create(Content08Page);
-      profileModal.present();    
-    },false)
-    document.querySelector('#content09').addEventListener('click',()=>{
-      let profileModal=this.modalCtrl.create(Content09Page);
-      profileModal.present();    
-    },false)
-    document.querySelector('#content10').addEventListener('click',()=>{
-      let profileModal=this.modalCtrl.create(Content10Page);
-      profileModal.present();    
-    },false)
-    document.querySelector('#content11').addEventListener('click',()=>{
-      let profileModal=this.modalCtrl.create(Content11Page);
-      profileModal.present();    
-    },false)
-    document.querySelector('#content12').addEventListener('click',()=>{
-      let profileModal=this.modalCtrl.create(Content12Page);
-      profileModal.present();    
-    },false)
+    this.http.get('/api/home').subscribe(data=>{
+      this.obj=Array.prototype.slice.call(data);
+      console.log(this.obj);
+    })
+
+    // document.querySelector('#content12').addEventListener('click',()=>{
+    //   let profileModal=this.modalCtrl.create(Content12Page);
+    //   profileModal.present();    
+    // },false)
   }
-  // ionViewDidLoad(){
-  //   document.querySelector('#content02').addEventListener('click',()=>{
-  //     let profileModal=this.modalCtrl.create(Content02Page);
-  //     profileModal.present();
-      
-  //   },false)
-  // }
+  detail(i){
+    localStorage.setItem('homedetailID',this.obj[i].projectID);
+    // let profileModal=this.modalCtrl.create(Content01Page);
+    // profileModal.present();  
+    this.navCtrl.push(Content01Page);
+  }
 }

@@ -34,7 +34,7 @@ export class GuanzhuPage {
   }
 
   gofollow(){this.navCtrl.push(FollowpersonPage);}
-  goMy(){this.navCtrl.push(MyPage);}
+  goMy(){this.navCtrl.pop();}
 
 
 }

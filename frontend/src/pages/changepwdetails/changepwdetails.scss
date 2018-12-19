@@ -16,19 +16,35 @@ page-changepwdetails {
             label{
                 display:block;
                 line-height: 50px;
-                span{width: 70px;display: inline-block;}
-                input{border:none;border-bottom: 1px solid grey;}
+                span{
+                    width: 70px;
+                    display: inline-block;
+                    text-align: right;
+                }
+                input{
+                    border:none;
+                    border-bottom: 1px solid grey;
+                    margin-left: 10px;
+                    height:30px;
+                    line-height: 30px;
+                }
             }
         }
-        p{margin-left: 15px;margin-top:30px;color: grey;}
+        p{
+            margin-left: 15px;
+            margin-top:30px;
+            color: grey;
+        }
         button{
             width:100px;
-            height:50px;
+            height:40px;
+            line-height: 40px;
             background-color: #FD273F;
             border-radius: 5px;
             margin-left: 36%;
-            margin-top:100px;
-            color: white;      
+            margin-top:60px;
+            color: white;    
+            font-size:15px;  
         }    
     }
 }

@@ -1,12 +1,21 @@
 page-login {
     ion-content{
+        //background: url(../assets/imgs/loginbk/bk3.png);
         #logo{
-            width: 100px;
-            height: 100px;
+            img{
+                width: 60px;
+                height: 60px;
+            }
             //  border:1px solid black;
             margin-top:80px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 40px;
+             margin-left: 60px;
+            // margin-right: auto;
+            span{
+                font-feature-settings: '幼圆';
+                font-size:24px;
+                color:#FD273F;
+            }
         }
 
         .inp{

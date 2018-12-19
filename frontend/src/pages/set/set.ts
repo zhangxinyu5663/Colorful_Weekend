@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App, ModalController } from 'ionic-angular';
 import { ChangepwPage } from '../changepw/changepw';
 import { SetdataPage } from '../setdata/setdata';
 import { AccountPage } from '../account/account';
@@ -14,12 +14,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SetPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public http:HttpClient,public app:App) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http:HttpClient,public app:App,public modalCtrl:ModalController) {
   }
   userID;//用户ID
   arr; //从后端返回的数据
   phoneStr; //手机号
-  ionViewDidLoad(){
+  ionViewWillEnter(){
     this.userID=localStorage.getItem('id');
     this.http.post('/api/queryPhone',{id:this.userID}).subscribe(data=>{
       this.arr=data;
@@ -29,7 +29,11 @@ export class SetPage {
   }
   // goBack(){this.navCtrl.push(MyPage);}
   goBack(){this.navCtrl.pop();}
-  goChangePw(){this.navCtrl.push(ChangepwPage);}
+  goChangePw(){
+    this.navCtrl.push(ChangepwPage);
+    // let profileModal=this.modalCtrl.create(ChangepwPage);
+    // profileModal.present();
+  }
   goSetdata(){this.navCtrl.push(SetdataPage);}
   goAccount(){this.navCtrl.push(AccountPage);}
   goPhonenum(){this.navCtrl.push(PhonenumPage);}

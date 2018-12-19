@@ -26,6 +26,6 @@ export class FansPage {
   }
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
-  goMy(){this.navCtrl.push(MyPage);}
+  goMy(){this.navCtrl.pop();}
   goFan(){this.navCtrl.push(FansmyPage);}
 }

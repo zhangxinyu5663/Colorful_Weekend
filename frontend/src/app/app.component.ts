@@ -3,17 +3,16 @@ import { Platform,ToastController, App, NavController, Tabs } from 'ionic-angula
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 // import { TabsPage } from '../pages/tabs/tabs';
-import { LoginPage } from '../pages/login/login';
-import { ChangepwdalertPage } from '../pages/changepwdalert/changepwdalert';
+ import { LoginPage } from '../pages/login/login';
+// import { ChangepwdalertPage } from '../pages/changepwdalert/changepwdalert';
 import { TabsPage } from '../pages/tabs/tabs';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-    rootPage:any = TabsPage;
-   // rootPage:any = LoginPage;
-    //rootPage:any = ChangepwdalertPage;
+    //rootPage:any = TabsPage;
+    rootPage:any = LoginPage;
     backButtonPressed = false;
     showExit(): void {
       //如果为true，退出

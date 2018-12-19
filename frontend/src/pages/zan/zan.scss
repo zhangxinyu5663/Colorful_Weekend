@@ -50,8 +50,10 @@ page-zan {
                 border:1px solid black;
                 // span{margin-top:127px;margin-left:3px;float: left;}
                 img{
+                    padding: 0%;
+                    margin: 0%;
                     width: 100%;
-                    height: 150px;
+                    height: 149px;
                     position: absolute;
                 }
                 .zan{
@@ -66,15 +68,15 @@ page-zan {
                         height: 15px;
                         background: transparent;
                         ion-icon{
-                            font-size: 20px;
-                            color: #FD273F;
+                            color: red;
                         }
                     }
                     .num{
-                        color: aliceblue;
                         position: absolute;
+                        margin: 0%;
+                        padding: 0%;
                         float: right;
-                        margin-left: 10px;
+                        margin-left: 5px;
                         }
                     }
                 }

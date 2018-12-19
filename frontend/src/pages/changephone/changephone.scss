@@ -19,14 +19,50 @@ page-changephone {
             margin-top: 20px;
             margin-left: 2%;
             list-style: none;
-            li{
+            .lione{
                 width: 96%;
-                input{border: none;width: 75%;}
-                border-bottom:1px solid grey;
-                height: 45px;
-                line-height: 40px;
-                button{background-color: white;color: red;}
+                input{
+                    border: none;
+                    width: 96%;
+                    border-bottom:1px solid grey;
+                    height: 45px;
+                    line-height: 45px;
+                }
             }
+            .litwo{
+                width: 96%;
+                margin-top:10px;
+                input{
+                    border: none;
+                    width: 68%;
+                    border-bottom:1px solid grey;
+                    height: 45px;
+                    line-height: 45px;
+                }
+               #gaincode{
+                   margin-left:5px;
+                    color:#FD273F;
+                    width:98px;
+                    height:40px;
+                    font-size:15px;
+                    background: none;
+                    border:1px solid #FD273F;
+                    border-radius: 5px;
+                }
+            }
+        }
+        #codeShow{
+            width:180px;
+            height:50px;
+            font-size:25px;
+            font-family: '楷体';
+            text-align: center;
+            line-height: 50px;
+            // border:1px solid #FD273F;
+            opacity:0.8!important ;
+            display: none;
+            margin-top:10px;
+            margin-left:80px;
         }
         .submit{
             width:100px;
@@ -34,7 +70,7 @@ page-changephone {
             background-color: #FD273F;
             border-radius: 5px;
             margin-left: 36%;
-            margin-top:150px;
+            margin-top:50px;
             color: white;
         }
         //下边是没有成功的模态框的样式 不要删除 迟早一天能搞出来

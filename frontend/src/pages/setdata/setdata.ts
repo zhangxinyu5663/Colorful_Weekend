@@ -44,7 +44,7 @@ export class SetdataPage {
       this.userName=this.info[0].userName;
     });
   }
-  goBack(){this.navCtrl.push(SetPage);}
+  goBack(){this.navCtrl.pop();}
   goTips(){
     this.id=localStorage.getItem('id');
     // console.log(this.sex);
@@ -56,7 +56,7 @@ export class SetdataPage {
         console.log('设置信息成功！');
         let alert = this.alertCtrl.create({
           subTitle: '修改成功!',
-          buttons: ['确认']
+          buttons: ['ok']
         });
         alert.present();
       }

@@ -5,22 +5,12 @@
   <ion-content>
       <img src="assets/imgs/security.png" class="security">
       <ul>
-        <li><input type="number" placeholder="请输入手机号"></li>
-        <li>
-          <input type="text" placeholder="请输入验证码">
-          <button>点击获取</button>
+        <li class="lione"><input type="number" placeholder="请输入手机号" [(ngModel)]="phoneinp"></li>
+        <li class="litwo">
+          <input type="text" placeholder="请输入验证码" id="codeinp" [(ngModel)]="code">
+          <button (click)="gainCode()" id="gaincode">点击获取</button>
         </li>
+        <div id="codeShow"></div>
       </ul>
       <button class="submit" (click)="goTips()">确认提交</button>
-      <!-- 这里是去他妈的不会写的模态框<div class="tips">
-        <img src="assets/icon/sure.png" alt="">
-        <span>更换成功！</span>
-        <button (click)="goBack()">确定</button>
-      </div> 
-      <script>
-         function goTips(){
-          var tips = document.getElementsByClassName('tips');
-          tips.style.display='block';
-        }
-      </script> -->
   </ion-content>  

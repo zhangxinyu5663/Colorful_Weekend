@@ -70,16 +70,43 @@ page-home{
                  
                 width: 48%;
                 float: left;
-                margin: 5px 0 5px 2%;
-                .right{
-                        float: right;
-                        margin-top: 10px;
-                        font-size: 18px!important;                        
-                    }
-                .tou{
-                    width: 25px;
+                margin-left:3px;
+                margin-right:3px;
+                margin-top:10px;
+                #text{
+                    // border: 1px solid green;
+                    height: 20px;
+                    width: 100%;
+                    word-break: break-all;
+                    text-overflow: ellipsis;
+                    display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+                    -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+                    -webkit-line-clamp: 1; /** 显示的行数 **/
+                    overflow: hidden;  /** 隐藏超出的内容 **/
+                }
+                #below{
+                    // border: 1px solid;
+                    width: 100%;
                     height: 25px;
+                    line-height: 25px;
+                    display: inline-block;
+                    vertical-align: middle;
+                    font-size: 5px;
+                    .ion-ios-heart-outline,.ion-md-heart-outline{
+                    color: #FD273F!important;
+                    }  
+                    #right{
+                        float: right;
+                        line-height: 25px;
+                    }
+                }
+                #tou{
+                    width: 18px;
+                    height: 18px;
                     border-radius: 50%;
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin-right: 5px;
                 }
             }
         }

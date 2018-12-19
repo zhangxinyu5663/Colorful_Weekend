@@ -6,12 +6,12 @@
 <div class="list">
   <p class="up">请重新设置您的密码。增加密码的复杂程度，会使账号的安全性更高。</p>
   <label>
-    <span>新密码：</span><input type="password" placeholder="填写新密码">
+    <span>新密码</span><input type="password" placeholder="填写新密码" [(ngModel)]="pwdinp" (focus)="clearone()">
   </label>
   <label>
-    <span>确认密码：</span><input type="password" placeholder="再次填写新密码">
+    <span>确认密码</span><input type="password" placeholder="再次填写新密码" [(ngModel)]="againpwdinp" (focus)="cleartwo()">
   </label>
 </div>
-<p>密码必须是8-10位的数字、字符组合(不能是纯数字)</p>
+<p>密码必须是6-16位的数字、字符组合(不能是纯数字)</p>
 <button (click)="goTips()">完成</button>
 </ion-content>
