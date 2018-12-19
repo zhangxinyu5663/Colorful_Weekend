@@ -25,9 +25,11 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-
+//上传图片
 router.post('/api/ajaxUpload', function(req, res) {
     console.log(1);
+    
+    res.setHeader('Content-Type','text/plain;charset=utf-8');
     //console.log(req.body.fd);
     var form = new formidable.IncomingForm();   //创建上传表单
     form.encoding = 'utf-8';        //设置编辑
@@ -42,7 +44,6 @@ router.post('/api/ajaxUpload', function(req, res) {
       }
       console.log(files);
       var extName = '';  //后缀名
-      console.log(files.imageIcon.type);
       switch (files.imageIcon.type) {
          case 'image/pjpeg':
            extName = 'jpg';
@@ -69,19 +70,20 @@ router.post('/api/ajaxUpload', function(req, res) {
       //显示地址；
       var showUrl =domain+'/avatar/'+avatarName;
       console.log("newPath",newPath);
-      //console.log(showUrl);
       console.log(files.imageIcon.path);
       fs.renameSync(files.imageIcon.path, newPath);  //重命名
       console.log(showUrl);
-      res.json(showUrl);
+      //res.writeHead(200,{'Content-Type':'text/plain'});
+      //res.setHeader('Content-Type','text/plain;charset=utf-8');
+      res.send(showUrl);
       //res.json('/avatar'+avatarName);
     });
 });
 
 
-
+//请求首页作品
 router.get('/api/home',function(req,res){
-  const sql = "select * from homeRecommend";
+  const sql = "select homeRecommend.*,user.userName,head from homeRecommend,user where homeRecommend.userID=user.ID";
 
   connection.query(sql,function(err,results){
     if(err){
@@ -89,11 +91,59 @@ router.get('/api/home',function(req,res){
       process.exit(1);
     }
     results.forEach(function(e){
-      log(e);
+      //log(e);
     })
     res.json(results);
    });
 });
+//请求首页详情和首页作品评论
+router.post('/api/homedetail',function(req,res){
+  const sql1 = "select homeRecommend.*,user.userName,head from homeRecommend,user where homeRecommend.userID=user.ID and projectID=?";
+  const sql2 = "select comment.*,user.userName,head from comment,user where comment.CommentUserID=user.ID and projectID=?";
+  var detail,comments;
 
+  connection.query(sql1,[req.body.id],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    detail=results;
+  });
+  connection.query(sql2,[req.body.id],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    comments=results;
+    res.json({"detail":detail,"comments":comments});
+  });
+});
+//添加评论
+router.post('/api/addcomment',function(req,res){
+  const sql1 = "insert into comment values(uuid(),?,?,?,now(),?,?)";
+  const sql2 = "select CommentUserID from comment where RowGuid=?";
+  var ToUserID;
+
+  connection.query(sql2,[req.body.RowGuid],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    console.log(results);
+    ToUserID=results[0].CommentUserID;
+    console.log(ToUserID);
+
+  connection.query(sql1,[req.body.RowGuid,req.body.context,req.body.userID,ToUserID,req.body.projectID],function(err,results){
+    console.log(ToUserID);
+    if(err){
+      console.log(err);
+      project.exit(1);
+    }
+    console.log(results);
+    res.json({"message":"sucessful"});
+  });
+
+})
+})
 app.use(router);
 app.listen(8080);

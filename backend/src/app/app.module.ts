@@ -11,14 +11,16 @@ import { HomePage } from '../pages/home/home';
 import { UserdetailPage } from '../pages/userdetail/userdetail';
 import { LoginPage } from '../pages/login/login';
 import { HomeScheduleDetailPage } from '../pages/home-schedule-detail/home-schedule-detail';
+import { NewhomeSchedulePage } from '../pages/newhome-schedule/newhome-schedule';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    UserdetailPage,
-    LoginPage,
-    HomeScheduleDetailPage
+    HomePage, //首页
+    UserdetailPage, //用户详情页
+    LoginPage,  //登录页
+    HomeScheduleDetailPage,  //首页推荐日程详情页
+    NewhomeSchedulePage //新建首页推荐日程页
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import { HomeScheduleDetailPage } from '../pages/home-schedule-detail/home-sched
     HomePage,
     UserdetailPage,
     LoginPage,
-    HomeScheduleDetailPage
+    HomeScheduleDetailPage,
+    NewhomeSchedulePage
   ],
   providers: [
     StatusBar,

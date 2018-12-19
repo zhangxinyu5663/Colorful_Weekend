@@ -91,3 +91,23 @@
     height: 680px;
     top:70px;
 }
+
+//修改弹窗样式
+.alert-wrapper{
+    width:600px;
+    height:200px;
+    border:1px solid #5f9ea0;
+    .alert-button-group{
+        padding: 80px 8px 8px 24px;
+    }
+    .alert-title{
+        color:#5f9ea0;
+    }
+    .alert-button{
+        color:#5f9ea0;
+    }
+}
+
+.alert-md .alert-button{
+    font-size:20px;
+}

@@ -15,7 +15,8 @@ export class ContactPage {
   ID;
   mySchedule=[];
   year=[];
-  ionViewDidLoad(){
+  ionViewWillEnter(){
+    console.log(1111)
     this.ID=localStorage.getItem('id');
     this.http.post('/api/mySchedule',{id:this.ID}).subscribe(data=>{
       console.log(this.mySchedule);
@@ -28,10 +29,13 @@ export class ContactPage {
     //   // this.year=data;
     //   // console.log(this.year);
     // });
-    document.querySelector('#addcalendar').addEventListener('click',()=>{
-      let profileModal=this.modalCtrl.create(CalendarPage);
-      profileModal.present();
-      
-    },false)
+    // document.querySelector('#addcalendar').addEventListener('click',()=>{
+    //   // let profileModal=this.modalCtrl.create(CalendarPage);
+    //   // profileModal.present();
+    //   this.navCtrl.push(CalendarPage)
+    // },false)
+  }
+  goCalender(){
+    this.navCtrl.push(CalendarPage);
   }
 }

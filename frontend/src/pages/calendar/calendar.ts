@@ -26,6 +26,12 @@ export class CalendarPage {
   back;
   close(){
     this.navCtrl.pop();
+    // let elements = document.querySelectorAll(".tabbar");
+    // if (elements != null) {
+	  //   Object.keys(elements).map((key) => {
+    // 		elements[key].style.display = 'flex';
+    //   });
+    // }
   }
   switchType() {
     console.log(this.typeTxt);
@@ -38,16 +44,32 @@ export class CalendarPage {
     var arr=this.myDate.split('-');
     this.year=arr[0];
     this.date=arr[1]+'-'+arr[2];
-    console.log(this.year);
-    console.log(this.date);
+    // console.log(this.year);
+    // console.log(this.date);
     this.http.post('/api/addMySchedule',{type:this.typeTxt,year:this.year,date:this.date,detail:this.detail,id:this.id}).subscribe(data=>{
       this.back=data;
       if(this.back.status==1){
-        this.navCtrl.push(ContactPage);
+        this.navCtrl.pop();
       }
     })
-    //console.log(this.detail,this.myDate,this.typeTxt);
   }
   
+  // ionViewDidEnter(){
+  //   let elements = document.querySelectorAll(".tabbar");
+  //   if (elements != null) {
+  //      Object.keys(elements).map((key) => {
+  //         elements[key].style.display = 'none';
+  //     });
+  //   }   
+  // }
+  // ionic当退出页面的时候触发的方法
+  // ionViewWillLeave() {
+  //   let elements = document.querySelectorAll(".tabbar");
+  //   if (elements != null) {
+	//     Object.keys(elements).map((key) => {
+  //   		elements[key].style.display = 'flex';
+	//     });
+  //   }
+  // }
 
 }

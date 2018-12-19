@@ -31,7 +31,7 @@
         <li class="list"><ion-icon style="font-size: 25px" name="{{item?.type}}"></ion-icon>&nbsp;&nbsp;&nbsp;{{item?.date}}&nbsp;&nbsp;&nbsp;{{item?.detail}}</li>
       </ul>
     <a id="addcalendar">
-        <ion-item>
+        <ion-item (click)="goCalender()">
             <button  style="height:43px ;font-size:15px;color:gray;" ion-button color="light" round block>
               <ion-icon style="font-size: 30px" name="add"></ion-icon> 待添加
             </button>
