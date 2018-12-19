@@ -281,7 +281,75 @@ router.post('/api/changePhone',function(req,res){
 });
 
 
+//请求首页作品
+router.get('/api/home',function(req,res){
+  const sql = "select homeRecommend.*,mine.userName,head from homeRecommend,info,mine where homeRecommend.userID=info.ID and info.ID=mine.ID";
 
+  connection.query(sql,function(err,results){
+    if(err){
+      log(err);
+      process.exit(1);
+    }
+    results.forEach(function(e){
+      //log(e);
+    })
+    res.json(results);
+   });
+});
+
+//请求首页详情和首页作品评论
+
+router.post('/api/homedetail',function(req,res){
+  const sql1 = "select homeRecommend.*,mine.userName,head from homeRecommend,info,mine where homeRecommend.userID=info.ID and info.ID=mine.ID and projectID=?";
+  const sql2 = "select comment.*,mine.userName,head from comment,info,mine where comment.CommentUserID=info.ID and info.ID=mine.ID and projectID=?";
+  var detail,comments;
+
+  connection.query(sql1,[req.body.id],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    detail=results;
+  });
+  connection.query(sql2,[req.body.id],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    comments=results;
+    res.json({"detail":detail,"comments":comments});
+  });
+});
+
+
+//添加评论
+/*
+router.post('/api/addcomment',function(req,res){
+  const sql1 = "insert into comment values(uuid(),?,?,?,now(),?,?)";
+  const sql2 = "select CommentUserID from comment where RowGuid=?";
+  var ToUserID;
+
+  connection.query(sql2,[req.body.RowGuid],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    console.log(results);
+    ToUserID=results[0].CommentUserID;
+    console.log(ToUserID);
+
+    connection.query(sql1,[req.body.RowGuid,req.body.context,req.body.userID,ToUserID,req.body.projectID],function(err,results){
+      console.log(ToUserID);
+      if(err){
+        console.log(err);
+        project.exit(1);
+      }
+      console.log(results);
+      res.json({"message":"sucessful"});
+    });
+  });
+});
+*/
 app.use(router);
 
 app.listen(8080);
