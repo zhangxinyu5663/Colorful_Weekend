@@ -2,33 +2,60 @@ page-add {
     padding:0;
     margin:0;
     ion-content{
-        // width:100%;
-        // height: 600px;
         background: url(../assets/imgs/planthreebg.png);
         background-repeat: no-repeat;
-        // background-size: cover;
-        div{
-            .span1{
-                display: inline-block;
-                width:100%;
-                height: 50px;
-                //border:1px solid black;
-                line-height: 50px;
-                i{
-                    font-size:30px!important;
-                    color:#fd273f;
-                    padding-left: 320px;
+        span{
+            display: block;
+        }
+        .span1{
+            width:100%;
+            height: 50px;
+            // border:1px solid black;
+            line-height: 50px;
+            i{
+                font-size:30px!important;
+                color:#fd273f;
+                padding-left: 320px;
                     
+            }
+        }
+        .span2{
+            height:40px;
+            line-height: 40px;
+            padding-left: 10px;
+            margin-top:10px;
+            font-size:18px;
+            // border:1px solid black;
+            border-bottom:2px solid gray;
+        }
+        .content{
+            // border:1px solid black;
+            width: 95%;
+            margin: 10px auto;
+            ion-item{
+                padding: 0;
+                height: 60px;
+                margin-top: 5px;
+                img{
+                    height: 50px;
+                    width: 50px;
                 }
             }
-            .span2{
-                height:40px;
-                line-height: 40px;
-                padding-left: 10px;
-                display: block;
-                margin-top:20px;
-                font-size:18px;
-                border-bottom:2px solid gray;
+        }
+        .footer{
+            border: rgb(155, 151, 151) 1px solid;
+            height: 32px;
+            span{
+                height: 30px;
+                float: left;
+                text-align: center;
+                line-height: 30px;
+                // border: 1px rgb(153, 150, 150) solid;
+                width: 33.3%;
+                font-size: 18px;
+                ion-icon{
+                    color: rgb(160, 156, 156);
+                }
             }
         }
     }
