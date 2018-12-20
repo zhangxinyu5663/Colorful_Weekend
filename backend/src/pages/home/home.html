@@ -1,39 +1,55 @@
+
 <ion-content>
   <div id="total">
     <div id="header">
-      <!-- <span><img src="../assets/icon/logo.png" alt=""> </span> -->
-      <span>玩转周末管理系统</span>
-      <div class="btn">
+      <img src="../assets/imgs/logo.png" alt="">
+      <div>玩转周末管理系统</div>
+      <!-- <div class="btn">
           <button><ion-icon name="md-settings"></ion-icon>设置</button>
-          <button>安全退出</button>
+          <button (click)="goLogin()"><i class="iconfont icon-ai240"></i>安全退出</button>
+      </div> -->
+      <div>
+          <ul class="btn">
+              <li (click)="showUL()">
+                <ion-icon name="md-settings"></ion-icon>&nbsp;&nbsp;设置<ion-icon name="md-arrow-dropdown" style="padding-left:10px;"></ion-icon>
+                <ul id="hide">
+                  <li><i class="iconfont key"></i>修改密码</li>
+                  <li><i class="iconfont touxiang"></i>更换头像</li>
+                  <li><i class="iconfont guanzhu"></i>新增管理员</li>
+                </ul>
+              </li>
+              <li (click)="goLogin()"><i class="iconfont icon-ai240"></i>&nbsp;&nbsp;安全退出</li>
+            </ul>
       </div>
     </div>
     <div class="left">
       <div>
         <img src="../assets/imgs/head/111112.png" alt="">
-        <span>{{userName}}!<br>欢迎登录</span>
+        <div>
+            <span>{{userName}}!<br><br>欢迎登录</span>
+        </div>
       </div>
-      <ul class="ul">
-        <li (click)="fun(1)"><i class="iconfont icon-fonts-user"></i>账号管理</li>
-        <li (click)="fun(2)"><i class="iconfont icon-huodong"></i>用户活动管理</li>
-        <li (click)="fun(3)">
+      <ul id="ul">
+        <li (click)="fun(1)" class="li"><i class="iconfont icon-fonts-user"></i>账号管理</li>
+        <li (click)="fun(2)" class="li"><i class="iconfont icon-huodong"></i>用户活动管理</li>
+        <li (click)="fun(3)" class="li">
           <i class="iconfont icon-zuopin"></i>首页作品管理
           <ion-icon name="md-arrow-dropdown" style="padding-left:5px;"></ion-icon>
         </li>
         <ul id="hiddenUL1">
-          <li (click)="fun(4)">系统作品管理</li>
-          <li (click)="fun(5)">用户作品管理</li>
+          <li (click)="fun(4)" class="li">系统作品管理</li>
+          <li (click)="fun(5)" class="li">用户作品管理</li>
         </ul>
-        <li (click)="fun(6)">
+        <li (click)="fun(6)" class="li">
           <i class="iconfont icon-richeng"></i>日程管理
           <ion-icon name="md-arrow-dropdown" style="padding-left:38px;"></ion-icon>
         </li>
         <ul id="hiddenUL2">
-          <li (click)="fun(7)">推荐日程管理</li>
-          <li (click)="fun(8)">用户日程管理</li>
+          <li (click)="fun(7)" class="li">推荐日程管理</li>
+          <li (click)="fun(8)" class="li">用户日程管理</li>
         </ul>
-        <li (click)="fun(9)"><i class="iconfont icon-pinglun"></i>评论管理</li>
-        <li (click)="fun(10)"><i class="iconfont icon-pinglun"></i>数据分析</li>
+        <li (click)="fun(9)" class="li"><i class="iconfont icon-pinglun"></i>评论管理</li>
+        <li (click)="fun(10)" class="li"><i class="iconfont shujufenxi"></i>数据分析</li>
       </ul>
     </div>
     <div class="right" [ngSwitch]="num">
@@ -152,9 +168,54 @@
           <button id="btn" (click)="upload()">上传</button>
           <img id="img" src="../assets/imgs/head/111111.png" alt=""> -->
         </div>
-        <div *ngSwitchCase="8">8</div>
+        <div *ngSwitchCase="8">
+          <div id="searcheight">
+            <select id="select8" [(ngModel)]="typeTexteight" (focus)="clear()">
+                <option value="all">全部</option>
+                <option value="phone">手机号</option>
+                <option value="sex">性别</option>
+                <option value="userStatus">账号状态</option>
+                <option value="status">登录情况</option>
+                <option value="id">ID号</option>
+            </select>
+            <input type="text" [(ngModel)]="texteight" placeholder="请输入搜索内容" class="search">
+            <i class="iconfont icon-sousuo" (click)="searcheight()"></i>
+        </div>
+        <div class="biao1">
+          <table  width="100%" border="0" cellspacing="0" cellpadding="0" id="table1">
+            <tr>
+              <th>序号</th>
+              <th>登录名</th>
+              <th>性别</th>
+              <th>注册手机号</th>
+              <th>ID</th>
+              <th>操作</th>
+            </tr>
+            <tr *ngFor="let item of user;let i=index" id="tr">
+              <td>{{i+1}}</td>
+              <td>{{item.userName}}</td>
+              <td>{{item.sex}}</td>
+              <td>{{item.phoneNumber}}</td>
+              <td>{{item.ID}}</td>
+              <td class="userStatus">{{item.userStatus}}</td>
+              <td>{{item.status}}</td>
+              <td>
+                <button (click)="ucheck(i)"><i class="iconfont icon-chakan"></i>查看详情</button>&nbsp;|&nbsp;
+                <button class="freeze" (click)="freeze(i)"><i class="iconfont icon-snow"></i>冻结账号</button>&nbsp;|&nbsp;
+                <button class="unfreeze" (click)="unfreeze(i)"><i class="iconfont icon-lock-open"></i>解冻账号</button></td>
+            </tr>
+          </table>
+        </div>
+        </div>
         <div *ngSwitchCase="9">9</div>
-        <div *ngSwitchCase="10">10</div>
+        <div *ngSwitchCase="10">
+          <div class="data">
+            <div #chart id="increase" style="width:1000px;height:500px;">1</div>
+            <div #chart id="modular" style="width:1000px;height:700px;">2</div>
+            <div #chart id="source" style="width:1000px;height:400px;">3</div>
+            <div #chart id="sex" style="width:1000px;height:500px;">4</div>
+          </div>
+        </div>
     </div>
   </div>
 </ion-content>

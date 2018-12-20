@@ -1,19 +1,26 @@
-import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { Component,ViewChild,ElementRef } from '@angular/core';
+import { NavController, ModalController, App } from 'ionic-angular';
 import { HttpClient} from '@angular/common/http';
 import { UserdetailPage } from '../userdetail/userdetail';
 import { HomeScheduleDetailPage } from '../home-schedule-detail/home-schedule-detail';
 import { NewhomeSchedulePage } from '../newhome-schedule/newhome-schedule';
+import { LoginPage } from '../login/login';
+
+//import ECharts from 'echarts';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-  constructor(public navCtrl: NavController,private http:HttpClient,public modalCtrl: ModalController) {
+  //@ViewChild('chart') chart: ElementRef;
+  constructor(public navCtrl: NavController,private http:HttpClient,public modalCtrl: ModalController,public app:App) {
 
   }
+  goLogin(){ //退出登录
+    this.app.getRootNavs()[0].setRoot(LoginPage);
+  }
+ 
   num=1;
   userName;
   flag=false;
@@ -26,9 +33,286 @@ export class HomePage {
       //console.log(data);
       this.user=Array.prototype.slice.call(data); 
     });
+    
+    // // 1.新增用户 柱状图
+    // var myIncreaseChart = echarts.init(document.getElementById('increase'));
+    // var option0={
+    //   title:{text: '增量数据-趋势总览'},
+    //   tooltip:{trigger: 'axis'},
+    //   color: ["#5F9EA0","#A2CD5A","#FFA54F"],
+    //   legend: {
+    //       padding: 0,
+    //       x:"10px",
+    //       y:"30px",
+    //       icon: "circle", //图例的形状
+    //       data:['新增注册用户','新增游客','常在活跃用户']
+    //   },
+    //   grid:{
+    //       y:'80px'
+    //   },
+    //   scaleStartValue : 3000,
+    //   calculable : true,
+    //   xAxis : [
+    //       {
+    //           type : 'category',
+    //           data : ['6月','7月','8月','9月','10月','11月',]
+    //       }
+    //   ],
+    //   yAxis :[
+    //       { 
+    //           type : 'value',
+    //       }
+    //   ],
+    //   yAxis:{
+    //       min:2000,
+    //       max:12000, 
+    //   },
+    //   toolbox: {
+    //           show : true,
+    //           feature : {
+    //               mark : {show: true},
+    //               dataView : {show: true, readOnly: false},
+    //               restore : {show: true},
+    //               saveAsImage : {show: true}
+    //           }
+    //       },
+    //   series : [
+    //       {
+    //           name:'新增注册用户',
+    //           type:'bar',
+    //           data:[3333, 4055, 5055, 10599, 7188, 6588],barGap:0,
+    //       },
+    //       {
+    //           name:'新增游客',
+    //           type:'bar',
+    //           data:[8008, 9999, 8022, 5666, 6588,7355],barGap:0,
+    //       },
+    //       {
+    //           name:'常在活跃用户',
+    //           type:'bar',
+    //           data:[5454, 3888, 7088, 6088,8455,7122],barGap:0,
+    //       },
+    //   ]
+    // };
+    // myIncreaseChart.setOption(option0);
+
+    // //2.模块分析 折线图
+    // var myModularChart = echarts.init(document.getElementById('modular'));
+    // var option1={
+    //     title:{text: '分区占比-数据总览'},
+    //     tooltip:{
+    //         trigger: 'axis',
+    //         formatter:'{b}<br />\
+    //           <span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#EE6363"></span>\
+    //           {a0}：{c0}%<br />\
+    //           <span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#912CEE"></span>\
+    //           {a1}：{c1}%<br />\
+    //           <span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#90EE90"></span>\
+    //           {a2}：{c2}%<br />'
+    //     },
+    //     color: ["#EE6363","#912CEE","#90EE90"],
+    //     legend: {
+    //         padding: 0,
+    //         x:"10px",
+    //         y:"30px",
+    //         icon: "circle", //图例的形状
+    //         data:['美食','电影','游玩']
+    //     },
+    //     grid:{
+    //         y:'80px'
+    //     },
+    //     toolbox: {
+    //             show : true,
+    //             feature : {
+    //                 mark : {show: true},
+    //                 dataView : {show: true, readOnly: false},
+    //                 restore : {show: true},
+    //                 saveAsImage : {show: true}
+    //             }
+    //         },
+    //     calculable : true,
+    //     xAxis : [
+    //         {
+    //             type : 'category',
+    //             boundaryGap : false,
+    //             data : ['6月','7月','8月','9月','10月','11月',]
+    //         }
+    //     ],
+    //     yAxis : [
+    //         {
+    //             type : 'value',
+    //             axisLabel: {formatter: '{value} %'},
+    //         }
+    //     ],
+    //     yAxis: {
+    //         min:0,
+    //         max:100,
+    //         axisLabel:{
+    //             formatter: function (value) {
+    //                 var texts = [];
+    //                 if(value==0){texts.push('0');}
+    //                 else if(value<= 20) {texts.push('20%');}
+    //                 else if(value<= 40) {texts.push('40%');}
+    //                 else if(value<= 60){texts.push('60%');}
+    //                 else if(value<= 80){texts.push('80%');}
+    //                 else{texts.push('100%');}
+    //                 return texts;
+    //             }
+    //         }
+    //     },
+    //     series : [
+    //         {
+    //             name:'美食',
+    //             type:'line',
+    //             data:[23, 45, 19, 59, 50, 49],
+    //             symbol:'star',
+    //             symbolSize: 8,
+    //         },
+    //         {
+    //             name:'电影',
+    //             type:'line',
+    //             data:[59, 40, 49, 31, 32, 29],
+    //             symbol:'star',
+    //             symbolSize: 8,
+    //         },
+    //         {
+    //             name:'游玩',
+    //             type:'line',
+    //             data:[18, 15, 32, 10, 18, 22],
+    //             symbol:'star',
+    //             symbolSize: 8,
+    //         }
+    //     ]
+    // };
+    // myModularChart.setOption(option1);
+
+
+    // //3.播放来源 环形图
+    // var mySourceChart = echarts.init(document.getElementById('source'));
+    // var option2={
+    //     title:{
+    //         text:"播放来源-数据总览",
+    //         x:"left",
+    //         textStyle:{color:"#000000",fontSize:20}
+    //     },
+    //     toolbox: {
+    //             show : true,
+    //             feature : {
+    //                 mark : {show: true},
+    //                 dataView : {show: true, readOnly: false},
+    //                 restore : {show: true},
+    //                 saveAsImage : {show: true}
+    //             }
+    //         },
+    //     legend:{
+    //         padding: 0,
+    //         orient:'vertical',//horizontal是水平
+    //         x:"700px",
+    //         y:"center",
+    //         icon: "circle", //图例的形状
+    //         width: 100,
+    //         data:['Android','Web','iPhone','站外']
+    //     },
+    //     tooltip: {
+    //         trigger: 'item',// 触发类型，默认数据触发，可选为：'item' ¦ 'axis'
+    //     },
+    //     backgroundColor: '#ffffff',
+    //     textStyle: {color: 'rgba(0, 0, 0, 1)'},
+    //     series : [
+    //         {
+    //         name: '访问来源',
+    //         type: 'pie',
+    //         radius: ['22%','40%'],//内圆心 外圆心
+    //         data:[
+    //             {value:680, name:'Android',itemStyle:{normal:{color:'#00BFFF'}}},
+    //             {value:200, name:'Web',itemStyle:{normal:{color:'#40E0D0'}}},
+    //             {value:495, name:'iPhone',itemStyle:{normal:{color:'#FFA07A'}}},
+    //             {value:74, name:'站外',itemStyle:{normal:{color:'#FFA500'}}}
+    //         ],
+    //         //roseType: 'angle',南丁格尔图
+    //         itemStyle: {
+    //             normal:{borderWidth:2,borderColor:"#ffffff"},
+    //             emphasis: {shadowBlur: 200,shadowColor: 'rgba(0, 0, 0, 0.1)'}},
+    //         label: {
+    //             normal: {textStyle: {color: 'rgba(1, 1, 1, 1)'}}},
+    //         }
+    //     ]
+    // }
+    // mySourceChart.setOption(option2);
+
+    // //4.性别分析图 雷达图
+    // var mySexChart = echarts.init(document.getElementById('sex'));
+    // var option3={
+    //         title : {
+    //             text: '性别-数据分析'
+    //         },
+    //         tooltip : {
+    //             trigger: 'axis'
+    //         },
+    //         color: ["#FF3030","#000080"],
+    //         legend: {
+    //             padding: 0,
+    //             x:"10px",
+    //             y:"30px",
+    //             icon: "circle", //图例的形状
+    //             data:['女','男']
+    //         },
+    //         grid:{
+    //             y:'80px'
+    //         },
+    //         toolbox: {
+    //             show : true,
+    //             feature : {
+    //                 mark : {show: true},
+    //                 dataView : {show: true, readOnly: false},
+    //                 restore : {show: true},
+    //                 saveAsImage : {show: true}
+    //             }
+    //         },
+    //         polar : [
+    //         {
+    //             indicator : [
+    //                 { text: '游玩页面浏览时长', max: 30000,color:"#000000"},
+    //                 { text: '美食页面浏览时长', max: 30000,color:"#000000"},
+    //                 { text: '电影页面浏览时长', max: 30000,color:"#000000"},
+    //                 { text: '注册用户', max: 100000,color:"#000000"},
+    //                 { text: '流量收益', max: 80000,color:"#000000"},
+    //                 { text: '活跃用户', max: 50000,color:"#000000"},
+                    
+    //                 ]
+    //             }
+    //         ],
+    //         calculable : true,
+    //         series : [
+    //             {
+    //                 name: '性别-数据分析',
+    //                 type: 'radar',
+    //                 data : [
+    //                     {
+    //                         value : [13000, 18000, 11000, 65000, 60000, 33000],
+    //                         name : '女'
+    //                     },
+    //                     {
+    //                         value : [19000, 10000, 18000, 35000, 34000, 24000],
+    //                         name : '男'
+    //                     }
+    //                 ]
+    //             }
+    //         ]
+    // };
+    // mySexChart.setOption(option3);
+
   }
+  lis;
   fun(i){
     this.num=i;
+    this.lis=document.getElementsByClassName('li');
+    this.lis[i-1].style.backgroundColor='#18A0A9';
+    for(var j=0;j<this.lis.length;j++){
+      if(j!=i-1){
+        this.lis[j].style.backgroundColor='#32c2cd';
+      }
+    }
     if(i==1){
       this.endOne(i);
     }else if(i==2){
@@ -59,6 +343,17 @@ export class HomePage {
 
     }
   }
+
+  showUL(){
+    var hide=document.getElementById('hide');
+    if(this.flag==false){
+      hide.style.display='block';
+    }else{
+      hide.style.display='none';
+    }
+    this.flag=!this.flag;
+  }
+
   endOne(i){
     this.http.get('/api/info').subscribe(data=>{   //请求账号信息
       this.user=Array.prototype.slice.call(data); 
@@ -215,4 +510,6 @@ export class HomePage {
       }
     }
   }
+  
+  
 }
