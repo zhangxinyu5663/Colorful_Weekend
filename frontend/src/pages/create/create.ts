@@ -12,7 +12,7 @@ export class CreatePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
-  goMy(){this.navCtrl.push(MyPage);}
+  goMy(){this.navCtrl.pop();}
   goSub(){
     this.navCtrl.push(ReleaseonePage);
   }
