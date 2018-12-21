@@ -6,6 +6,7 @@ import { ActionSheetController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import {ImagePicker, ImagePickerOptions} from "@ionic-native/image-picker";
 import {Camera, CameraOptions} from "@ionic-native/camera";
+import { HttpClient } from '@angular/common/http';
 /**
  * Generated class for the ReleaseonePage page.
  *
@@ -21,7 +22,7 @@ import {Camera, CameraOptions} from "@ionic-native/camera";
 
 export class ReleaseonePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public actionSheetCtrl: ActionSheetController, public alertCtrl: AlertController, public imagePicker: ImagePicker, public camera: Camera) {
+  constructor(public http:HttpClient,public navCtrl: NavController, public navParams: NavParams,public actionSheetCtrl: ActionSheetController, public alertCtrl: AlertController, public imagePicker: ImagePicker, public camera: Camera) {
   }
   back(){
     this.navCtrl.pop();
@@ -99,7 +100,7 @@ export class ReleaseonePage {
 //     var tabs = document.getElementsByClassName('tabbar').item(0);
 //     tabs['style'].display = 'flex';
 //  }
-  avatar: string = "";
+  avatar: string = "";  //图像的src
   presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
       buttons: [{
@@ -127,6 +128,7 @@ export class ReleaseonePage {
       return value;
     });
   }
+  img; //存放照片
   takePhoto() {
     const options: CameraOptions = {
       quality: 100,
@@ -134,11 +136,16 @@ export class ReleaseonePage {
       targetWidth: 200,
       targetHeight: 200,
       saveToPhotoAlbum: true,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
     };
-
+    var that=this;
     this.camera.getPicture(options).then(imageData => {
       console.log('Image URI: ' + imageData);
       // this.avatar = image.slice(7);
+      that.img=document.getElementById('img');
+      that.img.style.display="block";
       this.avatar='data:image/jpeg;base64,'+imageData;
     }, error => {
       console.log('Error: ' + error);
@@ -147,17 +154,24 @@ export class ReleaseonePage {
 
   chooseFromAlbum() {
     const options: ImagePickerOptions = {
-      maximumImagesCount: 1,
+      //maximumImagesCount: 1,
+      quality: 100,
       width: 200,
-      height: 200
+      height: 200,
+      outputType:1
     };
-    this.imagePicker.getPictures(options).then(images => {
-      if (images.length > 1) {
-        this.presentAlert();
-      } else if (images.length === 1) {
-        console.log('Image URI: ' + images[0]);
-        this.avatar = images[0].slice(7);
-      }
+   // var that=this;
+    this.imagePicker.getPictures(options).then(imageData => {
+      // if (imageData.length > 1) {
+      //   this.presentAlert();
+      // } else if (imageData.length === 1) {
+
+        // console.log('Image URI: ' + imageData[0]);
+        //this.avatar = images[0].slice(7);
+        this.img=document.getElementById('img');
+        this.img.style.display="block";
+         this.avatar='data:image/jpeg;base64,'+imageData;
+      // }
     }, error => {
       console.log('Error: ' + error);
     });
@@ -168,6 +182,53 @@ export class ReleaseonePage {
     alert.present().then(value => {
       return value;
     });
+  }
+
+  text;
+  userID; //用户ID
+  time; //当前时间
+  backArr;
+  release(){
+    this.time=this.getDate();
+    console.log(this.time);
+    this.userID=localStorage.getItem('id');
+    console.log(this.userID);
+    this.http.post('/api/userPublishUpload',{avatar:this.avatar,text:this.text,userID:this.userID,time:this.time}).subscribe(data=>{
+      this.backArr=data;
+      if(this.backArr.status==1){
+        this.navCtrl.pop();
+      }
+    });
+  }
+
+  month;
+  strdate;
+  hour;
+  minutes;
+  getDate(){   //获取当前时间函数
+    var date = new Date();
+    var seperator1 = "-";
+    var seperator2 = ":";
+    this.month = date.getMonth() + 1;
+    this.strdate = date.getDate();
+    this.hour= date.getHours();
+    this.minutes=date.getMinutes();
+    if (this.month >= 1 && this.month <= 9) {
+        this.month = "0" + this.month;
+    }
+    if (this.strdate >= 0 && this.strdate <= 9) {
+        this.strdate = "0" + this.strdate;
+    }
+    if (this.hour >= 0 && this.hour <= 9) {
+      this.strdate = "0" + this.strdate;
+    }
+    if (this.minutes >= 0 && this.minutes <= 9) {
+      this.strdate = "0" + this.strdate;
+    }
+    var currentdate = date.getFullYear() + seperator1 + this.month + seperator1 + this.strdate
+            + " " + this.hour+ seperator2 + this.minutes;
+            // + seperator2 + date.getSeconds();
+    return currentdate;
   }
 }
 
