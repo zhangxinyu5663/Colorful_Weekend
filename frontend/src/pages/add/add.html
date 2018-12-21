@@ -6,8 +6,8 @@
 -->
 <ion-content >
   <span class="span1"><i class="iconfont icon-fabu" (click)=" goSub()"></i></span>
-  <span class="span2">已发布(1)</span>
-  <div class="content">
+  <span class="span2">已发布({{myPublish?.length}})</span>
+  <!-- <div class="content">
       <ion-item>
           <ion-avatar item-start>
             <img src="../../assets/imgs/head/111111.png">
@@ -27,5 +27,26 @@
       <span><ion-icon ios="ios-heart" md="md-heart" class="heart"></ion-icon>&nbsp;&nbsp;点赞</span>
       <span><ion-icon ios="ios-text" md="md-text"></ion-icon>&nbsp;&nbsp;评论</span>
       <span><ion-icon name="star" ></ion-icon>&nbsp;&nbsp;收藏</span>
-   </div>
+   </div> -->
+    <ul>
+        <!-- *ngFor="let item of myPublish;let i=index" -->
+      <li *ngFor="let item of myPublish;let i=index">
+        <div class="div1"><img src="{{item?.head}}" alt=""></div>
+        <div class="div2"><span>{{item?.userName}}</span><span>{{item?.time}}</span></div>
+        <div class="div3">
+          <ion-icon name="ios-arrow-down"></ion-icon>
+        </div>
+        <div class="div4">
+          <img src="{{item?.pictureORvideo}}" alt="">
+          <p>
+             {{item?.text}}
+          </p>
+        </div>
+        <div class="div5">
+            <span><ion-icon ios="ios-heart" md="md-heart" class="heart"></ion-icon>&nbsp;&nbsp;{{item?.zan}}</span>
+            <span><ion-icon ios="ios-text" md="md-text"></ion-icon>&nbsp;&nbsp;{{item?.comment}}</span>
+            <span><ion-icon name="star" ></ion-icon>&nbsp;&nbsp;{{item?.collect}}</span>
+         </div>
+      </li>
+    </ul>
 </ion-content>
