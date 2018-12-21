@@ -16,7 +16,7 @@ export class ContactPage {
   mySchedule=[];
   year=[];
   ionViewWillEnter(){
-    console.log(1111)
+    // console.log(1111)
     this.ID=localStorage.getItem('id');
     this.http.post('/api/mySchedule',{id:this.ID}).subscribe(data=>{
       console.log(this.mySchedule);
