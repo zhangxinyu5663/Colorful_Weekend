@@ -18,6 +18,11 @@ export class PlanonePage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
+  hsID; //首页日程推荐详情ID
+  ionViewDidLoad(){
+    this.hsID=localStorage.getItem('hsID');
+    console.log(this.hsID);
+  }
   goBack(){
     this.navCtrl.pop();
   }

@@ -1,3 +1,4 @@
+
 <ion-content>
     <!-- <img src="assets/imgs/fault.png" 
     alt="" (click)="goBack()" class="fault"> -->
@@ -6,38 +7,52 @@
       <span>乌镇游</span>
       <i class="iconfont icon-chahao" (click)="goBack()"></i>
     </div>
-    <div id="line"></div>
-    <div id="schedule">
-       <div class="scheduleleft">
-         <div class="sta">周六  <ion-icon name="ios-radio-button-on"></ion-icon></div>    
-         <div class="sun">周日  <ion-icon name="ios-radio-button-on"></ion-icon></div>         
-       </div>
-       <div class="scheduleright">
-         <ul>
-           <li><ion-icon name="md-alarm"></ion-icon>
-            9:00-11:00观赏路线：逢源双桥→财神湾→江南百床馆→宏源泰染坊→余榴梁钱币馆</li>
-           <li><ion-icon name="md-alarm"></ion-icon>
-            11:00-13:00乌镇东栅景区百年老字号九江楼酒店，白水鱼和红烧羊肉尤为美味。</li>
-           <li><ion-icon name="md-alarm"></ion-icon>
-            13:00-17:30观赏路线：茅盾故居→乌镇古戏台→修真观→皮影戏馆→访卢阁→汇源当铺</li>
-           <li><ion-icon name="md-alarm"></ion-icon>
-            18:00-19:00晚饭时间：品尝乌镇特色小吃，有姑嫂饼，三百酒，定胜糕，青团等，可根据个人个人口味选择不同的小吃</li>
-           <li><ion-icon name="md-alarm"></ion-icon>
-            19:00-22:00夜游西栅——独居水乡特色的夜景</li>
-           <li><ion-icon name="md-alarm"></ion-icon>
-            22:00-8:00住宿：通安客栈（推荐）游客可根据不同的价位选择自己心仪的房间进行住宿。</li>
-           <li><ion-icon name="md-alarm"></ion-icon>
-            8:00-12:00观赏路线：草木本色染坊→昭明书院→三寸金莲展馆→老邮局→乌镇大戏院→乌镇关帝庙</li>
-           <li><ion-icon name="md-alarm"></ion-icon>
-            12:00-13:00西栅民宿午饭，与房东共同品尝美味佳肴，感受本地风土人情，惬意又实惠</li>
-           <li><ion-icon name="md-alarm"></ion-icon>
-            13:00-16:00观赏路线：白莲塔→乌将军庙→灵水居→茅盾纪念馆→水上集市→叙昌酱园</li>
-           <li><ion-icon name="md-alarm"></ion-icon>
-            16:00——回家</li>
-         </ul>
-       </div>
-    </div>
-  </ion-content>
+    <ion-scroll scrollY="true">
+        <div id="line"></div>
+        <div id="schedule">
+          <div class="top">
+            <div class="scheduleleft">
+              <div class="sta">周六  <ion-icon name="ios-radio-button-on"></ion-icon>
+            </div>
+            <div class="scheduleright">
+              <ul>
+                <li><ion-icon name="md-alarm"></ion-icon>
+                9:00-11:00观赏路线：逢源双桥→财神湾→江南百床馆→宏源泰染坊→余榴梁钱币馆</li>
+                <li><ion-icon name="md-alarm"></ion-icon>
+                11:00-13:00乌镇东栅景区百年老字号九江楼酒店，白水鱼和红烧羊肉尤为美味。</li>
+                <li><ion-icon name="md-alarm"></ion-icon>
+                13:00-17:30观赏路线：茅盾故居→乌镇古戏台→修真观→皮影戏馆→访卢阁→汇源当铺</li>
+                <li><ion-icon name="md-alarm"></ion-icon>
+                18:00-19:00晚饭时间：品尝乌镇特色小吃，有姑嫂饼，三百酒，定胜糕，青团等，可根据个人个人口味选择不同的小吃</li>
+                <li><ion-icon name="md-alarm"></ion-icon>
+                19:00-22:00夜游西栅——独居水乡特色的夜景</li>
+                <li><ion-icon name="md-alarm"></ion-icon>
+                22:00-8:00住宿：通安客栈（推荐）游客可根据不同的价位选择自己心仪的房间进行住宿。</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bottom">
+              <div class="scheduleleft">
+                <div class="sun">周日  <ion-icon name="ios-radio-button-on"></ion-icon></div>
+              </div>
+              <div class="scheduleright">
+                <ul>
+                  <li><ion-icon name="md-alarm"></ion-icon>
+                   8:00-12:00观赏路线：草木本色染坊→昭明书院→三寸金莲展馆→老邮局→乌镇大戏院→乌镇关帝庙</li>
+                  <li><ion-icon name="md-alarm"></ion-icon>
+                   12:00-13:00西栅民宿午饭，与房东共同品尝美味佳肴，感受本地风土人情，惬意又实惠</li>
+                  <li><ion-icon name="md-alarm"></ion-icon>
+                   13:00-16:00观赏路线：白莲塔→乌将军庙→灵水居→茅盾纪念馆→水上集市→叙昌酱园</li>
+                  <li><ion-icon name="md-alarm"></ion-icon>
+                   16:00——回家</li>
+                </ul>
+              </div>
+          </div>  
+        </div>
+      </div>      
+      </ion-scroll> 
+</ion-content>
   
   
   
+

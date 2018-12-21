@@ -37,42 +37,52 @@ page-planone {
                 font-weight:bold;
                 padding-left:210px;
             }
-        #line{
-            position: absolute;
-            background-color:black;
-            width: 2px;
-            height:840px;
-            margin-left:60px ;
-            margin-top:10px;
-        }
-        #schedule{
-            .scheduleleft{
+        ion-scroll{
+            height: 100%;
+            width: 100%;
+            white-space：nowrap
+            #line{
                 position: absolute;
-                .sta,.sun{
-                    display: block;
-                    width: 100px;
-                    line-height: 40px;
-                    height: 40px;
-                    margin-left:22px;
-                }
-                .sta{margin-top: 5px;}
-                .sun{margin-top: 465px;}
+                background-color:black;
+                width: 2px;
+                height:100%;
+                margin-left:60px ;
+                margin-top:10px;
             }
-            .scheduleright{
-                position: absolute;
-                width: 280px;
-                font-size: 12px;
-                margin:0px auto auto 40px;
-                ul{
-                    list-style: none;
-                    li{
-                        margin-top:10px;
-                        font-size: 14px;
-                        line-height: 25px;
+            #schedule{
+                .top,.bottom{
+                    // border: 1px solid black;
+                    .scheduleleft{
+                        display:block;
+                        .sta,.sun{
+                            display:inline-block;
+                            // border: 1px solid black;
+                            line-height: 40px;
+                            margin-left:22px;
+                        }
                     }
-                }
-            }
+                    .scheduleright{
+                        display:block;
+                        width: 270px;
+                        font-size: 12px;
+                        margin-left:75px;
+                        margin-top:-40px;
+                        // border: 1px solid black;
+                        ul{
+                            padding: 0;
+                            margin:0;
+                            list-style: none;
+                            li{
+                                margin-top:10px;
+                                font-size: 14px;
+                                line-height: 25px;
+                            }
+                        }
+                    }
+                } 
+            }  
         }
+        
         
     }
 }
