@@ -4,10 +4,12 @@ var bodyParser=require('body-parser');
 const app=express();
 const router=express.Router();
 const log=console.log;
+const fs=require('fs');
 
 app.use(bodyParser.json());
 app.use(require('body-parser').urlencoded({extended: true}));
 
+app.use(express.static('./public'));
 const connection = mysql.createConnection({
       host:"localhost",
       user:"root",
@@ -298,7 +300,6 @@ router.get('/api/home',function(req,res){
 });
 
 //请求首页详情和首页作品评论
-
 router.post('/api/homedetail',function(req,res){
   const sql1 = "select homeRecommend.*,mine.userName,head from homeRecommend,info,mine where homeRecommend.userID=info.ID and info.ID=mine.ID and projectID=?";
   const sql2 = "select comment.*,mine.userName,head from comment,info,mine where comment.CommentUserID=info.ID and info.ID=mine.ID and projectID=?";
@@ -350,6 +351,68 @@ router.post('/api/addcomment',function(req,res){
   });
 });
 */
+
+//用户上传作品
+router.post('/api/userPublishUpload',function(req,res){
+  var imgData=req.body.avatar;
+
+  var base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
+  var dataBuffer = new Buffer(base64Data, 'base64');
+  var uploadUrl='./public/upload/userPublish/';
+  var num;
+  var pID=22222220;
+
+  const sql1='select COUNT(*) num from myPublish where ID=?';
+  connection.query(sql1,[req.body.userID],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    num=results[0].num;
+    num=num+1;
+    pID=pID+num;
+    console.log(num,pID);
+
+    var filename=req.body.userID+'-'+num+'.png';
+    fs.writeFile('./public/upload/userPublish/'+filename,dataBuffer,function(err){
+    // console.log(req.body.avatar);
+      if(err){
+        console.error(err);
+        process.exit(1);
+      }
+      console.log('success');
+    });
+
+    var imgUrl='http://192.168.204.144:8080/upload/userPublish/'+filename;
+    const sql2='insert into myPublish values(?,?,?,?,?,?,?,?)';
+    connection.query(sql2,[pID,req.body.userID,req.body.time,imgUrl,req.body.text,0,0,0],function(err,results){
+      if(err){
+        console.error(err);
+        process.exit(1);
+      }
+      //console.log('insert success');
+      res.json({status:1}); //发表成功
+    });
+
+  });
+
+});
+
+//请求用户发布的作品信息
+router.post('/api/userPublish',function(req,res){
+ // console.log(req.body.userID);
+ 
+  const sql='select myPublish.*,head,userName from myPublish,mine where myPublish.ID=mine.ID and myPublish.ID=? order by time desc';
+  connection.query(sql,[req.body.userID],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    res.json(results);
+  });
+  
+});
+
 app.use(router);
 
 app.listen(8080);
