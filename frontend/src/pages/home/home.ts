@@ -35,6 +35,8 @@ export class HomePage {
     this.isActive=i;
   }
   goPlan(i){
+    localStorage.removeItem('hsDetailID');
+    localStorage.setItem('hsID',this.schedule[i].hsID);
     i=i+1;
     if(i==1){
       this.navCtrl.push(PlanonePage);
@@ -79,6 +81,7 @@ export class HomePage {
   ionViewDidLoad(){
     this.http.get('/api/homeSchedule').subscribe(data=>{
       this.schedule=Array.prototype.slice.call(data);
+      console.log(this.schedule);
     });
     this.http.get('/api/home').subscribe(data=>{
       this.obj=Array.prototype.slice.call(data);

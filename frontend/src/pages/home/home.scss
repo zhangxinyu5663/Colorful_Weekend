@@ -75,39 +75,47 @@ page-home{
                 margin-top:10px;
                 #text{
                     // border: 1px solid green;
-                    height: 20px;
-                    width: 100%;
-                    word-break: break-all;
-                    text-overflow: ellipsis;
-                    display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
-                    -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
-                    -webkit-line-clamp: 1; /** 显示的行数 **/
-                    overflow: hidden;  /** 隐藏超出的内容 **/
+                    // word-break: break-all;
+                    // text-overflow: ellipsis;
+                    // display: -webkit-box; /** 对象作为伸缩盒子模型显示 **/
+                    // -webkit-box-orient: vertical; /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+                    // -webkit-line-clamp: 1; /** 显示的行数 **/
+                    // overflow: hidden;  /** 隐藏超出的内容 **/
+                    display: inline-block;
+                    white-space: nowrap; 
+                    width: 100%; 
+                    overflow: hidden;
+                    text-overflow:ellipsis;
+                    margin: 0px;
                 }
+
                 #below{
                     // border: 1px solid;
                     width: 100%;
                     height: 25px;
+                    //border:1px solid black;
                     line-height: 25px;
                     display: inline-block;
                     vertical-align: middle;
-                    font-size: 5px;
+                    font-size: 13px;
                     .ion-ios-heart-outline,.ion-md-heart-outline{
-                    color: #FD273F!important;
+                        color: #FD273F!important;
+                        font-size:15px;
                     }  
                     #right{
                         float: right;
                         line-height: 25px;
                     }
+                    #tou{
+                        width: 23px;
+                        height: 23px;
+                        border-radius: 50%;
+                        display: inline-block;
+                        vertical-align: middle;
+                        //margin-right: 5px;
+                    }
                 }
-                #tou{
-                    width: 18px;
-                    height: 18px;
-                    border-radius: 50%;
-                    display: inline-block;
-                    vertical-align: middle;
-                    margin-right: 5px;
-                }
+
             }
         }
     }

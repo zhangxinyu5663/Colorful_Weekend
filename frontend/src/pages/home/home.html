@@ -14,9 +14,9 @@
             <ul class="goods">
                 <li *ngFor="let item of obj;let i=index" (click)='detail(i)'>
                     <a><img src="{{item.imgs.split('|')[0]}}"></a>
-                    <div id="text">{{item.context}}</div>
+                    <p id="text">{{item.context}}</p>
                     <div id="below">
-                        <img id="tou" src="{{item.head}}">&nbsp;&nbsp;{{item.userName}}
+                        <img id="tou" src="{{item.head}}">&nbsp;{{item.userName}}
                         <div id="right"> 
                             <ion-icon ios="ios-heart-outline" md="md-heart-outline"></ion-icon>&nbsp;{{item.zan}}
                         </div>
@@ -28,6 +28,7 @@
           <ul class="schedule">
               <li *ngFor="let item of schedule;let i=index" (click)="goPlan(i)">
                   <img src="{{item.img}}" alt="">
+                  <!-- <img src="http://192.168.204.144:8080/upload/out.png"> -->
                   <span class="title">{{item.title}}</span>
                   <span class="time">{{item.time}}</span>
               </li>
