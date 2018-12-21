@@ -28,52 +28,56 @@ export class Content01Page {
   homeDetail;
   homeComments;
   ionViewWillEnter(){
-     //获得当前用户登录的userID。
-    this.userID=localStorage.getItem('id')
-    this.homedetailID=localStorage.getItem('homedetailID');
-    this.http.post('/api/homedetail',{id:this.homedetailID}).subscribe(data=>{
-      this.homeDetail=data['detail'][0];
-      this.homeComments=data['comments'];
-      console.log(this.homeComments);
-      this.imgs=this.homeDetail.imgs.split("|");
-      this.obj=this.homeDetail;
-      this.context=this.obj.context;
-    })
-  }
-  ionViewDidLoad(){
     
   }
+  ionViewDidLoad(){
+     //获得当前用户登录的userID。
+     this.userID=localStorage.getItem('id')
+     this.homedetailID=localStorage.getItem('homedetailID');
+     this.http.post('/api/homedetail',{id:this.homedetailID}).subscribe(data=>{
+       this.homeDetail=data['detail'][0];
+       this.homeComments=data['comments'];
+       console.log(this.homeComments);
+       this.imgs=this.homeDetail.imgs.split("|");
+       this.obj=this.homeDetail;
+       this.context=this.obj.context;
+       this.show();
+     })
+  }
   ionViewDidEnter(){
-    this.show();
+    
     // this.allcomment();
   }
   
 //点击展开全部和收起的函数
 show()
 { 
-  var box = document.getElementById("box");
-  var text = this.context;
-  var newBox = document.createElement("div"); 
-  var btn = document.createElement("a"); 
-  btn.style.cssText = "display:block;float:right";
-  newBox.innerHTML = text.substr(0,80)+"..."; 
-  btn.innerHTML = text.length > 80 ? "...显示全部" : ""; 
-  btn.href = "###"; 
-  btn.onclick = function(){ 
-    if(btn.innerHTML == "...显示全部")
-    { 
-      btn.innerHTML = "收起"; 
-      newBox.innerHTML = text; 
+  if(typeof this.context != "undefined"){
+    var box = document.getElementById("box");
+    var text = this.context;
+    var newBox = document.createElement("div"); 
+    var btn = document.createElement("a"); 
+    btn.style.cssText = "display:block;float:right";
+    newBox.innerHTML = text.slice(0,80)+"..."; 
+    btn.innerHTML = text.length > 80 ? "...显示全部" : ""; 
+    btn.href = "###"; 
+    btn.onclick = function(){ 
+      if(btn.innerHTML == "...显示全部")
+      { 
+        btn.innerHTML = "收起"; 
+        newBox.innerHTML = text; 
+      }
+      else
+      { 
+        btn.innerHTML = "...显示全部"; 
+        newBox.innerHTML = text.slice(0,80)+"..."; 
+      } 
     }
-    else
-    { 
-      btn.innerHTML = "...显示全部"; 
-      newBox.innerHTML = text.substr(0,80)+"..."; 
+    box.innerHTML = ""; 
+    box.appendChild(newBox); 
+    box.appendChild(btn); 
     } 
-  } 
-  box.innerHTML = ""; 
-  box.appendChild(newBox); 
-  box.appendChild(btn); 
+
 } 
 
   isColor:boolean = true;
