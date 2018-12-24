@@ -124,21 +124,31 @@ page-add {
                 .div5{
                     //border: rgb(155, 151, 151) 1px solid;
                     height: 35px;
-                    // .heart{
-                    //     //color:#fd273f;
-                    // }
-                    span{
+                    .span{
                         height: 35px;
                         float: left;
                         text-align: center;
                         line-height: 35px;
-                        // border: 1px rgb(153, 150, 150) solid;
+                       //display: inline-block;
                         width: 33.3%;
+                        border:1px solid red;
                         font-size: 18px;
                         ion-icon{
                             font-size:23px;
                             line-height: 35px;
                             color: rgb(212, 208, 208);
+                        }
+                        .heart{
+                            color:#fd273f;
+                        }
+                        .star{
+                            color:yellow;
+                        }
+                        span{
+                            // float:left;
+                            display: inline-block;
+                            width:20px;
+                            margin-left:10px;
                         }
                     }
                 }

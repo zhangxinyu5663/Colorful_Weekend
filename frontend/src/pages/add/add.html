@@ -30,7 +30,6 @@
       <span class="span1"><i class="iconfont icon-fabu" (click)=" goSub()"></i></span>
       <span class="span2">已发布({{myPublish?.length}})</span>
       <ul id="ul">
-          <!-- *ngFor="let item of myPublish;let i=index" -->
         <li *ngFor="let item of myPublish;let i=index" class="li">
           <div class="div1"><img src="{{item?.head}}" alt=""></div>
           <div class="div2"><span>{{item?.userName}}</span><span>{{item?.time}}</span></div>
@@ -49,9 +48,18 @@
             </p>
           </div>
           <div class="div5">
-              <span><ion-icon ios="ios-heart" md="md-heart" class="heart"></ion-icon>&nbsp;&nbsp;{{item?.zan}}</span>
-              <span><ion-icon ios="ios-text" md="md-text"></ion-icon>&nbsp;&nbsp;{{item?.comment}}</span>
-              <span><ion-icon name="star" ></ion-icon>&nbsp;&nbsp;{{item?.collect}}</span>
+              <span class="span">
+                <ion-icon ios="ios-heart" md="md-heart" class="zan" (click)="dianZan(i)" [class.heart]="userzanflag[i]"></ion-icon>
+                <span>{{item?.zan}}</span>
+              </span>
+              <span class="span">
+                <ion-icon ios="ios-text" md="md-text" class="comment" (click)="Comment(i)"></ion-icon>
+                <span>{{item?.comment}}</span>
+              </span>
+              <span class="span">
+                <ion-icon md="md-star" ios="ios-star" class="collect" (click)="Collect(i)"  [class.star]="usercollectflag[i]"></ion-icon>
+                <span>{{item?.collect}}</span>
+              </span>
            </div>
         </li>
       </ul>
