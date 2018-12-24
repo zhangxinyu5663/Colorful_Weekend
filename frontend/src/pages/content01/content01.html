@@ -26,14 +26,22 @@
   </div>
   <div id="box"></div>
   <div class="icon">
-      <span id="star"><ion-icon ios="ios-star-outline" md="md-star-outline"></ion-icon>收藏数</span>
-      <span id="chat"><ion-icon ios="ios-chatbubbles" md="md-chatbubbles"></ion-icon>16</span>
-      <span id="heart"><ion-icon ios="ios-heart-outline" md="md-heart-outline"></ion-icon>{{obj?.zan}}</span>   
+      <span id="star">
+        <ion-icon isclick="true" (click)='collect()' id="collection" ios="ios-star-outline" md="md-star-outline"></ion-icon>
+        <span id="collectionNum">{{obj?.collection}}</span>
+      </span>
+      <span id="chat"><ion-icon ios="ios-chatbubbles" md="md-chatbubbles"></ion-icon>
+        <span id="chatNum">{{obj?.comment}}</span>
+      </span>
+      <span id="heart" (click)='love()'>
+        <ion-icon isclick=true id="lover" ios="ios-heart-outline" md="md-heart-outline"></ion-icon>
+        <span id="heartNum">{{obj?.zan}}</span>
+      </span>   
   </div>
 
   <div class="comment">
       <ul class="exter">
-        <li *ngFor="let item of homeComments;let i = index">
+        <li *ngFor="let item of homeComments;let i = index" class="">
           <div *ngIf="item?.ParentGuid==null">
               <span id="user" ><img src="{{item?.head}}"></span>
               <div id="commentdetail">
@@ -41,8 +49,13 @@
                 <p style="margin:0  ">{{item?.CommentText}}</p>
                 <p style="margin:0  " class="data">
                   {{item.CommentDate.substr(5,5)+" "+item.CommentDate.substr(11,5)}}
-                  <button (click)='presentPrompt(item?.RowGuid)'>回复</button>
+                  <button class="reply_btn" (click)='reply(item?.RowGuid,i)'>回复</button>
+                  <!-- (click)='reply(item?.RowGuid)' -->
                 </p>
+                <div class='reply_textarea'>
+                    <textarea class='textarea' cols='45' rows='4' placeholder="快写下你的评论吧~"></textarea><br/>
+                    <button class='publish'>发表</button>
+                </div>
                 <!-- <button id="replyButton">查看回复..</button> -->
               </div>
               
@@ -54,7 +67,7 @@
                           <p style="margin:0  ">{{initem?.userName}}</p>
                           <p style="margin:0  ">{{initem?.CommentText}}</p>
                           <p style="margin:0  " class="data">{{initem.CommentDate.substr(5,5)+" "+initem.CommentDate.substr(11,5)}}</p>
-                        </div>
+                      </div>
                   </div>
                 </li>
               </ul>
