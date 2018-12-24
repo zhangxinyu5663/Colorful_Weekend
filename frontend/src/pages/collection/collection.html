@@ -3,27 +3,15 @@
   <span>我的收藏</span>
 </ion-header>
 <ion-content>
-    <div id="content">
-        <div id="collection" class="person">
-            <img src="../../assets/imgs/comment5.png" alt="图片">
-            <span class="shoucang"><ion-icon name="star"  ></ion-icon>已收藏</span>
-        </div>
-        <div id="collection" class="person">
-            <img src="../../assets/imgs/fans2.jpg" alt="图片">
-            <span class="shoucang"><ion-icon name="star"  ></ion-icon>已收藏</span>
-        </div>
-        <div id="collection" class="person">
-            <img src="../../assets/imgs/tianjin.jpg" alt="图片">
-            <span class="shoucang"><ion-icon name="star" ></ion-icon>已收藏</span>
-        </div>
-        <div id="collection" class="person">
-            <img src="../../assets/imgs/yunnan.jpg" alt="图片">
-            <span class="shoucang"><ion-icon name="star" ></ion-icon>已收藏</span>
-        </div>
-        <div id="collection" class="person">
-            <img src="../../assets/imgs/6.jpg" alt="图片">
-            <span class="shoucang"><ion-icon name="star"  ></ion-icon>已收藏</span>
-        </div>
-        
-      </div>
+<div>
+    <ul id="content">
+        <li id="collection" class="person" *ngFor="let item of Mycollect;let i=index">
+            <img (click)='detail(item.projectID)' src="{{item.imgs.split('|')[0]}}" alt="图片" >
+            <span class="zan">
+                <ion-icon ios="ios-heart" md="md-heart" class="heart"></ion-icon>
+                <span class="num">{{item.zan}}</span>
+            </span>
+        </li>
+    </ul>  
+</div>
 </ion-content>

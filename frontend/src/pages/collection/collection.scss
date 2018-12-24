@@ -12,34 +12,34 @@ page-collection {
     }
     ion-content{
         #content{
+            list-style:none;
+            padding: 0px;
+            margin-left: 0.5%;
             #collection{
-                display:inline-block;
+                float: left;
+                width: 33%;
+                height: 150px;
+                margin: 0.1% 0.1%;
                 position: relative;
-                width: 32%;
-                height:150px;
-                margin-left: 0.5%;
-                margin-top:5px;
-                border:1px solid black;
-                // span{margin-top:127px;margin-left:3px;float: left;}
                 img{
                     width: 100%;
-                    height: 150px;
-                    position: absolute;
+                    height: 100%;
                 }
-                .shoucang{
-                    margin-top: 125px;
-                    margin-left: 40%;
-                    float: right;
+                .zan{
+                    padding: 0px;
+                    margin: 0px;
                     position: absolute;
-                    color: aliceblue;
-                        ion-icon{
-                            margin-right: 5px;
-                            font-size: 22px;
-                            color: rgb(238, 238, 44)!important;
-                        }
+                    bottom: 1px;
+                    right: 3px; 
+                    .ion-ios-heart,.ion-md-heart{
+                        color:#FD273F!important;
+                        font-size:16px;
+                    }
+                    .num{
+                        color: white;
                     }
                 }
-            
+            }      
         }
     }
 }

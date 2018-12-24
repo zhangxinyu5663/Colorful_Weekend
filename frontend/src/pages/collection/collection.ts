@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MyPage } from '../my/my';
+import { HttpClient } from '@angular/common/http';
+import { Content01Page } from '../content01/content01';
 
 @IonicPage()
 @Component({
@@ -9,20 +11,22 @@ import { MyPage } from '../my/my';
 })
 export class CollectionPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public http:HttpClient,public navCtrl: NavController, public navParams: NavParams) {
   }
-  goMy(){this.navCtrl.pop();}
-  // num;
-  // btn;
-  // flag=true;
-  // change(i){
-  //   this.btn=document.getElementsByClassName('btn')[i];
-  //   if(this.flag==true){
-  //     this.num=i;
-  //     this.btn.style.color="aliceblue";
-  //   }else{
-  //     this.btn.style.color="yel";
-  //   }
-  //   this.flag=!this.flag;
-  // }
+  goMy(){this.navCtrl.push(MyPage);}
+  userID;//用于标记是哪个用户
+  Mycollect;//盛放我赞过的作品数组
+  ionViewDidLoad(){
+    this.userID=localStorage.getItem('userID');
+    this.http.post('/api/my/collect',{userID:this.userID}).subscribe(data=>{
+        this.Mycollect=data['Mycollect'];
+        console.log(this.Mycollect);
+        
+    })
+  }
+ 
+  detail(projectID){
+    localStorage.setItem('homedetailID',projectID);
+    this.navCtrl.push(Content01Page);
+  }
 }
