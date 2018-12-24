@@ -12,13 +12,14 @@
     <div [ngSwitch]='isActive' id="switch">
         <div *ngSwitchCase='0' >
             <ul class="goods">
-                <li *ngFor="let item of obj;let i=index" (click)='detail(i)'>
-                    <a><img src="{{item.imgs.split('|')[0]}}"></a>
+                <li *ngFor="let item of obj;let i=index">
+                    <a (click)='detail(i)'><img src="{{item.imgs.split('|')[0]}}"></a>
                     <p id="text">{{item.context}}</p>
                     <div id="below">
-                        <img id="tou" src="{{item.head}}">&nbsp;{{item.userName}}
+                        <img id="tou" src="{{item.head}}">&nbsp;&nbsp;{{item.userName}}
                         <div id="right"> 
-                            <ion-icon ios="ios-heart-outline" md="md-heart-outline"></ion-icon>&nbsp;{{item.zan}}
+                            <ion-icon class="heart" isclick=true ios="ios-heart" md="md-heart" (click)="clickZan(i)"></ion-icon>&nbsp;
+                            <span class="zanNum">{{item.zan}}</span>
                         </div>
                     </div>
                 </li> 
@@ -28,7 +29,6 @@
           <ul class="schedule">
               <li *ngFor="let item of schedule;let i=index" (click)="goPlan(i)">
                   <img src="{{item.img}}" alt="">
-                  <!-- <img src="http://192.168.204.144:8080/upload/out.png"> -->
                   <span class="title">{{item.title}}</span>
                   <span class="time">{{item.time}}</span>
               </li>

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
-import { Content02Page } from '../content02/content02';
 import { PlanonePage } from '../planone/planone';
 import { PlantwoPage } from '../plantwo/plantwo';
 import { PlanthreePage } from '../planthree/planthree';
@@ -11,16 +10,7 @@ import { PlansevenPage } from '../planseven/planseven';
 import { PlaneightPage } from '../planeight/planeight';
 import { HttpClient } from '@angular/common/http';
 import { Content01Page } from '../content01/content01';
-import { Content03Page } from '../content03/content03';
-import { Content04Page } from '../content04/content04';
-import { Content05Page } from '../content05/content05';
-import { Content06Page } from '../content06/content06';
-import { Content12Page } from '../content12/content12';
-import { Content11Page } from '../content11/content11';
-import { Content10Page } from '../content10/content10';
-import { Content09Page } from '../content09/content09';
-import { Content08Page } from '../content08/content08';
-import { Content07Page } from '../content07/content07';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -29,14 +19,13 @@ export class HomePage {
   obj=[];//用于盛放后端传回的首页推荐作品的类数组对象
   imgs;//用于盛放从后端传回来的图片路径数组
   projectId;//标记是哪个作品
+  userID;//用于标记当前是哪个用户登录
   items=[];
   isActive=0;
   isClick(i){
     this.isActive=i;
   }
   goPlan(i){
-    localStorage.removeItem('hsDetailID');
-    localStorage.setItem('hsID',this.schedule[i].hsID);
     i=i+1;
     if(i==1){
       this.navCtrl.push(PlanonePage);
@@ -58,10 +47,9 @@ export class HomePage {
   }
 
 
-
   constructor(public modalCtrl:ModalController,public navCtrl: NavController,public http:HttpClient) {
     for (let i = 0; i < 30; i++) {
-      this.items.push( this.items.length );
+      this.items.push(this.items.length);
     }
   }
   schedule=[];
@@ -79,24 +67,51 @@ export class HomePage {
     this.flag=!this.flag;
   }
   ionViewDidLoad(){
-    this.http.get('/api/homeSchedule').subscribe(data=>{
-      this.schedule=Array.prototype.slice.call(data);
-      console.log(this.schedule);
-    });
+    this.userID=localStorage.getItem('userID');
+    // this.http.get('/api/homeSchedule').subscribe(data=>{
+    //   this.schedule=Array.prototype.slice.call(data);
+    //   // for(var i=0;i<this.schedule.length;i++){
+    //   //   console.log(this.schedule[i].imgDetail);
+    //   // } 
+    // });
     this.http.get('/api/home').subscribe(data=>{
       this.obj=Array.prototype.slice.call(data);
       console.log(this.obj);
     })
-
-    // document.querySelector('#content12').addEventListener('click',()=>{
-    //   let profileModal=this.modalCtrl.create(Content12Page);
-    //   profileModal.present();    
-    // },false)
   }
   detail(i){
     localStorage.setItem('homedetailID',this.obj[i].projectID);
-    // let profileModal=this.modalCtrl.create(Content01Page);
-    // profileModal.present();  
     this.navCtrl.push(Content01Page);
+  }
+
+  //点赞
+  tag=true;
+  heart;
+  clickZan(i){
+    this.heart = document.getElementsByClassName('heart')[i]; 
+    var zan = document.getElementsByClassName('zanNum');
+    var zanNum=parseInt(zan[i].innerHTML);
+    var isclick=this.heart.getAttribute("isclick");
+    if(isclick=="true"){
+      this.heart.style.cssText="font-size:17px;";
+      zanNum=zanNum+1;
+      zan[i].innerHTML=String(zanNum);
+      var Bisclick=!Boolean(isclick);
+      this.heart.setAttribute('isclick',String(Bisclick));
+      console.log(this.obj[i].projectID);
+      this.http.post('/api/home/zan',{zanNum:zanNum,userID:this.userID,projectID:this.obj[i].projectID}).subscribe(data=>{
+          console.log(data);
+      })
+    }
+    if(isclick!="true"){
+      this.heart.style.cssText="font-size:15px;";
+      zanNum=zanNum-1;
+      zan[i].innerHTML=String(zanNum);
+      isclick="true";
+      this.heart.setAttribute('isclick',isclick);
+      this.http.post('/api/home/delzan',{zanNum:zanNum,userID:this.userID,projectID:this.obj[i].projectID}).subscribe(data=>{
+        console.log(data);
+    })
+    }
   }
 }

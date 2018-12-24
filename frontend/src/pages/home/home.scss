@@ -70,9 +70,7 @@ page-home{
                  
                 width: 48%;
                 float: left;
-                margin-left:3px;
-                margin-right:3px;
-                margin-top:10px;
+                margin: 2px 0 0px 2%;
                 #text{
                     // border: 1px solid green;
                     // word-break: break-all;
@@ -88,7 +86,6 @@ page-home{
                     text-overflow:ellipsis;
                     margin: 0px;
                 }
-
                 #below{
                     // border: 1px solid;
                     width: 100%;
@@ -98,13 +95,14 @@ page-home{
                     display: inline-block;
                     vertical-align: middle;
                     font-size: 13px;
-                    .ion-ios-heart-outline,.ion-md-heart-outline{
-                        color: #FD273F!important;
+                    .ion-ios-heart,.ion-md-heart{
+                        color: rgb(253, 115, 131)!important;
                         font-size:15px;
-                    }  
+                    } 
                     #right{
                         float: right;
                         line-height: 25px;
+                        
                     }
                     #tou{
                         width: 23px;
@@ -115,7 +113,6 @@ page-home{
                         //margin-right: 5px;
                     }
                 }
-
             }
         }
     }
