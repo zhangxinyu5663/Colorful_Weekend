@@ -91,7 +91,7 @@ router.get('/api/home',function(req,res){
       process.exit(1);
     }
     results.forEach(function(e){
-      //log(e);
+     // log(e);
     })
     res.json(results);
    });
@@ -145,5 +145,181 @@ router.post('/api/addcomment',function(req,res){
 
 })
 })
+
+//点击添加点赞数，记录点赞详情：给哪个作品点赞的，点赞者是谁，被点赞的是谁
+router.post('/api/home/zan',function(req,res){
+  const sql1="select userID from homeRecommend where projectID=?";
+  const sql2="insert into zan values(?,?,?,now())";
+  const sql3="update homeRecommend set zan=? where projectID=?";
+  const sql4="select * from zan where projectID=? and userID=?";
+  var ToUserID;
+  var len;
+
+  connection.query(sql1,[req.body.projectID],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    ToUserID=results[0].userID;
+    //console.log(ToUserID);
+
+    connection.query(sql4,[req.body.projectID,req.body.userID],function(err,results){
+      if(err){
+        log(err);
+        process.exit(1);
+      }
+      console.log(results);
+      len=results.length;
+      console.log(len);
+      if(len==0){
+        connection.query(sql2,[req.body.userID,req.body.projectID,ToUserID],function(err,results){
+          if(err){
+            console.log(err);
+            process.exit(1);
+          }
+          console.log("secussful");
+
+          connection.query(sql3,[req.body.zanNum,req.body.projectID],function(err,results){
+            if(err){
+              console.log(err);
+              process.exit(1);
+            }
+            res.json({"message":"success"});
+          })
+        })
+      }
+    })
+  })
+})
+//点击删除点赞数
+router.post('/api/home/delzan',function(req,res){
+  const sql1="select userID from homeRecommend where projectID=?";
+  const sql2="delete from zan where projectID=? and userID=? and ToUserID=?";
+  const sql3="update homeRecommend set zan=? where projectID=?";
+  var ToUserID;
+
+  connection.query(sql1,[req.body.projectID],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    ToUserID=results[0].userID;
+    
+    connection.query(sql2,[req.body.projectID,req.body.userID,ToUserID],function(err,results){
+      if(err){
+        console.log(err);
+        process.exit(1);
+      }
+      console.log("del success");
+
+      connection.query(sql3,[req.body.zanNum,req.body.projectID],function(err,results){
+        if(err){
+          console.log(err);
+          process.exit(1);
+        }
+        res.json({"message":"success"});
+      })
+    })
+
+  })
+})
+//我赞过的和赞过我的详情。
+router.post('/api/zan',function(req,res){
+  const sql1="select imgs,zan,zan.projectID from homeRecommend,zan where homeRecommend.projectID=zan.projectID and zan.userID=? order by time desc"; 
+  const sql2="select imgs,zan,zan.projectID from homeRecommend,zan where homeRecommend.projectID=zan.projectID and zan.ToUserID=? order by time desc";
+  
+  var Myzan=[],zanMy=[];
+  connection.query(sql1,[req.body.userID],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    Myzan=results;
+    connection.query(sql2,[req.body.userID],function(err,results){ 
+      if(err){
+        console.log(err);
+        process.exit(1);
+      }
+      zanMy=results;
+
+      res.json({"zanMy":zanMy,"Myzan":Myzan});
+    })
+  })
+})
+//记录收藏的作品
+router.post('/api/homedetail/collect',function(req,res){
+  const sql2="insert into collect values(?,?,now())";
+  const sql3="update homeRecommend set collection=? where projectID=?";
+  const sql4="select * from collect where projectID=? and userID=?";
+  var len;
+
+
+connection.query(sql4,[req.body.projectID,req.body.userID],function(err,results){
+   if(err){
+    log(err);
+    process.exit(1);
+   }
+   console.log(results);
+   len=results.length;
+   console.log(len);
+
+   if(len==0){  
+    connection.query(sql2,[req.body.userID,req.body.projectID],function(err,results){
+      if(err){
+        console.log(err);
+        process.exit(1);
+      }
+      console.log("secussful");
+
+      connection.query(sql3,[req.body.collectionNum,req.body.projectID],function(err,results){
+        if(err){
+          console.log(err);
+          process.exit(1);
+        }
+        res.json({"message":"success"});
+      })
+    })
+   }
+  })
+})
+
+//点击删除收藏数
+router.post('/api/homedetail/delcollect',function(req,res){
+  const sql2="delete from collect where projectID=? and userID=?";
+  const sql3="update homeRecommend set collection=? where projectID=?";
+
+    connection.query(sql2,[req.body.projectID,req.body.userID],function(err,results){
+      if(err){
+        console.log(err);
+        process.exit(1);
+      }
+      console.log("del success");
+
+      connection.query(sql3,[req.body.collectionNum,req.body.projectID],function(err,results){
+        if(err){
+          console.log(err);
+          process.exit(1);
+        }
+        res.json({"message":"success"});
+      })
+    })
+})
+//我收藏的所有作品。
+router.post('/api/my/collect',function(req,res){
+  const sql1="select imgs,zan,collect.projectID from homeRecommend,collect where homeRecommend.projectID=collect.projectID and collect.userID=? order by time desc"; 
+  
+  var Mycollect=[];
+  connection.query(sql1,[req.body.userID],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    Mycollect=results;
+
+    res.json({"Mycollect":Mycollect});
+  })
+
+})
+
 app.use(router);
 app.listen(8080);
