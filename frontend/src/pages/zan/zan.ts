@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams} from 'ionic-angular';
+import { HttpClient } from '@angular/common/http';
+import { Content01Page } from '../content01/content01';
 
 /**
  * Generated class for the ZanPage page.
@@ -23,22 +25,25 @@ export class ZanPage {
     this.isActive=i;
   }
 
-  heart;
-  flag=true;
-  dianzan(i){
-    if(this.flag==true){
-      this.heart=document.getElementsByClassName('heart')[i];
-      this.heart.style.color="aliceblue";
-    }
-    else{
-      this.heart=document.getElementsByClassName('heart')[i];
-      this.heart.style.color="#FD273F";
-    }
-    this.flag=!this.flag;
+
+  constructor(public http:HttpClient,public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  userID;//用于标记是哪个用户
+  Myzan;//盛放我赞过的作品数组
+  zanMy;//盛放赞过我的作品数组
+  ionViewDidLoad(){
+    this.userID=localStorage.getItem('userID');
+    this.http.post('/api/zan',{userID:this.userID}).subscribe(data=>{
+        this.Myzan=data['Myzan'];
+        this.zanMy=data['zanMy'];
+        console.log(this.Myzan);
+        
+    })
   }
-  
  
+  detail(projectID){
+    localStorage.setItem('homedetailID',projectID);
+    this.navCtrl.push(Content01Page);
+  }
 }

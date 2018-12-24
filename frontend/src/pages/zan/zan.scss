@@ -1,5 +1,7 @@
 page-zan {
     ion-content{
+        padding: 0px;
+        margin: 0px;
         .head{
             width: 100%;
             height: 60px;
@@ -40,45 +42,34 @@ page-zan {
             }
         }
         #content{
+            list-style:none;
+            padding: 0px;
+            margin-left: 0.5%;
             #collection{
-                display:inline-block;
+                float: left;
+                width: 33%;
+                height: 150px;
+                margin: 0.1% 0.1%;
                 position: relative;
-                width: 32%;
-                height:150px;
-                margin-left: 0.5%;
-                margin-top:5px;
-                border:1px solid black;
-                // span{margin-top:127px;margin-left:3px;float: left;}
                 img{
                     width: 100%;
-                    height: 150px;
-                    position: absolute;
+                    height: 100%;
                 }
                 .zan{
-                    margin-top: 127px;
-                    margin-left: 55%;
-                    float: right;
+                    padding: 0px;
+                    margin: 0px;
                     position: absolute;
-                    height: 19px;
-                    width: 19px;
-                    button{
-                        width: 15px;
-                        height: 15px;
-                        background: transparent;
-                        ion-icon{
-                            font-size: 20px;
-                            color: #FD273F;
-                        }
+                    bottom: 1px;
+                    right: 3px; 
+                    .ion-ios-heart,.ion-md-heart{
+                        color:#FD273F!important;
+                        font-size:16px;
                     }
                     .num{
-                        color: aliceblue;
-                        position: absolute;
-                        float: right;
-                        margin-left: 10px;
-                        }
+                        color: white;
                     }
                 }
-            
-        }      
+            }      
+        }
     }
 }

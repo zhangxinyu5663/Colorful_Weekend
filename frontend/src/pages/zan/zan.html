@@ -13,36 +13,26 @@
 
       <div [ngSwitch]='isActive' id="switch">
          <ion-list *ngSwitchCase="0">
-            <div id="content">
-                <div id="collection" class="person">
-                    <img src="../../assets/imgs/t1.jpg" alt="图片">
-                    <span class="zan"><button (click)="dianzan(0)"><ion-icon ios="ios-heart" md="md-heart" class="heart"></ion-icon></button>
-                        <span class="num">209</span>
+            <ul id="content">
+                <li id="collection" class="person" *ngFor="let item of Myzan;let i=index">
+                    <img (click)='detail(item.projectID)' src="{{item.imgs.split('|')[0]}}" alt="图片" >
+                    <span class="zan">
+                        <ion-icon ios="ios-heart" md="md-heart" class="heart"></ion-icon>
+                        <span class="num">{{item.zan}}</span>
                     </span>
-                </div>
-                <div id="collection" class="person">
-                    <img src="../../assets/imgs/张一山.jpg" alt="图片">
-                    <span class="zan"><button (click)="dianzan(1)"><ion-icon ios="ios-heart" md="md-heart" class="heart"></ion-icon></button><span class="num">209</span></span>
-                </div>
-                <div id="collection" class="person">
-                    <img src="../../assets/imgs/0.jpg" alt="图片">
-                    <span class="zan"><button (click)="dianzan(2)"><ion-icon ios="ios-heart" md="md-heart" class="heart"></ion-icon></button><span class="num">209</span></span>
-                </div>
-                <div id="collection" class="person">
-                    <img src="../../assets/imgs/yunnan.jpg" alt="图片">
-                    <span class="zan"><button (click)="dianzan(3)"><ion-icon ios="ios-heart" md="md-heart" class="heart"></ion-icon></button><span class="num">209</span></span>
-                </div>
-                <div id="collection" class="person">
-                    <img src="../../assets/imgs/6.jpg" alt="图片">
-                    <span class="zan"><button (click)="dianzan(4)"><ion-icon ios="ios-heart" md="md-heart" class="heart"></ion-icon></button><span class="num">209</span></span>
-                </div>
-                
-              </div>
+                </li>
+            </ul>     
          </ion-list>
          <ion-list *ngSwitchCase="1">
-             <ion-item>
-              
-             </ion-item>
+            <ul id="content">
+                <li id="collection" class="person" *ngFor="let item of zanMy;let i=index">
+                    <img src="{{item.imgs.split('|')[0]}}" alt="图片">
+                    <span class="zan">
+                        <ion-icon ios="ios-heart" md="md-heart" class="heart"></ion-icon>
+                        <span class="num">{{item.zan}}</span>
+                    </span>
+                </li>
+            </ul>
          </ion-list>
       </div>
   </ion-content>
