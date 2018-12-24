@@ -4,9 +4,7 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-content >
-  <span class="span1"><i class="iconfont icon-fabu" (click)=" goSub()"></i></span>
-  <span class="span2">已发布({{myPublish?.length}})</span>
+<ion-content>
   <!-- <div class="content">
       <ion-item>
           <ion-avatar item-start>
@@ -28,25 +26,34 @@
       <span><ion-icon ios="ios-text" md="md-text"></ion-icon>&nbsp;&nbsp;评论</span>
       <span><ion-icon name="star" ></ion-icon>&nbsp;&nbsp;收藏</span>
    </div> -->
-    <ul>
-        <!-- *ngFor="let item of myPublish;let i=index" -->
-      <li *ngFor="let item of myPublish;let i=index">
-        <div class="div1"><img src="{{item?.head}}" alt=""></div>
-        <div class="div2"><span>{{item?.userName}}</span><span>{{item?.time}}</span></div>
-        <div class="div3">
-          <ion-icon name="ios-arrow-down"></ion-icon>
-        </div>
-        <div class="div4">
-          <img src="{{item?.pictureORvideo}}" alt="">
-          <p>
-             {{item?.text}}
-          </p>
-        </div>
-        <div class="div5">
-            <span><ion-icon ios="ios-heart" md="md-heart" class="heart"></ion-icon>&nbsp;&nbsp;{{item?.zan}}</span>
-            <span><ion-icon ios="ios-text" md="md-text"></ion-icon>&nbsp;&nbsp;{{item?.comment}}</span>
-            <span><ion-icon name="star" ></ion-icon>&nbsp;&nbsp;{{item?.collect}}</span>
-         </div>
-      </li>
-    </ul>
+   <div>
+      <span class="span1"><i class="iconfont icon-fabu" (click)=" goSub()"></i></span>
+      <span class="span2">已发布({{myPublish?.length}})</span>
+      <ul id="ul">
+          <!-- *ngFor="let item of myPublish;let i=index" -->
+        <li *ngFor="let item of myPublish;let i=index" class="li">
+          <div class="div1"><img src="{{item?.head}}" alt=""></div>
+          <div class="div2"><span>{{item?.userName}}</span><span>{{item?.time}}</span></div>
+          <div class="div3">
+            <ion-icon name="ios-arrow-down" (click)="showList(i)"></ion-icon>
+            <ul class="hideList">
+              <li><i class="iconfont icon-fenxiang-copy"></i>分享到<i class="iconfont icon-qq1"></i><i class="iconfont icon-weixin"></i></li>
+              <li><i class="iconfont icon-bianji"></i>编辑</li>
+              <li><i class="iconfont icon-picture-delet"></i>删除</li>
+            </ul>
+          </div>
+          <div class="div4">
+            <img src="{{item?.pictureORvideo}}" alt="">
+            <p>
+                {{item?.text}}
+            </p>
+          </div>
+          <div class="div5">
+              <span><ion-icon ios="ios-heart" md="md-heart" class="heart"></ion-icon>&nbsp;&nbsp;{{item?.zan}}</span>
+              <span><ion-icon ios="ios-text" md="md-text"></ion-icon>&nbsp;&nbsp;{{item?.comment}}</span>
+              <span><ion-icon name="star" ></ion-icon>&nbsp;&nbsp;{{item?.collect}}</span>
+           </div>
+        </li>
+      </ul>
+   </div>
 </ion-content>

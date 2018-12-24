@@ -1,6 +1,19 @@
 page-login {
     ion-content{
-        //background: url(../assets/imgs/loginbk/bk3.png);
+        .bk:before{
+            background: url(../assets/imgs/loginbk/bk10.png) no-repeat;
+            background-size: cover;
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;/*-1 可以当背景*/
+            // -webkit-filter: blur(3px);
+            // filter: blur(3px); 
+            opacity: 0.8;
+        }
         #logo{
             img{
                 width: 60px;
@@ -9,7 +22,7 @@ page-login {
             //  border:1px solid black;
             margin-top:80px;
             margin-bottom: 60px;
-             margin-left: 60px;
+            margin-left: 60px;
             // margin-right: auto;
             span{
                 font-feature-settings: '幼圆';
@@ -19,10 +32,14 @@ page-login {
         }
 
         .inp{
-            border:1px solid grey;
-            width: 200px;
+            border-bottom:1px solid grey;
+            width: 240px;
             height:30px;
-            border-radius: 8px;
+            background: none;
+            border-top:none;
+            border-left: none;
+            border-right: none;
+            // border-radius: 8px;
         }
         #input{
             width:100%;
@@ -30,8 +47,8 @@ page-login {
             margin: 20px auto;
             //  border:1px solid black;
             div{
-                //border:1px solid pink;
-                width:240px;
+                //border:1px solid black;
+                width:280px;
                 margin:0 auto;
                 i{
                     color:#FD273F;
@@ -41,8 +58,8 @@ page-login {
             a{
                 display: block;
                 font-size:15px;
-                margin-left:95px;
-                margin-top:5px;
+                margin-left:75px;
+                margin-top:13px;
                 color: gray;
                 text-decoration: underline;
             }
@@ -50,9 +67,9 @@ page-login {
                 display: block;
                 border: 1px solid #FD273F;
                 border-radius: 8px;
-                background-color: white;
-                color:#FD273F;
-                width:150px;
+                background-color: #FD273F;
+                color:white;
+                width:120px;
                 height:40px;
                 margin:30px auto;
             }
@@ -62,6 +79,11 @@ page-login {
             height:80px;
             // border:1px solid black;
             margin-top:50px;
+            .icon-icon{
+                //color:transparent;
+                display: inline-block;
+                // border:1px solid black;
+            }
             p{
                 text-align: center;
             }
@@ -69,7 +91,7 @@ page-login {
         }
         #register{
             margin-top: 20px;
-            margin-left:5px;
+            margin-left:10px;
             a{
                 text-decoration:underline;
                 color:gray;

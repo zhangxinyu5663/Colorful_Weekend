@@ -35,4 +35,17 @@ export class AddPage {
       console.log(this.myPublish);
     });
   }
+
+  flag=false;
+  hideList;
+  showList(i){
+    this.hideList=document.getElementsByClassName('hideList');
+    if(this.flag==false){
+      this.hideList[i].style.display='block';
+    }else{
+      this.hideList[i].style.display='none';
+    }
+    this.flag=!this.flag;
+  }
+
 }

@@ -2,8 +2,8 @@ page-add {
     padding:0;
     margin:0;
     ion-content{
-        background: url(../assets/imgs/planthreebg.png);
-        background-repeat: no-repeat;
+        background: url(../assets/imgs/planthreebg.png) no-repeat;
+        background-size: cover;
         span{
             display: block;
         }
@@ -59,11 +59,11 @@ page-add {
             }
         }
 
-        ul{
+        #ul{
             padding: 0;
             list-style: none;
             margin-top:10px;
-            li{
+            .li{
                 width:100%;
                 height:auto;
                 border-bottom:1px solid rgb(160, 156, 156);
@@ -82,7 +82,7 @@ page-add {
                 }
                 .div2{
                     float: left;
-                    width:60%;
+                    width:70%;
                     height:50px;
                     //border:1px solid blue;
                     span{
@@ -95,10 +95,11 @@ page-add {
                 }
                 .div3{
                     float: left;
-                    width:20%;
-                    height:50px;
+                    width:10%;
+                    height:40px;
                     text-align: center;
-                    line-height: 50px;
+                    line-height: 40px;
+                    position: relative;
                     ion-icon{
                         font-size:25px!important;
                         color:gray;
@@ -106,11 +107,13 @@ page-add {
                     //border:1px solid blue;
                 }
                 .div4{
+                    
                     img{
                         width:120;
                         height:120px;
                         margin-left:10px;
                         margin-top:10px;
+                        //display: block;
                     }
                     p{
                         margin-top:5px;
@@ -140,6 +143,44 @@ page-add {
                     }
                 }
             }
+        }
+        .hideList{
+            margin:0;
+            padding: 0;
+            position: absolute;
+            // top:0;
+            top:20px;
+            right: 5px;
+            width:170px;
+            height:120px;
+            //border:1px solid black;
+            background:rgba(0, 0, 0,0.8);
+            display: none;
+            border-radius: 5px;
+            li{
+                color:white;
+                cursor: pointer;
+                line-height: 40px;
+                text-align: left;
+                height:40px;
+                font-size:16px;
+                width:170px;
+                i{
+                    margin-left: 10px;
+                    margin-right: 10px;
+                    font-size:20px!important;
+                }
+                .icon-qq1{
+                    color:#76c5fa;
+                    font-size:25px!important;
+                    
+                }
+                .icon-weixin{
+                    color:#2ef04e;
+                    font-size:25px!important;
+                }
+            }
+            
         }
     }
 
