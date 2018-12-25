@@ -285,7 +285,7 @@ router.post('/api/changePhone',function(req,res){
 
 //请求首页作品
 router.get('/api/home',function(req,res){
-  const sql = "select homeRecommend.*,mine.userName,head from homeRecommend,info,mine where homeRecommend.userID=info.ID and info.ID=mine.ID";
+  const sql = "select homeRecommend.*,mine.userName,head from homeRecommend,info,mine where homeRecommend.userID=info.ID and info.ID=mine.ID order by zan desc";
 
   connection.query(sql,function(err,results){
     if(err){
@@ -413,8 +413,263 @@ router.post('/api/userPublish',function(req,res){
   
 });
 
+//我的作品点赞
+router.post('/api/addUserPublishZan',function(req,res){
+  console.log(req.body.userPID,req.body.zanflag,req.body.zanNum);
+  
+  const sql='update myPublish set zanflag=?,zan=? where pID=?';
+  connection.query(sql,[req.body.zanflag,req.body.zanNum,req.body.userPID],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    res.json({status:1});
+  })
+});
+
+//取消我的作品点赞
+router.post('/api/cancelUserPublishZan',function(req,res){
+  console.log(req.body.userPID,req.body.zanflag,req.body.zanNum);
+  
+  const sql='update myPublish set zanflag=?,zan=? where pID=?';
+  connection.query(sql,[req.body.zanflag,req.body.zanNum,req.body.userPID],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    res.json({status:1});
+  })
+});
+
+//我的作品收藏
+router.post('/api/addUserPublishCollect',function(req,res){
+  console.log(req.body.userPID,req.body.collectflag,req.body.collectNum);
+  
+  const sql='update myPublish set collectflag=?,collect=? where pID=?';
+  connection.query(sql,[req.body.collectflag,req.body.collectNum,req.body.userPID],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    res.json({status:1});
+  })
+});
+
+//取消我的作品收藏
+router.post('/api/cancelUserPublishCollect',function(req,res){
+  console.log(req.body.userPID,req.body.collectflag,req.body.collectNum);
+  
+  const sql='update myPublish set collectflag=?,collect=? where pID=?';
+  connection.query(sql,[req.body.collectflag,req.body.collectNum,req.body.userPID],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    res.json({status:1});
+  })
+});
+
+
+//点击添加点赞数，记录点赞详情：给哪个作品点赞的，点赞者是谁，被点赞的是谁
+router.post('/api/home/addZan',function(req,res){
+  const sql1="select userID from homeRecommend where projectID=?";
+  const sql2="insert into zan values(?,?,?,now())";
+  const sql3="update homeRecommend set zan=? where projectID=?";
+  const sql4="select * from zan where projectID=? and userID=?";
+  var ToUserID;
+  var len;
+
+  connection.query(sql1,[req.body.projectID],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    ToUserID=results[0].userID; //被点赞的用户ID
+    //console.log(ToUserID);
+
+    connection.query(sql4,[req.body.projectID,req.body.userID],function(err,results){
+      if(err){
+        log(err);
+        process.exit(1);
+      }
+      console.log(results);
+      len=results.length;
+      console.log(len);
+      if(len==0){
+        connection.query(sql2,[req.body.userID,req.body.projectID,ToUserID],function(err,results){
+          if(err){
+            console.log(err);
+            process.exit(1);
+          }
+          //console.log("successful");
+
+          connection.query(sql3,[req.body.zanNum,req.body.projectID],function(err,results){
+            if(err){
+              console.log(err);
+              process.exit(1);
+            }
+            res.json({"message":"success"});
+          });
+        });
+      }
+    });
+  });
+});
+
+
+//点击删除点赞数
+router.post('/api/home/delzan',function(req,res){
+  const sql1="select userID from homeRecommend where projectID=?";
+  const sql2="delete from zan where projectID=? and userID=? and ToUserID=?";
+  const sql3="update homeRecommend set zan=? where projectID=?";
+  var ToUserID;
+
+  connection.query(sql1,[req.body.projectID],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    ToUserID=results[0].userID;
+    
+    connection.query(sql2,[req.body.projectID,req.body.userID,ToUserID],function(err,results){
+      if(err){
+        console.log(err);
+        process.exit(1);
+      }
+      //console.log("del success");
+
+      connection.query(sql3,[req.body.zanNum,req.body.projectID],function(err,results){
+        if(err){
+          console.log(err);
+          process.exit(1);
+        }
+        res.json({"message":"success"});
+      })
+    })
+
+  })
+});
+
+//我赞过的和赞过我的详情
+router.post('/api/zan',function(req,res){
+  const sql1="select imgs,zan,zan.projectID from homeRecommend,zan where homeRecommend.projectID=zan.projectID and zan.userID=? order by time desc"; 
+  const sql2="select imgs,zan,zan.projectID from homeRecommend,zan where homeRecommend.projectID=zan.projectID and zan.ToUserID=? order by time desc";
+  
+  var Myzan=[],zanMy=[];
+  connection.query(sql1,[req.body.userID],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    Myzan=results;
+    connection.query(sql2,[req.body.userID],function(err,results){ 
+      if(err){
+        console.log(err);
+        process.exit(1);
+      }
+      zanMy=results;
+
+      res.json({"zanMy":zanMy,"Myzan":Myzan});
+    })
+  })
+});
+
+//记录收藏的作品
+router.post('/api/homedetail/collect',function(req,res){
+  const sql2="insert into collect values(?,?,now())";
+  const sql3="update homeRecommend set collection=? where projectID=?";
+  const sql4="select * from collect where projectID=? and userID=?";
+  var len;
+
+
+connection.query(sql4,[req.body.projectID,req.body.userID],function(err,results){
+   if(err){
+    log(err);
+    process.exit(1);
+   }
+   //console.log(results);
+
+   len=results.length;
+   console.log(len);
+
+   if(len==0){  
+    connection.query(sql2,[req.body.userID,req.body.projectID],function(err,results){
+      if(err){
+        console.log(err);
+        process.exit(1);
+      }
+     // console.log("successful");
+
+      connection.query(sql3,[req.body.collectionNum,req.body.projectID],function(err,results){
+        if(err){
+          console.log(err);
+          process.exit(1);
+        }
+        res.json({"message":"success"});
+      });
+    });
+   }
+  });
+});
+
+//点击删除收藏数
+router.post('/api/homedetail/delcollect',function(req,res){
+  const sql2="delete from collect where projectID=? and userID=?";
+  const sql3="update homeRecommend set collection=? where projectID=?";
+
+    connection.query(sql2,[req.body.projectID,req.body.userID],function(err,results){
+      if(err){
+        console.log(err);
+        process.exit(1);
+      }
+      //console.log("del success");
+
+      connection.query(sql3,[req.body.collectionNum,req.body.projectID],function(err,results){
+        if(err){
+          console.log(err);
+          process.exit(1);
+        }
+        res.json({"message":"success"});
+      })
+    })
+});
+
+//请求我收藏的所有作品
+router.post('/api/my/collect',function(req,res){
+  const sql1="select imgs,collection,collect.projectID from homeRecommend,collect where homeRecommend.projectID=collect.projectID and collect.userID=? order by time desc"; 
+  
+  var Mycollect=[];
+  connection.query(sql1,[req.body.userID],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    Mycollect=results;
+
+    res.json({"Mycollect":Mycollect});
+  })
+
+});
+
+//请求特定的收藏作品
+router.post('/api/my/specificCollection',function(req,res){
+  const sql='select * from collect where userID=? and projectID=?';
+  connection.query(sql,[req.body.userID,req.body.projectID],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    console.log(results);
+    if(results.length==0){
+      res.json({status:0}); //该作品没被收藏过
+    }
+    else{
+      res.json({status:1}); //该作品被收藏过
+    }
+  });
+});
+
 app.use(router);
 
 app.listen(8080);
-
-
+        
