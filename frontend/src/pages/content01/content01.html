@@ -25,18 +25,19 @@
     </ion-slides>
   </div>
   <div id="box"></div>
-  <div class="icon">
-      <span id="star">
-        <ion-icon isclick="true" (click)='collect()' id="collection" ios="ios-star-outline" md="md-star-outline"></ion-icon>
+  <div class="tubiao">
+      <span class="outspan">
+        <ion-icon  (click)='collect()' [style.color]="Mycollection==1?'rgb(252, 249, 63)':'rgb(212, 208, 208)'" id="collection" md="md-star" ios="ios-star"></ion-icon>
         <span id="collectionNum">{{obj?.collection}}</span>
       </span>
-      <span id="chat"><ion-icon ios="ios-chatbubbles" md="md-chatbubbles"></ion-icon>
+      <span class="outspan">
+        <ion-icon ios="ios-text" md="md-text"></ion-icon>
         <span id="chatNum">{{obj?.comment}}</span>
       </span>
-      <span id="heart" (click)='love()'>
-        <ion-icon isclick=true id="lover" ios="ios-heart-outline" md="md-heart-outline"></ion-icon>
-        <span id="heartNum">{{obj?.zan}}</span>
-      </span>   
+      <span class="outspan">
+        <ion-icon isclick="true" (click)='zan()' id="heart" ios="ios-heart" md="md-heart"></ion-icon>
+        <span id="zanNum">{{obj?.zan}}</span>
+      </span>  
   </div>
 
   <div class="comment">

@@ -33,7 +33,7 @@ export class ZanPage {
   Myzan;//盛放我赞过的作品数组
   zanMy;//盛放赞过我的作品数组
   ionViewDidLoad(){
-    this.userID=localStorage.getItem('userID');
+    this.userID=localStorage.getItem('id');
     this.http.post('/api/zan',{userID:this.userID}).subscribe(data=>{
         this.Myzan=data['Myzan'];
         this.zanMy=data['zanMy'];

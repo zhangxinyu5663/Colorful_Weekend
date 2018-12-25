@@ -13,11 +13,11 @@ export class CollectionPage {
 
   constructor(public http:HttpClient,public navCtrl: NavController, public navParams: NavParams) {
   }
-  goMy(){this.navCtrl.push(MyPage);}
+  goMy(){this.navCtrl.pop();}
   userID;//用于标记是哪个用户
   Mycollect;//盛放我赞过的作品数组
-  ionViewDidLoad(){
-    this.userID=localStorage.getItem('userID');
+  ionViewWillEnter(){
+    this.userID=localStorage.getItem('id');
     this.http.post('/api/my/collect',{userID:this.userID}).subscribe(data=>{
         this.Mycollect=data['Mycollect'];
         console.log(this.Mycollect);
@@ -27,6 +27,8 @@ export class CollectionPage {
  
   detail(projectID){
     localStorage.setItem('homedetailID',projectID);
+    // console.log(localStorage.getItem('homedetailID'));
+    // console.log(this.userID);
     this.navCtrl.push(Content01Page);
   }
 }

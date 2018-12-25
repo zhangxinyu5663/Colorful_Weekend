@@ -16,10 +16,10 @@ import { Content01Page } from '../content01/content01';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  obj=[];//用于盛放后端传回的首页推荐作品的类数组对象
+
   imgs;//用于盛放从后端传回来的图片路径数组
-  projectId;//标记是哪个作品
-  userID;//用于标记当前是哪个用户登录
+  projectId;//作品ID
+  userID;//用于标记当前是哪个用户登录 用户ID
   items=[];
   isActive=0;
   isClick(i){
@@ -66,52 +66,92 @@ export class HomePage {
     }
     this.flag=!this.flag;
   }
-  ionViewDidLoad(){
-    this.userID=localStorage.getItem('userID');
-    // this.http.get('/api/homeSchedule').subscribe(data=>{
-    //   this.schedule=Array.prototype.slice.call(data);
-    //   // for(var i=0;i<this.schedule.length;i++){
-    //   //   console.log(this.schedule[i].imgDetail);
-    //   // } 
-    // });
+
+  obj=[];//用于盛放后端传回的首页推荐作品的类数组对象
+  Myzan=[];
+  Flag=[];//标记心是否被点击过
+  ionViewWillEnter(){
+    this.userID=localStorage.getItem('id');
+    this.heart = document.getElementsByClassName('heart'); 
+    this.http.get('/api/homeSchedule').subscribe(data=>{
+      this.schedule=Array.prototype.slice.call(data);
+      // for(var i=0;i<this.schedule.length;i++){
+      //   console.log(this.schedule[i].imgDetail);
+      // } 
+    });
+
     this.http.get('/api/home').subscribe(data=>{
       this.obj=Array.prototype.slice.call(data);
-      console.log(this.obj);
-    })
+      //console.log(this.obj);
+      for(var k=0;k<this.obj.length;k++){
+        this.Flag[k]=false;
+      }
+      this.http.post('/api/zan',{userID:this.userID}).subscribe(data=>{
+        this.Myzan=data['Myzan'];
+        //console.log(this.Myzan);  
+        for(var j=0;j<this.Myzan.length;j++){
+          for(var i=0;i<this.obj.length;i++){
+            if(this.Myzan[j].projectID == this.obj[i].projectID){
+              //console.log(this.obj[i].projectID);
+              this.heart[i].style.color="#fd273f";
+              this.Flag[i]=true;
+            }
+          }
+        }
+        //console.log(this.Flag);
+      });
+    });
   }
   detail(i){
     localStorage.setItem('homedetailID',this.obj[i].projectID);
-    this.navCtrl.push(Content01Page);
+    this.navCtrl.push(Content01Page,{zanflag:this.Flag[i]});
   }
 
   //点赞
   tag=true;
   heart;
+  homeProjectZanFlag=[];
+  zanflag;
+  
   clickZan(i){
     this.heart = document.getElementsByClassName('heart')[i]; 
-    var zan = document.getElementsByClassName('zanNum');
-    var zanNum=parseInt(zan[i].innerHTML);
-    var isclick=this.heart.getAttribute("isclick");
-    if(isclick=="true"){
-      this.heart.style.cssText="font-size:17px;";
-      zanNum=zanNum+1;
-      zan[i].innerHTML=String(zanNum);
-      var Bisclick=!Boolean(isclick);
-      this.heart.setAttribute('isclick',String(Bisclick));
-      console.log(this.obj[i].projectID);
-      this.http.post('/api/home/zan',{zanNum:zanNum,userID:this.userID,projectID:this.obj[i].projectID}).subscribe(data=>{
-          console.log(data);
-      })
+    var zanNum = document.getElementsByClassName('zanNum');
+    //console.log(zanNum[i].innerHTML);
+    if(this.Flag[i]==false){
+      this.heart.style.color="#fd273f";
+      // var zanNum=parseInt(zanNum[i].innerHTML);
+      this.obj[i].zan+=1;
+      this.zanflag='true';
+      //var isclick=this.heart.getAttribute("isclick");
+      // if(isclick=="true"){
+      //   this.heart.style.cssText="font-size:17px;";
+      //   zanNum=zanNum+1;
+      //   zan[i].innerHTML=String(zanNum);
+      //   var Bisclick=!Boolean(isclick);
+      //   this.heart.setAttribute('isclick',String(Bisclick));
+      //   console.log(this.obj[i].projectID);
+      this.http.post('/api/home/addZan',{zanNum:this.obj[i].zan,userID:this.userID,projectID:this.obj[i].projectID,zanflag:this.zanflag}).subscribe(data=>{
+          //console.log(data);
+      });
+      this.Flag[i]=true;
+    }else{
+      this.heart.style.color="rgb(212, 208, 208)";
+      this.obj[i].zan-=1;
+      this.http.post('/api/home/delzan',{zanNum:this.obj[i].zan,userID:this.userID,projectID:this.obj[i].projectID}).subscribe(data=>{
+        //console.log(data);
+      });
+      this.Flag[i]=false;
     }
-    if(isclick!="true"){
-      this.heart.style.cssText="font-size:15px;";
-      zanNum=zanNum-1;
-      zan[i].innerHTML=String(zanNum);
-      isclick="true";
-      this.heart.setAttribute('isclick',isclick);
-      this.http.post('/api/home/delzan',{zanNum:zanNum,userID:this.userID,projectID:this.obj[i].projectID}).subscribe(data=>{
-        console.log(data);
-    })
-    }
+    // if(isclick!="true"){
+    //   this.heart.style.cssText="font-size:15px;";
+    //   zanNum=zanNum-1;
+    //   zan[i].innerHTML=String(zanNum);
+    //   isclick="true";
+    //   this.heart.setAttribute('isclick',isclick);
+    //   this.http.post('/api/home/delzan',{zanNum:zanNum,userID:this.userID,projectID:this.obj[i].projectID}).subscribe(data=>{
+    //     console.log(data);
+    // })
+    //}
   }
+
 }

@@ -53,12 +53,12 @@
                 <span>{{item?.zan}}</span>
               </span>
               <span class="span">
-                <ion-icon ios="ios-text" md="md-text" class="comment" (click)="Comment(i)"></ion-icon>
-                <span>{{item?.comment}}</span>
-              </span>
-              <span class="span">
                 <ion-icon md="md-star" ios="ios-star" class="collect" (click)="Collect(i)"  [class.star]="usercollectflag[i]"></ion-icon>
                 <span>{{item?.collect}}</span>
+              </span>
+              <span class="span">
+                  <ion-icon ios="ios-text" md="md-text" class="comment" (click)="Comment(i)"></ion-icon>
+                  <span>{{item?.comment}}</span>
               </span>
            </div>
         </li>

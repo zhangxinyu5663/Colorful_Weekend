@@ -70,7 +70,10 @@ page-home{
                  
                 width: 48%;
                 float: left;
-                margin: 2px 0 0px 2%;
+                //margin: 2px 0 0 2%;
+                margin-left:4px;
+                margin-right: 3px;
+                margin-top:10px;
                 #text{
                     // border: 1px solid green;
                     // word-break: break-all;
@@ -96,13 +99,12 @@ page-home{
                     vertical-align: middle;
                     font-size: 13px;
                     .ion-ios-heart,.ion-md-heart{
-                        color: rgb(253, 115, 131)!important;
-                        font-size:15px;
+                        color:rgb(212, 208, 208);
+                        font-size:18px;
                     } 
                     #right{
                         float: right;
                         line-height: 25px;
-                        
                     }
                     #tou{
                         width: 23px;
