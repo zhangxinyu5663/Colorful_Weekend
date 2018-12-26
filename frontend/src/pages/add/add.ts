@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PicturePage } from '../picture/picture';
 import { ReleaseonePage } from '../releaseone/releaseone';
 import { HttpClient } from '@angular/common/http';
+import { EditmypublishPage } from '../editmypublish/editmypublish';
 /**
  * Generated class for the AddPage page.
  *
@@ -132,5 +133,39 @@ export class AddPage {
         }
       });
     }
+  }
+
+  //删除用户作品
+  del(pid,i){
+    this.hideList=document.getElementsByClassName('hideList');
+    this.hideList[i].style.display="none";
+    console.log(pid);
+    this.http.post('/api/delUserPublish',{pID:pid}).subscribe(data=>{
+      if(data['status']==1){
+        console.log('删除作品成功');
+      }
+    });
+    this.userID=localStorage.getItem('id');
+    this.http.post('/api/userPublish',{userID:this.userID}).subscribe(data=>{
+      this.myPublish=Array.prototype.slice.call(data);
+      console.log(this.myPublish);
+      for(var i=0;i<this.myPublish.length;i++){
+        if(this.myPublish[i].zanflag=='true'){
+          this.userzanflag[i]=true;
+        }
+        // if(this.myPublish[i].collectflag=='true'){
+        //   this.usercollectflag[i]=true;
+        // }
+      }
+      console.log(this.userzanflag);
+    });
+  }
+
+  //编辑用户作品
+  edit(pid,i){
+    localStorage.setItem('userPublishID',pid);
+    localStorage.setItem('userPublishNum',i);
+
+    this.navCtrl.push(EditmypublishPage);
   }
 }

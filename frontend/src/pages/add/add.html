@@ -37,8 +37,8 @@
             <ion-icon name="ios-arrow-down" (click)="showList(i)"></ion-icon>
             <ul class="hideList">
               <li><i class="iconfont icon-fenxiang-copy"></i>分享到<i class="iconfont icon-qq1"></i><i class="iconfont icon-weixin"></i></li>
-              <li><i class="iconfont icon-bianji"></i>编辑</li>
-              <li><i class="iconfont icon-picture-delet"></i>删除</li>
+              <li (click)="edit(item.pID,i)"><i class="iconfont icon-bianji"></i>编辑</li>
+              <li (click)="del(item.pID,i)"><i class="iconfont icon-picture-delet"></i>删除</li>
             </ul>
           </div>
           <div class="div4">

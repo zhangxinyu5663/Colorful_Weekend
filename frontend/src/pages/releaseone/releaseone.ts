@@ -188,7 +188,7 @@ export class ReleaseonePage {
   userID; //用户ID
   time; //当前时间
   backArr;
-  release(){
+  release(){  //发表
     this.time=this.getDate();
     console.log(this.time);
     this.userID=localStorage.getItem('id');
@@ -220,10 +220,10 @@ export class ReleaseonePage {
         this.strdate = "0" + this.strdate;
     }
     if (this.hour >= 0 && this.hour <= 9) {
-      this.strdate = "0" + this.strdate;
+      this.hour = "0" + this.hour;
     }
     if (this.minutes >= 0 && this.minutes <= 9) {
-      this.strdate = "0" + this.strdate;
+      this.minutes = "0" + this.minutes;
     }
     var currentdate = date.getFullYear() + seperator1 + this.month + seperator1 + this.strdate
             + " " + this.hour+ seperator2 + this.minutes;
