@@ -26,9 +26,43 @@
       <li id="list"><ion-icon style="font-size: 25px" name="car"></ion-icon>{{time}}到达图书馆站</li>
       <li id="list"><ion-icon style="font-size: 25px" name="car"></ion-icon>{{time}}到达图书馆站</li>
     </ul> -->
-    <span>——2018——</span>
+    <!-- <span>——2018——</span> -->
+    <div class="date">
+      <span>——2018——</span>
+      <!-- <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon> -->
+      <!-- <span style="margin-left:25%;">——</span>
+      <select class="year">
+        <option value="2018">2018</option>
+        <option value="2017">2017</option>
+        <option value="2016">2016</option>
+        <option value="2015">2015</option>
+      </select>
+      <span>——</span>
+      
+      <select class="month">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+      </select>
+      -->
+    </div>
     <ul *ngFor="let item of mySchedule;let i=index;">
-        <li class="list"><ion-icon style="font-size: 25px" name="{{item?.type}}"></ion-icon>&nbsp;&nbsp;&nbsp;{{item?.date}}&nbsp;&nbsp;&nbsp;{{item?.detail}}</li>
+        <li>
+          <span class="span"><ion-icon name="{{item?.type}}"></ion-icon></span>
+          <span class="Date">{{item?.date.substring(5)}}</span>
+          <span class="detail">啦啦嗯嗯嗯啦啦啦啦拉拉拉拉啦</span>
+          <ion-icon ios="ios-create" md="md-create" class="edit"></ion-icon>
+          <ion-icon ios="ios-trash" md="md-trash" class="delete"></ion-icon>
+        </li>
       </ul>
     <a id="addcalendar">
         <ion-item (click)="goCalender()">

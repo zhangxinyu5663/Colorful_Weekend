@@ -12,13 +12,14 @@ export class ContactPage {
   constructor(public modalCtrl:ModalController,public navCtrl: NavController,public http:HttpClient) {
 
   }
-  ID;
+  userID;
   mySchedule=[];
   year=[];
   ionViewWillEnter(){
     // console.log(1111)
-    this.ID=localStorage.getItem('id');
-    this.http.post('/api/mySchedule',{id:this.ID}).subscribe(data=>{
+    this.userID=localStorage.getItem('id');
+    console.log(this.userID);
+    this.http.post('/api/mySchedule',{userID:this.userID}).subscribe(data=>{
       console.log(this.mySchedule);
       this.mySchedule=Array.prototype.slice.call(data); //将类数组对象转换为数组
       // this.mySchedule=data;
