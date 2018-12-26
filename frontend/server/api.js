@@ -165,8 +165,8 @@ router.get('/api/homeSchedule',function(req,res){
 
 //查询我的日程
 router.post('/api/mySchedule',function(req,res){
-  const sql='select * from mySchedule where ID=?';
-  connection.query(sql,[req.body.id],function(err,results){
+  const sql='select * from mySchedule where ID=? order by date desc';
+  connection.query(sql,[req.body.userID],function(err,results){
     if(err){
       console.log(err);
       process.exit(1);
@@ -223,8 +223,52 @@ router.post('/api/setInfo',function(req,res){
 
 //添加我的日程
 router.post('/api/addMySchedule',function(req,res){ 
-  const sql='insert into mySchedule values(?,?,?,?,?)';
-  connection.query(sql,[req.body.type,req.body.year,req.body.date,req.body.detail,req.body.id],function(err,results){
+  console.log(req.body.userID);
+  var getRandom=function(){ //生成作品ID
+    var arr=new Array();
+    for(var j=1;j<=8;j++){
+      arr.push(j);
+    }
+
+    var len=arr.length;
+    //console.log(len);
+    var result=[];
+    var r;
+    for(var i=0;i<len;i++){
+      r=Math.floor(Math.random()*arr.length);
+      result.push(arr[r]);
+      //arr.splice(r,1);
+    }
+    //console.log(result.length);
+    var number='';
+    for(var k=0;k<result.length;k++){
+      number+=result[k];
+    }
+    return parseInt(number);
+  }
+  var randomSID=getRandom(); //我的日程ID
+  
+  const sql1='select * from mySchedule where scheduleID=?';              
+  connection.query(sql1,[randomSID],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    var rlen=results.length;
+    while(rlen!=0){
+      randomSID=getRandom();
+      return connection.query(sql1,[randomSID],function(err,results){
+        if(err){
+          console.error(err);
+          process.exit(1);
+        }
+        rlen=results.length;
+      });
+    }
+  });
+
+  const sql2='insert into mySchedule values(?,?,?,?,?)';
+  connection.query(sql2,[req.body.userID,randomSID,req.body.type,req.body.date,req.body.detail],function(err,results){
     if(err){
       console.error(err);
       process.exit(1);
@@ -359,19 +403,63 @@ router.post('/api/userPublishUpload',function(req,res){
   var base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
   var dataBuffer = new Buffer(base64Data, 'base64');
   var uploadUrl='./public/upload/userPublish/';
-  var num;
-  var pID=22222220;
+  //var num;
 
-  const sql1='select COUNT(*) num from myPublish where ID=?';
-  connection.query(sql1,[req.body.userID],function(err,results){
+  var getRandom=function(){ //生成作品ID
+    var arr=new Array();
+    for(var j=1;j<=8;j++){
+      arr.push(j);
+    }
+
+    var len=arr.length;
+    //console.log(len);
+    var result=[];
+    var r;
+    for(var i=0;i<len;i++){
+      r=Math.floor(Math.random()*arr.length);
+      result.push(arr[r]);
+      //arr.splice(r,1);
+    }
+    //console.log(result.length);
+    var number='';
+    for(var k=0;k<result.length;k++){
+      number+=result[k];
+    }
+    return parseInt(number);
+  }
+  var randomPID=getRandom();
+  
+  const sql1='select * from myPublish where pID=?';               
+  connection.query(sql1,[randomPID],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    var rlen=results.length;
+    var i=1;
+    while(rlen!=0){
+      randomPID=getRandom();
+      return connection.query(sql1,[randomPID],function(err,results){
+        if(err){
+          console.error(err);
+          process.exit(1);
+        }
+        rlen=results.length;
+      });
+    }
+  });
+
+  var num;
+  const sql2='select COUNT(*) num from myPublish where ID=?';
+  connection.query(sql2,[req.body.userID],function(err,results){
     if(err){
       console.error(err);
       process.exit(1);
     }
     num=results[0].num;
     num=num+1;
-    pID=pID+num;
-    console.log(num,pID);
+    //pID=pID+num;
+    
 
     var filename=req.body.userID+'-'+num+'.png';
     fs.writeFile('./public/upload/userPublish/'+filename,dataBuffer,function(err){
@@ -384,8 +472,8 @@ router.post('/api/userPublishUpload',function(req,res){
     });
 
     var imgUrl='http://192.168.204.144:8080/upload/userPublish/'+filename;
-    const sql2='insert into myPublish values(?,?,?,?,?,?,?,?)';
-    connection.query(sql2,[pID,req.body.userID,req.body.time,imgUrl,req.body.text,0,0,0],function(err,results){
+    const sql3='insert into myPublish values(?,?,?,?,?,?,?,?,?,?)';
+    connection.query(sql3,[randomPID,req.body.userID,req.body.time,imgUrl,req.body.text,0,0,0,'false','false'],function(err,results){
       if(err){
         console.error(err);
         process.exit(1);
@@ -398,7 +486,45 @@ router.post('/api/userPublishUpload',function(req,res){
 
 });
 
-//请求用户发布的作品信息
+//编辑用户发布的作品
+router.post('/api/edit/userPublish',function(req,res){
+
+  var imgData=req.body.avatar;
+  var base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
+  var dataBuffer = new Buffer(base64Data, 'base64');
+  var uploadUrl='./public/upload/userPublish/';
+
+  const sql1='select pictureORvideo from myPublish where pID=? and ID=?';
+  connection.query(sql1,[req.body.pID,req.body.userID],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    var filename=results[0].pictureORvideo.substring(47,59);
+    console.log(filename);
+
+    fs.writeFile('./public/upload/userPublish/'+filename,dataBuffer,function(err){
+    // console.log(req.body.avatar);
+      if(err){
+        console.error(err);
+        process.exit(1);
+      }
+      console.log('success');
+    });
+ 
+    var imgUrl='http://192.168.204.144:8080/upload/userPublish/'+filename;
+    const sql2='update myPublish set pictureORvideo=?,text=? where pID=? and ID=?';
+    connection.query(sql2,[imgUrl,req.body.text,req.body.pID,req.body.userID],function(err,results){
+      if(err){
+        console.error(err);
+        process.exit(1);
+      }
+      res.json({status:1});  //修改成功
+    });
+  });
+});
+
+//请求用户发布的所有品信息
 router.post('/api/userPublish',function(req,res){
  // console.log(req.body.userID);
  
@@ -411,6 +537,28 @@ router.post('/api/userPublish',function(req,res){
     res.json(results);
   });
   
+});
+
+router.post('/api/specificUserPublish',function(req,res){
+  const sql='select * from myPublish where pID=?';
+  connection.query(sql,[req.body.pID],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    res.json(results);
+  });
+});
+
+router.post('/api/delUserPublish',function(req,res){
+  const sql='delete from myPublish where pID=?';
+  connection.query(sql,[req.body.pID],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    res.json({status:1});  //删除用户作品成功
+  });
 });
 
 //我的作品点赞
