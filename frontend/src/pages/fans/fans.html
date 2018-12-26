@@ -4,46 +4,14 @@
 </ion-header>
 <ion-content>
   <ul no-padding>
-    <li >
+    <li  *ngFor="let item of fans;let i=index">
       <div class="d">
-        <img  (click)="goFan()" src="../assets/imgs/头像0.jpg">
-        <div id="right">
-          <p id="p1">李雪琴</p>
-          <p style="margin:0 ;color:gray ">一个诗人。vx+...</p>
-        </div>
-        <button class="btn" ion-button small item-end [class.color]="'num'" (click)="change(0)">关注</button>
-      </div> 
-    </li>
-    
-    <li>
-      <div class="d">
-        <img src="../assets/imgs/头像1.jpg">
-        <div id="right">
-          <p id="p1">卢佳怡</p>
-          <p style="margin:0 ;color:gray ">姓名：卢佳怡。</p>
-        </div>
-        <button class="btn"  ion-button small item-end [class.color]="'num'" (click)="change(1)">关注</button>
-      </div> 
-    </li>
-
-    <li>
-      <div class="d">
-        <img src="../assets/imgs/头像4.jpg">
-        <div id="right">
-          <p id="p1">Bethidear</p>
-          <p style="margin:0 ;color:gray ">有趣解锁时尚知识。</p>
-        </div>
-        <button class="btn"  ion-button small item-end [class.color]="'num'" (click)="change(2)">关注</button>
-      </div> 
-    </li>
-    <li>
-      <div class="d">
-        <img src="../assets/imgs/头像2.jpg">
-        <div id="right">
-          <p id="p1">崔江米</p>
-          <p style="margin:0 ;color:gray ">围脖：崔江米。</p>
-        </div>
-        <button class="btn"  ion-button small item-end [class.color]="'num'" (click)="change(3)">关注</button>
+          <img src="{{item.head}}" (click)="gofollow(item.ID)">
+          <div id="right">
+            <p id="p1">{{item.userName}}</p>
+            <p style="margin:0 ;color:gray ">{{item.introduction}}</p>
+          </div>
+          <button class="btn" ion-button small item-end [class.color]="'num'" (click)="change(i,item.ID)">已关注</button>
       </div> 
     </li>
   </ul>
