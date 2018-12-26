@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FollowpersonPage } from '../followperson/followperson';
 import { MyPage } from '../my/my';
+import { HttpClient } from '@angular/common/http';
 /**
  * Generated class for the GuanzhuPage page.
  *
@@ -18,23 +19,48 @@ export class GuanzhuPage {
   num;
   btn;
   flag=true;
-  change(i){
+  //取消关注和关注
+  change(i,userID){
     this.btn=document.getElementsByClassName('btn')[i];
     if(this.flag==true){
       this.num=i;
       document.getElementsByClassName('btn')[i].innerHTML = "关注";
       this.btn.style.backgroundColor="#fd273f";
+      this.http.post('/api/homedetail/delAttentUser',{userID:this.userID,ToUserID:userID}).subscribe(data=>{
+        console.log(data);
+      })
     }else{
       this.btn.style.backgroundColor="grey";
       document.getElementsByClassName('btn')[i].innerHTML = "已关注";
+      this.http.post('/api/homedetail/attentUser',{userID:this.userID,ToUserID:userID}).subscribe(data=>{
+        console.log(data);
+      })
     }
     this.flag=!this.flag;
   }
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public http:HttpClient,public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  gofollow(){this.navCtrl.push(FollowpersonPage);}
-  goMy(){this.navCtrl.pop();}
-
+  gofollow( attentionUserID ){
+    localStorage.setItem("userIDdetail",attentionUserID);
+    this.navCtrl.push(FollowpersonPage);
+  }
+  goMy(){this.navCtrl.push(MyPage);}
+  userID;//用于标记是哪个用户
+  Myattention;//盛放我关注的作品数组
+  ionViewWillEnter(){
+    this.userID=localStorage.getItem('userID');
+    console.log(this.userID);
+    this.http.post('/api/my/attentUser',{userID:this.userID}).subscribe(data=>{
+        this.Myattention=data['Myattention'];
+        console.log(this.Myattention);
+        
+    })
+  }
+ 
+  detail(projectID){
+    //localStorage.setItem('homedetailID',projectID);
+    this.navCtrl.push(FollowpersonPage);
+  }
 
 }
