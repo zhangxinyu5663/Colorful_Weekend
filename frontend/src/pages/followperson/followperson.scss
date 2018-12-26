@@ -15,7 +15,8 @@ page-followperson {
         #head{
             width: 100%;
             height: 200px;
-            background-color: rgb(255, 194, 125);
+            //background-color: rgb(255, 194, 125);
+            // background: rgba(194, 189, 124, 0.7);
             img{
                 margin-top:20px;
                 width:90px;
@@ -30,17 +31,32 @@ page-followperson {
                 list-style: none;
             } 
         }
-        .box{
-            margin-top: 25px;
-            height: 250px;
-            .text{
-                margin: 5px 20px;
-                font-size: 15px;
+        ul{
+            list-style:none;
+            padding: 0px;
+            img{
+                width: 100%;
             }
-            .image{
-                margin: 10px auto;
+            .box{
                 width: 90%;
-                height:130px;
+                overflow: hidden;
+                margin: 10px auto;
+                a{
+                    display: block;
+                    width: 100%;
+                    height: 182px;
+                    overflow: hidden;
+                }
+                .text{
+                    display: inline-block;
+                    white-space: nowrap; 
+                    width: 100%; 
+                    overflow: hidden;
+                    text-overflow:ellipsis;
+                    margin: 0px;
+                    font-size: 18px;
+                }
             }
         }
+        
 }
