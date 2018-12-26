@@ -320,6 +320,139 @@ router.post('/api/my/collect',function(req,res){
   })
 
 })
+//关注用户
+router.post('/api/homedetail/AttentUser',function(req,res){
+  const sql2="insert into attention values(?,?,now())";
+  const sql3="update user set collect=collect+1 where ID=?";
+  const sql4="select * from attention where userID=? and ToUserID=?";
+  var len;
+  console.log(req.body.ToUserID);
+  connection.query(sql4,[req.body.userID,req.body.ToUserID],function(err,results){
+   if(err){
+    log(err);
+    process.exit(1);
+   }
+   console.log(results);
+   len=results.length;
+   console.log(len);
+
+    if(len==0){    
+      connection.query(sql2,[req.body.userID,req.body.ToUserID],function(err,results){
+        if(err){
+          console.log(err);
+          process.exit(1);
+        }
+        console.log("secussful");
+        connection.query(sql3,[req.body.userID],function(err,results){
+         if(err){
+           console.log(err);
+           process.exit(1);
+         }
+         res.json({"message":"success"});
+        })  
+      })
+    }
+  })
+})
+//取消关注用户
+router.post('/api/homedetail/delAttentUser',function(req,res){
+  const sql2="delete from attention where userID=? and ToUserID=?";
+  const sql3="update user set collect=collect-1 where ID=?";
+  const sql4="select * from attention where userID=? and ToUserID=?";
+  var len;
+
+  log("ID是：",req.body.userID,req.body.ToUserID);
+  connection.query(sql4,[req.body.userID,req.body.ToUserID],function(err,results){
+   if(err){
+    log(err);
+    process.exit(1);
+   }
+   console.log(results);
+   len=results.length;
+   console.log(len);
+
+    if(len>0){    
+      connection.query(sql2,[req.body.userID,req.body.ToUserID],function(err,results){
+        if(err){
+          console.log(err);
+          process.exit(1);
+        }
+        console.log("secussful");
+        connection.query(sql3,[req.body.userID],function(err,results){
+         if(err){
+           console.log(err);
+           process.exit(1);
+         }
+         res.json({"message":"success"});
+        })  
+      })
+    }
+  })
+})
+//我关注的所有用户。
+router.post('/api/my/attentUser',function(req,res){
+  const sql1="select user.ID,head,userName,userInfo.introduction from user,userInfo,attention where attention.userID=? and attention.ToUserID=user.ID and attention.ToUserID=userInfo.ID order by time desc";  
+  
+  var Myattention=[];
+  connection.query(sql1,[req.body.userID],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    //console.log(results);
+    Myattention=results;
+
+    res.json({"Myattention":Myattention});
+  })
+
+})
+//关注我的所有用户
+router.post('/api/my/fans',function(req,res){
+  const sql1="select user.ID,head,userName,userInfo.introduction from user,userInfo,attention where attention.ToUserID=? and attention.userID=user.ID and attention.userID=userInfo.ID order by time desc";  
+  
+  var fans=[];
+  connection.query(sql1,[req.body.userID],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    //console.log(results);
+    fans=results;
+
+    res.json({"fans":fans});
+  })
+
+})
+//关注的用户的作品详情
+router.post('/api/my/attentUserDetail',function(req,res){
+  const sql1="select user.ID,head,userName,homeRecommend.* from user,homeRecommend where user.ID=? and user.ID=homeRecommend.userID order by time desc"; 
+  console.log(1);
+  var MyattentionUser=[];
+  connection.query(sql1,[req.body.userID],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    console.log(results[0]);
+    MyattentionUser=results;
+
+    res.json({"MyattentionUser":MyattentionUser});
+  })
+
+})
+//查看用户个人信息
+router.post('/api/userInfo',function(req,res){
+  const sql1="select userInfo.*,user.userName,head from userInfo,user where userInfo.ID=? and userInfo.ID=user.ID";
+
+  connection.query(sql1,[req.body.userID],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    res.json({'userInfo':results});
+  })
+})
+
 
 app.use(router);
 app.listen(8080);
