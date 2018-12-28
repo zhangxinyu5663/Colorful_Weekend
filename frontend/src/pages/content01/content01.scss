@@ -43,36 +43,17 @@ page-content01 {
             font-size: 16px;
             width:100%;
          }
-        .tubiao{
-            margin-top: 30px;
-            height:30px;
-           // border: 1px solid black;
-            width: 100%;
-            .outspan{
-                //border:1px solid blue;
-                display: inline-block;
-                width: 32%;
-                text-align: center;
-                
-                ion-icon{
-                    color:rgb(212, 208, 208);
-                    // margin-left: 5px;
-                    font-size: 23px;
-                }
-                span{
-                    margin-left:5px;
-                    font-size: 18px;
-                }
+        .icon{
+            margin-top: 20px;
+            font-size: 18px;
+            border: 1px solid white;
+            #chat{
+                float: right;
             }
-            // #chat{
-            //     float: right;
-            // }
-            // #heart{
-            //     float: right;
-            //     margin-right: 10px;
-            // }
-            // #collection{
-            // }
+            #heart{
+                float: right;
+                margin-right: 10px;
+            }
         }
     }
     .comment{
