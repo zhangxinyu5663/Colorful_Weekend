@@ -12,7 +12,7 @@
       <ion-icon  (click)="close()" ios="ios-arrow-back-outline" md="md-arrow-back"></ion-icon>
       <!-- <i class="iconfont icon-back" (click)="close()"></i> -->
       <img id="tou" src="{{homeDetail?.head}}">&nbsp;&nbsp;{{homeDetail?.userName}}
-      <button id="btn" isclick="true" ion-button small item-end [color]="primary" (click)="attention()">关注</button> 
+      <button id="btn" ion-button small item-end [color]="isColor ? 'primary' : 'light'" (click)="change()">关注</button> 
   </div>
 
   
@@ -25,38 +25,39 @@
     </ion-slides>
   </div>
   <div id="box"></div>
-  <div class="icon">
-      <span id="star">
-        <ion-icon isclick="true" (click)='collect()' id="collection" ios="ios-star-outline" md="md-star-outline"></ion-icon>
+  <div class="tubiao">
+      <span class="outspan">
+        <ion-icon  (click)='collect()' [style.color]="Mycollection==1?'rgb(252, 249, 63)':'rgb(212, 208, 208)'" id="collection" md="md-star" ios="ios-star"></ion-icon>
         <span id="collectionNum">{{obj?.collection}}</span>
       </span>
-      <span id="chat"><ion-icon ios="ios-chatbubbles" md="md-chatbubbles"></ion-icon>
+      <span class="outspan">
+        <ion-icon ios="ios-text" md="md-text"></ion-icon>
         <span id="chatNum">{{obj?.comment}}</span>
       </span>
-      <span id="heart">
-        <ion-icon isclick="true" (click)='zan()' id="heart" ios="ios-heart-outline" md="md-heart-outline"></ion-icon>
+      <span class="outspan">
+        <ion-icon isclick="true" (click)='zan()' id="heart" ios="ios-heart" md="md-heart"></ion-icon>
         <span id="zanNum">{{obj?.zan}}</span>
-      </span>   
+      </span>  
   </div>
 
   <div class="comment">
       <ul class="exter">
-        <li *ngFor="let item of homeComments;let i = index" class="exterli">
+        <li *ngFor="let item of homeComments;let i = index" class="">
           <div *ngIf="item?.ParentGuid==null">
               <span id="user" ><img src="{{item?.head}}"></span>
               <div id="commentdetail">
                 <p style="margin:0  ">{{item?.userName}}</p>
                 <p style="margin:0  ">{{item?.CommentText}}</p>
-                <p style="margin:0  " class="RowGuid" style="display:none">{{item?.RowGuid}}+'|'+{{i}}</p>
                 <p style="margin:0  " class="data">
                   {{item.CommentDate.substr(5,5)+" "+item.CommentDate.substr(11,5)}}
-                  <button class="reply_btn">回复+{{i}}</button>
-                  <!-- (click)='reply(item?.RowGuid,i)' -->
+                  <button class="reply_btn" (click)='reply(item?.RowGuid,i)'>回复</button>
+                  <!-- (click)='reply(item?.RowGuid)' -->
                 </p>
                 <div class='reply_textarea'>
                     <textarea class='textarea' cols='45' rows='4' placeholder="快写下你的评论吧~"></textarea><br/>
                     <button class='publish'>发表</button>
                 </div>
+                <!-- <button id="replyButton">查看回复..</button> -->
               </div>
               
               <ul class="inner">
@@ -75,41 +76,13 @@
         </li>
       </ul>
       <br>
-    </div> 
-
-
-    
-    <!-- <div class="commentAll"> -->
-      <!--回复区域 begin-->
-      <!-- <div class="comment-show">
-          <div class="comment-show-con clearfix">
-              <div class="comment-show-con-img pull-left"><img src="../assets/imgs/3.png" alt=""></div>
-              <div class="comment-show-con-list pull-left clearfix">
-                  <div class="pl-text clearfix">
-                      <a href="#" class="comment-size-name">张三 : </a>
-                      <span class="my-pl-con">&nbsp;来啊 造作啊!</span>
-                  </div>
-                  <div class="date-dz">
-                      <span class="date-dz-left pull-left comment-time">2017-5-2 11:11:39</span>
-                      <div class="date-dz-right pull-right comment-pl-block">
-                          <a href="javascript:;" class="date-dz-pl pl-hf hf-con-block pull-left">回复</a>
-                      </div>
-                  </div>
-                  <div class="hf-list-con"></div>
-              </div>
-          </div>
-      </div> -->
-      <!--回复区域 end-->
-      <!--评论区域 begin-->
-      <!-- <div class="reviewArea clearfix">
-          <textarea class="content comment-input" placeholder="Please enter a comment&hellip;"></textarea>
-          <a href="javascript:;" class="plBtn">评论</a>
-      </div>
-      <!--评论区域 end-->
-  <!-- </div> --> 
-  
-
-  
+      <!-- <span style=" margin-left:-10px; font-size:13px">
+        2018年11月29日 09:41
+        <button style="height:25px;width:50px;border-radius: 8px; background-color:white; border:grey 1px solid" >回复</button>
+      </span> -->
+    </div>
 </div>
+  <!-- <input type="text" placeholder="快来写下你的评论吧~">
+  <button style="height:30px;width:50px;border-radius: 8px; background-color:white;color:rgb(253, 39, 63);border:rgb(253, 39, 63) 1px solid" >发布</button> -->
 </ion-content>
 

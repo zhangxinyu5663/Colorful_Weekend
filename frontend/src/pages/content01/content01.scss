@@ -32,28 +32,48 @@ page-content01 {
         ion-slide{
           //  border: 1px solid;
             width: 100%;
-            height: 230px;
+            height:300px;
             overflow: hidden;
         }
         .slide-image{
             width: 100%;
+            height: 100%;
          } 
          #box{
             margin-top: 10px;
             font-size: 16px;
             width:100%;
          }
-        .icon{
-            margin-top: 20px;
-            font-size: 18px;
-            border: 1px solid white;
-            #chat{
-                float: right;
+        .tubiao{
+            margin-top: 30px;
+            height:30px;
+           // border: 1px solid black;
+            width: 100%;
+            .outspan{
+                //border:1px solid blue;
+                display: inline-block;
+                width: 32%;
+                text-align: center;
+                
+                ion-icon{
+                    color:rgb(212, 208, 208);
+                    // margin-left: 5px;
+                    font-size: 23px;
+                }
+                span{
+                    margin-left:5px;
+                    font-size: 18px;
+                }
             }
-            #heart{
-                float: right;
-                margin-right: 10px;
-            }
+            // #chat{
+            //     float: right;
+            // }
+            // #heart{
+            //     float: right;
+            //     margin-right: 10px;
+            // }
+            // #collection{
+            // }
         }
     }
     .comment{
