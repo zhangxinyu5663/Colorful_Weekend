@@ -163,15 +163,29 @@ show(){
     this.navCtrl.pop();
   }
 //关注此用户
-  change(){
-    this.isColor=!this.isColor;
-    if (this.isColor == true) {
-      document.getElementById('btn').innerText = "关注";
+Abtn;
+attention(){
+    this.Abtn=document.getElementById('btn');
+    var isclick=this.Abtn.getAttribute("isclick");
+    console.log(isclick);
+    if (isclick == "true") {
+      isclick=!Boolean(isclick);
+      this.Abtn.setAttribute('isclick',String(isclick));
+      this.Abtn.innerText = "已关注";
+      this.http.post('/api/homedetail/attentUser',{userID:this.userID,ToUserID:this.obj.userID}).subscribe(data=>{
+        console.log(data);
+      })
     }
     else {
-        document.getElementById('btn').innerText = "已关注";
+      isclick="true";
+      this.Abtn.setAttribute('isclick',isclick);
+      this.Abtn.innerText = "关注";
+      this.http.post('/api/homedetail/delAttentUser',{userID:this.userID,ToUserID:this.obj.userID}).subscribe(data=>{
+        console.log(data);
+      })
+        
     }
-  }
+}
 
  //收藏此作品
  collect(){

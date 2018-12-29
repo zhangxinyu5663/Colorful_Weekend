@@ -12,7 +12,7 @@
       <ion-icon  (click)="close()" ios="ios-arrow-back-outline" md="md-arrow-back"></ion-icon>
       <!-- <i class="iconfont icon-back" (click)="close()"></i> -->
       <img id="tou" src="{{homeDetail?.head}}">&nbsp;&nbsp;{{homeDetail?.userName}}
-      <button id="btn" ion-button small item-end [color]="isColor ? 'primary' : 'light'" (click)="change()">关注</button> 
+      <button id="btn" isclick="true" ion-button small item-end [color]="primary" (click)="attention()">关注</button> 
   </div>
 
   
