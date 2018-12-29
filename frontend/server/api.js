@@ -29,7 +29,7 @@ router.post('/api/login',function(req,res){
       console.error(err);
       process.exit(1);
     }
-    log(results[0]);
+    //log(results[0]);
     if(results[0]==undefined){
       res.json({status:0});  //该手机号未被注册过
     }else{
@@ -68,22 +68,65 @@ router.post('/api/phoneVerify',function(req,res){
 
 //注册
 router.post('/api/register',function(req,res){
-  var num,id;
-  const sql1='select COUNT(*) num from login';
-  connection.query(sql1,function(err,results){
+  var num;
+  var getRandom=function(){ //生成作品ID
+    var arr=new Array();
+    for(var j=1;j<=6;j++){
+      arr.push(j);
+    }
+
+    var len=arr.length;
+    //console.log(len);
+    var result=[];
+    var r;
+    for(var i=0;i<len;i++){
+      r=Math.floor(Math.random()*arr.length);
+      result.push(arr[r]);
+      //arr.splice(r,1);
+    }
+    //console.log(result.length);
+    var number='';
+    for(var k=0;k<result.length;k++){
+      number+=result[k];
+    }
+    return parseInt(number);
+  }
+  var randomUserID=getRandom(); //我的用户ID
+  
+  const sql1='select * from login where ID=?';              
+  connection.query(sql1,[randomUserID],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    var rlen=results.length;
+    while(rlen!=0){
+      randomUserID=getRandom();
+      return connection.query(sql1,[randomUserID],function(err,results){
+        if(err){
+          console.error(err);
+          process.exit(1);
+        }
+        rlen=results.length;
+      });
+    }
+  });
+
+  const sql2='select COUNT(*) num from login';
+  connection.query(sql2,function(err,results){
     if(err){
       console.error(err);
       process.exit(1);
     }
     //log(results);
     num=results[0].num;
-    id=111111+num;
+    //id=111111+num;
     num=num+1;
     log(num);
-    log(id); 
+    //log(id); 
     
-    const sql2='insert into login values(?,?,?,?,?,?)';
-    connection.query(sql2,[num,req.body.phone,req.body.pwd,id,'正常','未登录'],function(err,results){
+    const sql3='insert into login values(?,?,?,?,?,?)';
+    connection.query(sql3,[num,req.body.phone,req.body.pwd,randomUserID,'正常','未登录'],function(err,results){
       if(err){
        console.error(err);
         process.exit(1);
@@ -92,16 +135,16 @@ router.post('/api/register',function(req,res){
       res.json({status:1});  //注册成功
     });
 
-    const sql3='insert into mine values(?,?,?,?,?,?,?,?)';
-    connection.query(sql3,[num,id,'您还没有登录名哦','../assets/imgs/head/kong.png',0,0,0,0],function(err,results){
+    const sql4='insert into mine values(?,?,?,?,?,?,?,?)';
+    connection.query(sql4,[num,randomUserID,'您还没有登录名哦','../assets/imgs/head/kong.png',0,0,0,0],function(err,results){
       if(err){
         console.error(err);
         process.exit(1);
       }
     });
 
-    const sql4='insert into info values(?,?,?,?,?,?,?,?)';
-    connection.query(sql4,[num,id,'','','','','',''],function(err,results){
+    const sql5='insert into info values(?,?,?,?,?,?,?,?)';
+    connection.query(sql5,[num,randomUserID,'','','','','',''],function(err,results){
       if(err){
         console.error(err);
         process.exit(1);
@@ -139,15 +182,61 @@ router.post('/api/changePwdtwo',function(req,res){
 
 //查询我的表
 router.post('/api/mine',function(req,res){
+  var collectNum,publishNum,attentionNum,fansNum;
   const sql='select * from mine where ID=?';
-  connection.query(sql,[req.body.id],function(err,results){
+  
+  const sql2='select COUNT(*) num from collect where userID=?';
+
+  const sql3='select COUNT(*) num from attention where userID=?';
+
+  const sql4='select COUNT(*) num from attention where TouserID=?';
+
+  const sql5='select COUNT(*) num from myPublish where ID=?';
+
+  const sql6='update mine set collect=?,publish=?,interest=?,fans=? where ID=?';
+  connection.query(sql2,[req.body.id],function(err,results){
     if(err){
       console.error(err);
       process.exit(1);
     }
-    //log(results); 
-    res.json(results);
-  });    
+    collectNum=results[0].num;
+    connection.query(sql3,[req.body.id],function(err,results){
+      if(err){
+        console.error(err);
+        process.exit(1);
+      }
+      attentionNum=results[0].num;
+      connection.query(sql4,[req.body.id],function(err,results){
+        if(err){
+          console.error(err);
+          process.exit(1);
+        }
+        fansNum=results[0].num;
+        connection.query(sql5,[req.body.id],function(err,results){
+          if(err){
+            console.error(err);
+            process.exit(1);
+          }
+          publishNum=results[0].num;
+          connection.query(sql6,[collectNum,publishNum,attentionNum,fansNum,req.body.id],function(err,results){
+            if(err){
+              console.error(err);
+              process.exit(1);
+            }
+            connection.query(sql,[req.body.id],function(err,results){
+              if(err){
+                console.error(err);
+                process.exit(1);
+              }
+              //log(results); 
+              res.json(results);
+            });    
+          }); 
+        });
+      });
+    });
+  });
+ 
 });
 
 //查询首页推荐日程
@@ -183,7 +272,7 @@ router.post('/api/mySchedule/year',function(req,res){
       console.log(err);
       process.exit(1);
     }
-    log(results);
+    //log(results);
     res.json(results);
   });
 });
@@ -196,7 +285,7 @@ router.post('/api/info',function(req,res){
       console.error(err);
       process.exit(1);
     }
-    log(results);
+    //log(results);
     res.json(results);
   })
 })
@@ -223,7 +312,7 @@ router.post('/api/setInfo',function(req,res){
 
 //添加我的日程
 router.post('/api/addMySchedule',function(req,res){ 
-  console.log(req.body.userID);
+  //console.log(req.body.userID);
   var getRandom=function(){ //生成作品ID
     var arr=new Array();
     for(var j=1;j<=8;j++){
@@ -468,7 +557,7 @@ router.post('/api/userPublishUpload',function(req,res){
         console.error(err);
         process.exit(1);
       }
-      console.log('success');
+      //console.log('success');
     });
 
     var imgUrl='http://192.168.204.144:8080/upload/userPublish/'+filename;
@@ -501,7 +590,7 @@ router.post('/api/edit/userPublish',function(req,res){
       process.exit(1);
     }
     var filename=results[0].pictureORvideo.substring(47,59);
-    console.log(filename);
+    //console.log(filename);
 
     fs.writeFile('./public/upload/userPublish/'+filename,dataBuffer,function(err){
     // console.log(req.body.avatar);
@@ -509,7 +598,7 @@ router.post('/api/edit/userPublish',function(req,res){
         console.error(err);
         process.exit(1);
       }
-      console.log('success');
+      //console.log('success');
     });
  
     var imgUrl='http://192.168.204.144:8080/upload/userPublish/'+filename;
@@ -563,7 +652,7 @@ router.post('/api/delUserPublish',function(req,res){
 
 //我的作品点赞
 router.post('/api/addUserPublishZan',function(req,res){
-  console.log(req.body.userPID,req.body.zanflag,req.body.zanNum);
+  //console.log(req.body.userPID,req.body.zanflag,req.body.zanNum);
   
   const sql='update myPublish set zanflag=?,zan=? where pID=?';
   connection.query(sql,[req.body.zanflag,req.body.zanNum,req.body.userPID],function(err,results){
@@ -577,7 +666,7 @@ router.post('/api/addUserPublishZan',function(req,res){
 
 //取消我的作品点赞
 router.post('/api/cancelUserPublishZan',function(req,res){
-  console.log(req.body.userPID,req.body.zanflag,req.body.zanNum);
+  //console.log(req.body.userPID,req.body.zanflag,req.body.zanNum);
   
   const sql='update myPublish set zanflag=?,zan=? where pID=?';
   connection.query(sql,[req.body.zanflag,req.body.zanNum,req.body.userPID],function(err,results){
@@ -591,7 +680,7 @@ router.post('/api/cancelUserPublishZan',function(req,res){
 
 //我的作品收藏
 router.post('/api/addUserPublishCollect',function(req,res){
-  console.log(req.body.userPID,req.body.collectflag,req.body.collectNum);
+ // console.log(req.body.userPID,req.body.collectflag,req.body.collectNum);
   
   const sql='update myPublish set collectflag=?,collect=? where pID=?';
   connection.query(sql,[req.body.collectflag,req.body.collectNum,req.body.userPID],function(err,results){
@@ -605,7 +694,7 @@ router.post('/api/addUserPublishCollect',function(req,res){
 
 //取消我的作品收藏
 router.post('/api/cancelUserPublishCollect',function(req,res){
-  console.log(req.body.userPID,req.body.collectflag,req.body.collectNum);
+  //console.log(req.body.userPID,req.body.collectflag,req.body.collectNum);
   
   const sql='update myPublish set collectflag=?,collect=? where pID=?';
   connection.query(sql,[req.body.collectflag,req.body.collectNum,req.body.userPID],function(err,results){
@@ -724,11 +813,13 @@ router.post('/api/zan',function(req,res){
 
 //记录收藏的作品
 router.post('/api/homedetail/collect',function(req,res){
+  //var collectNum;
+  //const sql1='update mine set collect=? where ID=?';
   const sql2="insert into collect values(?,?,now())";
   const sql3="update homeRecommend set collection=? where projectID=?";
   const sql4="select * from collect where projectID=? and userID=?";
+  //const sql5='select COUNT(*) num from collect';
   var len;
-
 
 connection.query(sql4,[req.body.projectID,req.body.userID],function(err,results){
    if(err){
@@ -747,7 +838,7 @@ connection.query(sql4,[req.body.projectID,req.body.userID],function(err,results)
         process.exit(1);
       }
      // console.log("successful");
-
+     
       connection.query(sql3,[req.body.collectionNum,req.body.projectID],function(err,results){
         if(err){
           console.log(err);
@@ -807,7 +898,7 @@ router.post('/api/my/specificCollection',function(req,res){
       console.error(err);
       process.exit(1);
     }
-    console.log(results);
+   // console.log(results);
     if(results.length==0){
       res.json({status:0}); //该作品没被收藏过
     }
@@ -816,8 +907,189 @@ router.post('/api/my/specificCollection',function(req,res){
     }
   });
 });
+        
+//请求特定的赞过的作品
+router.post('/api/my/specificZan',function(req,res){
+  const sql='select * from zan where userID=? and projectID=?';
+  connection.query(sql,[req.body.userID,req.body.projectID],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    //console.log(results);
+    if(results.length==0){
+      res.json({status:0}); //该作品没被赞过
+    }
+    else{
+      res.json({status:1}); //该作品被赞过
+    }
+  });
+});
+
+//判断发表作品的人是否被关注过
+router.post('/api/my/specificAttention',function(req,res){
+  log(req.body.homedetailUserID);
+  const sql='select * from attention where userID=? and ToUserID=?';
+  connection.query(sql,[req.body.userID,req.body.homedetailUserID],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    console.log(results);
+    if(results.length==0){
+      res.json({status:0}); //该作者没被关注过
+    }
+    else{
+      res.json({status:1}); //该作者被关注过
+    }
+  });
+});
+
+
+//关注用户
+router.post('/api/homedetail/AttentUser',function(req,res){
+  const sql2="insert into attention values(?,?,now())";
+  //const sql3="update user set collect=collect+1 where ID=?";
+  const sql4="select * from attention where userID=? and ToUserID=?";
+  var len;
+  console.log(req.body.ToUserID);
+  connection.query(sql4,[req.body.userID,req.body.ToUserID],function(err,results){
+   if(err){
+    log(err);
+    process.exit(1);
+   }
+   console.log(results);
+   len=results.length;
+   console.log(len);
+
+    if(len==0){    
+      connection.query(sql2,[req.body.userID,req.body.ToUserID],function(err,results){
+        if(err){
+          console.log(err);
+          process.exit(1);
+        }
+        console.log("secussful");
+        /*
+        connection.query(sql3,[req.body.userID],function(err,results){
+         if(err){
+           console.log(err);
+           process.exit(1);
+         }
+         res.json({"message":"success"});
+        });
+        */
+      });
+    }
+  });
+});
+
+//取消关注用户
+router.post('/api/homedetail/delAttentUser',function(req,res){
+  const sql2="delete from attention where userID=? and ToUserID=?";
+  //const sql3="update user set collect=collect-1 where ID=?";
+  const sql4="select * from attention where userID=? and ToUserID=?";
+  var len;
+
+  log("ID是：",req.body.userID,req.body.ToUserID);
+  connection.query(sql4,[req.body.userID,req.body.ToUserID],function(err,results){
+   if(err){
+    log(err);
+    process.exit(1);
+   }
+   console.log(results);
+   len=results.length;
+   console.log(len);
+
+    if(len>0){    
+      connection.query(sql2,[req.body.userID,req.body.ToUserID],function(err,results){
+        if(err){
+          console.log(err);
+          process.exit(1);
+        }
+        console.log("secussful");
+        /*
+        connection.query(sql3,[req.body.userID],function(err,results){
+         if(err){
+           console.log(err);
+           process.exit(1);
+         }
+         res.json({"message":"success"});
+        });
+        */
+      });
+    }
+  });
+});
+
+//我关注的所有用户
+router.post('/api/my/attentUser',function(req,res){
+  log(req.body.userID);
+  const sql1="select mine.ID,head,userName,info.introduction from mine,info,attention where attention.userID=? and attention.ToUserID=mine.ID and attention.ToUserID=info.ID order by time desc";  
+  
+  var Myattention=[];
+  connection.query(sql1,[req.body.userID],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    //console.log(results);
+    Myattention=results;
+
+    res.json({"Myattention":Myattention});
+  })
+
+});
+
+//关注我的所有用户
+router.post('/api/my/fans',function(req,res){
+  const sql1="select mine.ID,head,userName,info.introduction from mine,info,attention where attention.ToUserID=? and attention.userID=mine.ID and attention.userID=info.ID order by time desc";  
+  
+  var fans=[];
+  connection.query(sql1,[req.body.userID],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    //console.log(results);
+    fans=results;
+
+    res.json({"fans":fans});
+  })
+
+});
+
+//关注的用户的作品详情
+router.post('/api/my/attentUserDetail',function(req,res){
+  const sql1="select mine.ID,head,userName,homeRecommend.* from mine,homeRecommend where mine.ID=? and mine.ID=homeRecommend.userID"; 
+  console.log(1);
+  var MyattentionUser=[];
+  connection.query(sql1,[req.body.userID],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    console.log(results[0]);
+    MyattentionUser=results;
+
+    res.json({"MyattentionUser":MyattentionUser});
+  })
+
+});
+
+//查看用户个人信息
+router.post('/api/userInfo',function(req,res){
+  const sql1="select info.*,mine.userName,head from info,mine where info.ID=? and info.ID=mine.ID";
+
+  connection.query(sql1,[req.body.userID],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    res.json({'userInfo':results});
+  })
+});
 
 app.use(router);
 
 app.listen(8080);
-        
+
