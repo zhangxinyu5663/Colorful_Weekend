@@ -11,8 +11,8 @@ import { TabsPage } from '../pages/tabs/tabs';
   templateUrl: 'app.html'
 })
 export class MyApp {
-    //rootPage:any = TabsPage;
-    rootPage:any = LoginPage;
+    rootPage:any = TabsPage;
+    //rootPage:any = LoginPage;
     backButtonPressed = false;
     showExit(): void {
       //如果为true，退出

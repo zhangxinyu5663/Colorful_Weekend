@@ -19,7 +19,7 @@ export class MyPage {
   }
   mine=[] ;
   ID;
-  ionViewDidLoad(){
+  ionViewWillEnter(){
     this.ID=localStorage.getItem('id');
     this.http.post('/api/mine',{id:this.ID}).subscribe(data=>{
       this.mine=Array.prototype.slice.call(data); //将类数组对象转换为数组

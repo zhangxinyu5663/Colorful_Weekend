@@ -12,7 +12,7 @@
       <ion-icon  (click)="close()" ios="ios-arrow-back-outline" md="md-arrow-back"></ion-icon>
       <!-- <i class="iconfont icon-back" (click)="close()"></i> -->
       <img id="tou" src="{{homeDetail?.head}}">&nbsp;&nbsp;{{homeDetail?.userName}}
-      <button id="btn" isclick="true" ion-button small item-end [color]="primary" (click)="attention()">关注</button> 
+      <button id="abtn" ion-button small item-end [style.backgroundColor]="Myattention==1?'rgb(212, 208, 208)':'#fd273f'" (click)="attention()">关注</button> 
   </div>
 
   
@@ -27,7 +27,7 @@
   <div id="box"></div>
   <div class="tubiao">
       <span class="outspan">
-        <ion-icon  (click)='collect()' [style.color]="Mycollection==1?'rgb(252, 249, 63)':'rgb(212, 208, 208)'" id="collection" md="md-star" ios="ios-star"></ion-icon>
+        <ion-icon  (click)='collect()' [style.color]="Mycollection==1?'rgb(241, 220, 23)':'rgb(212, 208, 208)'" id="collection" md="md-star" ios="ios-star"></ion-icon>
         <span id="collectionNum">{{obj?.collection}}</span>
       </span>
       <span class="outspan">
@@ -35,7 +35,7 @@
         <span id="chatNum">{{obj?.comment}}</span>
       </span>
       <span class="outspan">
-        <ion-icon isclick="true" (click)='zan()' id="heart" ios="ios-heart" md="md-heart"></ion-icon>
+        <ion-icon isclick="true" (click)='zan()' [style.color]="Myzan==1?'#fd273f':'rgb(212, 208, 208)'" id="heart" ios="ios-heart" md="md-heart"></ion-icon>
         <span id="zanNum">{{obj?.zan}}</span>
       </span>  
   </div>

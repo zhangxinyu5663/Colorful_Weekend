@@ -29,23 +29,24 @@ export class Content01Page {
     
   // }
   homedetailID;//用来记录页面跳转的是哪个作品的详情
+  homedetailUserID; //点开的作品的发布者的ID
   obj;//请求的这个作品
   userID;//标记此时是哪个用户登录
   context;//作品详细介绍的内容
   imgs=[];//用来盛放作品图片数组
   zanflag; //作品是否被赞过的标记
   heart; //代表心形图标
-  Mycollection; //判断这个作品是否被收藏过的返回结果
+  Myzan; //判断这个作品是否被赞过的返回结果
   collectflag; //作品是否被收藏过的标记
   collection;//代表点击的这个收藏图标
+  Mycollection; //判断这个作品是否被收藏过的返回结果
+  attentionflag;//发表作品的人是否关注过的标记
+  Myattention; //判断这个人是否被关注过的返回结果
 
   ionViewWillEnter(){
-    this.zanflag=this.navParams.get('zanflag');
     this.collection=document.getElementById('collection');
-    if(this.zanflag==true){
-      this.heart=document.getElementById('heart');
-      this.heart.style.color="#fd273f";
-    }
+    this.heart = document.getElementById('heart'); 
+    this.Abtn=document.getElementById('abtn');
      //获得当前用户登录的userID。
      this.userID=localStorage.getItem('id');
      this.homedetailID=localStorage.getItem('homedetailID');
@@ -53,30 +54,45 @@ export class Content01Page {
     console.log(this.userID);
      //请求作品详情
      this.http.post('/api/homedetail',{id:this.homedetailID}).subscribe(data=>{
+       //console.log(data);
        this.homeDetail=data['detail'][0];
        this.homeComments=data['comments'];
        this.imgs=this.homeDetail.imgs.split("|");
        this.obj=this.homeDetail;
        this.context=this.obj.context;
        //console.log(this.context);
-       //console.log(this.obj.collection);
+       this.homedetailUserID=this.obj.userID;
+
+       this.http.post('/api/my/specificAttention',{homedetailUserID:this.homedetailUserID,userID:this.userID}).subscribe(data=>{
+        this.Myattention=data['status'];
+          if(this.Myattention==1){
+            this.attentionflag=true;
+            this.Abtn.innerHTML='已关注';
+          }else{
+            this.attentionflag=false;
+          }
+        });
+
        this.show();
      });
-
      this.http.post('/api/my/specificCollection',{userID:this.userID,projectID:this.homedetailID}).subscribe(data=>{
          this.Mycollection=data['status'];
          //this.collection=document.getElementById('collection');
          if(this.Mycollection==1){
-          //  console.log(this.Mycollection)
-          //  console.log(this.collection)
            this.collectflag=true;
-           //console.log(111);
-          //  this.collection.style.color="rgb(252, 249, 63)";
          }else{
           this.collectflag=false;
          }
-        //  console.log(this.collectflag);
      });
+     this.http.post('/api/my/specificZan',{userID:this.userID,projectID:this.homedetailID}).subscribe(data=>{
+      this.Myzan=data['status'];
+      //this.collection=document.getElementById('collection');
+      if(this.Myzan==1){
+        this.zanflag=true;
+      }else{
+       this.zanflag=false;
+      }
+  });
   }
   ionViewDidEnter(){
     // var that=this;
@@ -165,26 +181,40 @@ show(){
 //关注此用户
 Abtn;
 attention(){
-    this.Abtn=document.getElementById('btn');
-    var isclick=this.Abtn.getAttribute("isclick");
-    console.log(isclick);
-    if (isclick == "true") {
-      isclick=!Boolean(isclick);
-      this.Abtn.setAttribute('isclick',String(isclick));
-      this.Abtn.innerText = "已关注";
+    this.Abtn=document.getElementById('abtn');
+    if(this.attentionflag==false){
+      this.Myattention=1;
+      this.Abtn.innerHTML='已关注'
       this.http.post('/api/homedetail/attentUser',{userID:this.userID,ToUserID:this.obj.userID}).subscribe(data=>{
         console.log(data);
-      })
-    }
-    else {
-      isclick="true";
-      this.Abtn.setAttribute('isclick',isclick);
-      this.Abtn.innerText = "关注";
+      });
+      this.attentionflag=true;
+    }else{
+      this.Myattention=0;
+      this.Abtn.innerHTML='关注';
       this.http.post('/api/homedetail/delAttentUser',{userID:this.userID,ToUserID:this.obj.userID}).subscribe(data=>{
         console.log(data);
-      })
-        
+      });    
+      this.attentionflag=false;
     }
+    // var isclick=this.Abtn.getAttribute("isclick");
+    // console.log(isclick);
+    // if (isclick == "true") {
+    //   isclick=!Boolean(isclick);
+    //   this.Abtn.setAttribute('isclick',String(isclick));
+    //   this.Abtn.innerText = "已关注";
+    //   this.http.post('/api/homedetail/attentUser',{userID:this.userID,ToUserID:this.obj.userID}).subscribe(data=>{
+    //     console.log(data);
+    //   })
+    // }
+    // else {
+    //   isclick="true";
+    //   this.Abtn.setAttribute('isclick',isclick);
+    //   this.Abtn.innerText = "关注";
+    //   this.http.post('/api/homedetail/delAttentUser',{userID:this.userID,ToUserID:this.obj.userID}).subscribe(data=>{
+    //     console.log(data);
+    //   })     
+    //}
 }
 
  //收藏此作品
@@ -243,10 +273,9 @@ attention(){
    //var zan = document.getElementById('zanNum');
    //var zanNum=parseInt(zan.innerHTML);
    if(this.zanflag==false){
-    this.heart.style.color="#fd273f";
+     this.obj.zan+=1;
+     this.Myzan=1;
     // var zanNum=parseInt(zanNum[i].innerHTML);
-    this.obj.zan+=1;
-    this.zanflag='true';
     //var isclick=this.heart.getAttribute("isclick");
     // if(isclick=="true"){
     //   this.heart.style.cssText="font-size:17px;";
@@ -258,12 +287,14 @@ attention(){
     this.http.post('/api/home/addZan',{zanNum:this.obj.zan,userID:this.userID,projectID:this.obj.projectID}).subscribe(data=>{
         console.log(data);
     });
+    this.zanflag=true;
   }else{
-    this.heart.style.color="rgb(212, 208, 208)";
     this.obj.zan-=1;
+    this.Myzan=0;
     this.http.post('/api/home/delzan',{zanNum:this.obj.zan,userID:this.userID,projectID:this.obj.projectID}).subscribe(data=>{
       console.log(data);
     });
+    this.zanflag=false;
   }
   //  var isclick=this.heart.getAttribute("isclick");
   //  if(isclick=="true"){

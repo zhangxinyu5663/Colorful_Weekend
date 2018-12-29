@@ -12,7 +12,7 @@ export class UserinfoPage {
 
   constructor(public http:HttpClient,public navCtrl: NavController, public navParams: NavParams) {
   }
-  goBack(){this.navCtrl.popTo(FollowpersonPage);}
+  goBack(){this.navCtrl.pop();}
 
   userdetailID;//当前关注用户id
   userInfo;//用户详细信息

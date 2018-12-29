@@ -8,7 +8,7 @@
         <li id="collection" class="person" *ngFor="let item of Mycollect;let i=index">
             <img (click)='detail(item.projectID)' src="{{item.imgs.split('|')[0]}}" alt="图片" >
             <span class="collection">
-                <ion-icon ios="ios-star" md="md-star" class="heart"></ion-icon>
+                <ion-icon ios="ios-star" md="md-star" class="star"></ion-icon>
                 <span class="num">{{item.collection}}</span>
             </span>
         </li>

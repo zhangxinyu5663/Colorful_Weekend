@@ -41,15 +41,10 @@ export class GuanzhuPage {
   constructor(public http:HttpClient,public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  gofollow( attentionUserID ){
-    localStorage.setItem("userIDdetail",attentionUserID);
-    this.navCtrl.push(FollowpersonPage);
-  }
-  goMy(){this.navCtrl.push(MyPage);}
   userID;//用于标记是哪个用户
   Myattention;//盛放我关注的作品数组
   ionViewWillEnter(){
-    this.userID=localStorage.getItem('userID');
+    this.userID=localStorage.getItem('id');
     console.log(this.userID);
     this.http.post('/api/my/attentUser',{userID:this.userID}).subscribe(data=>{
         this.Myattention=data['Myattention'];
@@ -57,6 +52,12 @@ export class GuanzhuPage {
         
     })
   }
+  
+  gofollow( attentionUserID ){
+    localStorage.setItem("userIDdetail",attentionUserID);
+    this.navCtrl.push(FollowpersonPage);
+  }
+  goMy(){this.navCtrl.pop();}
  
   detail(projectID){
     //localStorage.setItem('homedetailID',projectID);

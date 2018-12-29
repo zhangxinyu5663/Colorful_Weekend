@@ -62,6 +62,8 @@ import { Content10Page } from '../pages/content10/content10';
 import { Content09Page } from '../pages/content09/content09';
 import { Content08Page } from '../pages/content08/content08';
 import { Content07Page } from '../pages/content07/content07';
+import { EditmypublishPage } from '../pages/editmypublish/editmypublish';
+import { ReleasetwoPage } from '../pages/releasetwo/releasetwo';
 
 
 
@@ -118,7 +120,9 @@ import { Content07Page } from '../pages/content07/content07';
     ForgetpwdPage,
     Forgetpwd2Page,
     ChangepwdalertPage,
-    UserinfoPage
+    UserinfoPage,
+    EditmypublishPage,
+    ReleasetwoPage
   ],
   imports: [
     BrowserModule,
@@ -183,7 +187,10 @@ import { Content07Page } from '../pages/content07/content07';
     ForgetpwdPage,
     Forgetpwd2Page,
     ChangepwdalertPage,
-    UserinfoPage
+    UserinfoPage,
+    EditmypublishPage,
+    UserinfoPage,
+    ReleasetwoPage
   ],
   providers: [
     StatusBar,

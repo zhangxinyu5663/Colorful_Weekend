@@ -36,7 +36,7 @@ export class FansPage {
   }
   constructor(public http:HttpClient,public navCtrl: NavController, public navParams: NavParams) {
   }
-  goMy(){this.navCtrl.push(MyPage);}
+  goMy(){this.navCtrl.pop();}
   goFan(){this.navCtrl.push(FansmyPage);}
 
   userID;//用于标记是哪个用户

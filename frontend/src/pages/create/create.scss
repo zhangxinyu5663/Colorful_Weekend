@@ -1,61 +1,274 @@
 page-create {
+    // padding:0;
+    // margin:0;
+    // ion-content{
+    //     // width:100%;
+    //     // height: 600px;
+    //     background: url(../assets/imgs/planthreebg.png);
+    //     background-repeat: no-repeat;
+    //         .span1{
+    //             display: inline-block;
+    //             width:100%;
+    //             height: 50px;
+    //             //border:1px solid black;
+    //             line-height: 50px;
+    //             i{
+    //                 color:#fd273f;
+    //                 // padding-left: 300px;
+    //             }
+
+    //         }
+    //         .span2{
+    //             height:40px;
+    //             line-height: 40px;
+    //             padding-left: 10px;
+    //             display: block;
+    //             margin-top:20px;
+    //             font-size:18px;
+    //             border-bottom:2px solid gray;
+    //         }
+    //         .content{
+    //             // border:1px solid black;
+    //             width: 95%;
+    //             margin: 10px auto;
+    //             ion-item{
+    //                 padding: 0;
+    //                 height: 60px;
+    //                 margin-top: 5px;
+    //                 img{
+    //                     height: 50px;
+    //                     width: 50px;
+    //                 }
+    //             }
+    //         }
+    //         .footer{
+    //             border: rgb(155, 151, 151) 1px solid;
+    //             height: 32px;
+    //             span{
+    //                 height: 30px;
+    //                 float: left;
+    //                 text-align: center;
+    //                 line-height: 30px;
+    //                 // border: 1px rgb(153, 150, 150) solid;
+    //                 width: 33.3%;
+    //                 font-size: 18px;
+    //                 ion-icon{
+    //                     color: rgb(160, 156, 156);
+    //                 }
+    //             }
+    //         }
+    // }
     padding:0;
     margin:0;
+    ion-header{
+        height:50px;
+       img{margin-top:9px;}
+       span{
+            position:absolute;   
+            display: inline-block;
+            font-size: 18px;
+            color:#FD273F;
+            margin-left:33%;margin-top: 13px;
+        }
+        .span1{
+            i{
+                font-size:30px!important;
+                color:#fd273f;
+                padding-left: 160px;
+                    
+            }
+        }
+    }
     ion-content{
-        // width:100%;
-        // height: 600px;
-        background: url(../assets/imgs/planthreebg.png);
-        background-repeat: no-repeat;
-            .span1{
-                display: inline-block;
-                width:100%;
-                height: 50px;
-                //border:1px solid black;
-                line-height: 50px;
-                i{
-                    color:#fd273f;
-                    // padding-left: 300px;
+        background: url(../assets/imgs/planthreebg.png) no-repeat;
+        background-size: cover;
+        span{
+            display: block;
+        }
+        .span1{
+            width:100%;
+            height: 50px;
+            // border:1px solid black;
+            line-height: 50px;
+            i{
+                font-size:30px!important;
+                color:#fd273f;
+                padding-left: 320px;
+                    
+            }
+        }
+        .span2{
+            height:40px;
+            line-height: 40px;
+            padding-left: 10px;
+            margin-top:10px;
+            font-size:18px;
+            // border:1px solid black;
+            border-bottom:2px solid gray;
+        }
+        .content{
+            // border:1px solid black;
+            width: 95%;
+            margin: 10px auto;
+            ion-item{
+                padding: 0;
+                height: 60px;
+                margin-top: 5px;
+                img{
+                    height: 50px;
+                    width: 50px;
                 }
+            }
+        }
+        .footer{
+            border: rgb(155, 151, 151) 1px solid;
+            height: 32px;
+            span{
+                height: 30px;
+                float: left;
+                text-align: center;
+                line-height: 30px;
+                // border: 1px rgb(153, 150, 150) solid;
+                width: 33.3%;
+                font-size: 18px;
+                ion-icon{
+                    color: rgb(160, 156, 156);
+                }
+            }
+        }
 
-            }
-            .span2{
-                height:40px;
-                line-height: 40px;
-                padding-left: 10px;
-                display: block;
-                margin-top:20px;
-                font-size:18px;
-                border-bottom:2px solid gray;
-            }
-            .content{
-                // border:1px solid black;
-                width: 95%;
-                margin: 10px auto;
-                ion-item{
-                    padding: 0;
-                    height: 60px;
-                    margin-top: 5px;
-                    img{
-                        height: 50px;
-                        width: 50px;
-                    }
-                }
-            }
-            .footer{
-                border: rgb(155, 151, 151) 1px solid;
-                height: 32px;
-                span{
-                    height: 30px;
+        #ul{
+            padding: 0;
+            list-style: none;
+            margin-top:10px;
+            .li{
+                width:100%;
+                height:auto;
+                border-bottom:1px solid rgb(160, 156, 156);
+                margin-top:10px;
+                .div1{
                     float: left;
+                    width:20%;
+                    height:50px;
+                    //border:1px solid blue;
+                    img{
+                        width:50px;
+                        height:50px;
+                        border-radius: 50%;
+                        margin-left: 10px;
+                    }
+                }
+                .div2{
+                    float: left;
+                    width:70%;
+                    height:50px;
+                    //border:1px solid blue;
+                    span{
+                        display:block;
+                        margin-top:2px;
+                        line-height: 25px;
+                        font-size:14px;
+                        color:gray;
+                    }
+                }
+                .div3{
+                    float: left;
+                    width:10%;
+                    height:40px;
                     text-align: center;
-                    line-height: 30px;
-                    // border: 1px rgb(153, 150, 150) solid;
-                    width: 33.3%;
-                    font-size: 18px;
+                    line-height: 40px;
+                    position: relative;
                     ion-icon{
-                        color: rgb(160, 156, 156);
+                        font-size:25px!important;
+                        color:gray;
+                    }
+                    //border:1px solid blue;
+                }
+                .div4{
+                    
+                    img{
+                        width:120;
+                        height:120px;
+                        margin-left:10px;
+                        margin-top:10px;
+                        //display: block;
+                    }
+                    p{
+                        margin-top:5px;
+                        margin-left:10px;
+                        margin-right:10px;
+                    }
+                }
+                .div5{
+                    //border: rgb(155, 151, 151) 1px solid;
+                    height: 35px;
+                    .span{
+                        height: 35px;
+                        float: left;
+                        text-align: center;
+                        line-height: 35px;
+                       //display: inline-block;
+                        width: 33.3%;
+                        //border:1px solid red;
+                        font-size: 18px;
+                        ion-icon{
+                            font-size:23px;
+                            line-height: 35px;
+                            color: rgb(212, 208, 208);
+                        }
+                        .heart{
+                            color:#fd273f;
+                        }
+                        .star{
+                            color:rgb(252, 249, 63);
+                        }
+                        span{
+                            // float:left;
+                            display: inline-block;
+                            width:20px;
+                            margin-left:10px;
+                        }
                     }
                 }
             }
+        }
+        .hideList{
+            margin:0;
+            padding: 0;
+            position: absolute;
+            // top:0;
+            top:20px;
+            right: 5px;
+            width:170px;
+            height:120px;
+            //border:1px solid black;
+            background:rgba(0, 0, 0,0.8);
+            display: none;
+            border-radius: 5px;
+            li{
+                color:white;
+                cursor: pointer;
+                line-height: 40px;
+                text-align: left;
+                height:40px;
+                font-size:16px;
+                width:170px;
+                i{
+                    margin-left: 10px;
+                    margin-right: 10px;
+                    font-size:20px!important;
+                }
+                .icon-qq1{
+                    color:#76c5fa;
+                    font-size:25px!important;
+                    
+                }
+                .icon-weixin{
+                    color:#2ef04e;
+                    font-size:25px!important;
+                }
+            }
+            
+        }
     }
 }
