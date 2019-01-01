@@ -354,7 +354,7 @@ export class HomePage {
     }else if(i==8){
 
     }else if(i==9){
-
+      this.endNine(i);
     }else if(i==10){
 
     }
@@ -494,6 +494,13 @@ endFive(i){
     console.log(this.homeProject);
   });
 }
+comment;//所有评论
+endNine(i){
+  this.http.get('/api/comment').subscribe(data=>{  //请求系统推荐作品
+    this.comment=Array.prototype.slice.call(data); 
+    console.log(this.comment);
+  });
+}
 //分类查询首页作品
 typeTextthree;
 textthree;
@@ -540,7 +547,7 @@ searchfour(){
     });
   }
 }
-//分类查询用户作品
+//分类查看用户作品
 typeTextfive;
 textfive;
 searchfive(){
@@ -555,7 +562,7 @@ searchfive(){
       this.homeProject=Array.prototype.slice.call(data); 
     })
   }else if(this.typeTextfive=='userID'){//请求用户ID号为...的作品
-    this.http.post('/api/searchfive/userID',{projectID:this.textfive}).subscribe(data=>{
+    this.http.post('/api/searchfive/userID',{userID:this.textfive}).subscribe(data=>{
       this.homeProject=Array.prototype.slice.call(data); 
     })
   }else if(this.typeTextfive=='palce'){//请求地点在哪的作品(待添加)
@@ -564,6 +571,34 @@ searchfive(){
       console.log("按地点搜索：",this.homeProject);
     });
   }
+}
+//分类查询评论
+typeTextnine;
+textnine;
+searchnine(){
+  // console.log(this.typeTextone);
+  // console.log(this.textone);
+  if(this.typeTextnine=='all'){
+    this.http.get('/api/comment').subscribe(data=>{  //请求用户作品
+      this.comment=Array.prototype.slice.call(data); 
+    });
+  }else if(this.typeTextnine=='projectID'){//请求作品ID号为...的作品
+    this.http.post('/api/searchnine/projectID',{projectID:this.textnine}).subscribe(data=>{
+      this.comment=Array.prototype.slice.call(data); 
+    })
+  }else if(this.typeTextnine=='userID'){//请求用户ID号为...的作品
+    this.http.post('/api/searchnine/userID',{userID:this.textnine}).subscribe(data=>{
+      this.comment=Array.prototype.slice.call(data); 
+    })
+  }
+}
+//删除评论
+commentID;
+commentdelete(i){//删除推荐作品
+  this.commentID=this.comment[i].RowGuid;
+  this.http.post('/api/comment/delete',{RowGuid:this.commentID}).subscribe(data=>{
+    console.log(data);
+  })
 }
 //创建新的系统作品
 createOproject(){

@@ -342,7 +342,38 @@
             </table>
           </div>
         </div>
-        <div *ngSwitchCase="9">9</div>
+        <div *ngSwitchCase="9" class="div">
+            <div id="searchthree">
+                <select id="select3" [(ngModel)]="typeTextnine" (focus)="clear()" >
+                    <option value="all" selected = "selected">全部</option>
+                    <option value="projectID">作品ID</option>
+                    <option value="userID">用户ID</option>
+                </select>
+                <input type="text" [(ngModel)]="textnine" placeholder="请输入搜索内容" class="search">
+                <i class="iconfont icon-sousuo" (click)="searchnine()"></i>
+              </div>
+              <div class="biao3">
+                <table  border="0" cellspacing="0" cellpadding="0" id="table3">
+                  <tr style="position:fixed;background-color:white;width:100%">
+                    <th style="width:10%;">序号</th>
+                    <th style="width:15%;">用户ID</th>
+                    <th style="width:15%;">作品ID</th>
+                    <th style="width:25%;">评论内容</th>
+                    <th style="width:15%;">时间</th>
+                    <th style="width:20%;">操作</th>
+                  </tr>
+                  <tr *ngFor="let item of comment;let i=index" id="tr" style="width:8000px;">
+                    <td style="width:10%;">{{i+1}}</td>
+                    <td style="width:15%;">{{item.CommentUserID}}</td>
+                    <td style="width:15%;">{{item.ProjectID}}</td>
+                    <td style="width:25%;height:100px;padding:15px;padding-top:30px;">{{item.CommentText}}</td>
+                    <td style="width:15%;">{{item.CommentDate.substr(0,10)+" "+item.CommentDate.substr(11,8)}}</td>
+                    <td style="width:20%;">
+                      <button (click)="commentdelete(i)"><i class="iconfont icon-shanchu"></i>删除</button>&nbsp;&nbsp;
+                  </tr>
+                </table>
+              </div>
+        </div>
         <div *ngSwitchCase="10">
           <div class="data">
             <div id="chart1" >1</div>
