@@ -252,6 +252,19 @@ router.get('/api/homeSchedule',function(req,res){
   })
 });
 
+//查询首页推荐日程详情
+router.post('/api/homeScheduleDetail',function(req,res){
+  const sql='select homeScheduleDetail.*,title from homeScheduleDetail,homeSchedule where homeScheduleDetail.hsID=? and homeScheduleDetail.hsID=homeSchedule.hsID';
+  connection.query(sql,[req.body.hsID],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    //log(results);
+    res.json(results);
+  });
+});
+
 //查询我的日程
 router.post('/api/mySchedule',function(req,res){
   const sql='select * from mySchedule where ID=? order by date desc';
@@ -265,6 +278,7 @@ router.post('/api/mySchedule',function(req,res){
   });
 });
 
+/*
 router.post('/api/mySchedule/year',function(req,res){
   const sql='select distinct year from mySchedule where ID=?';
   connection.query(sql,[req.body.id],function(err,results){
@@ -276,6 +290,7 @@ router.post('/api/mySchedule/year',function(req,res){
     res.json(results);
   });
 });
+*/
 
 //查询个人信息
 router.post('/api/info',function(req,res){
@@ -366,6 +381,43 @@ router.post('/api/addMySchedule',function(req,res){
   });
 });
 
+//删除我的日程
+router.post('/api/delmySchedule',function(req,res){
+  const sql='delete from mySchedule where scheduleID=?';
+  connection.query(sql,[req.body.sID],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    res.json({status:1});  //删除成功
+  });
+});
+
+//查询特定的我的日程
+router.post('/api/specific/userSchedule',function(req,res){
+  const sql='select * from mySchedule where scheduleID=?';
+  connection.query(sql,[req.body.sID],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    res.json(results);
+  });
+});
+
+//修改我的日程
+router.post('/api/update/userSchedule',function(req,res){
+  const sql='update mySchedule set type=?,detail=?,date=? where scheduleID=? and ID=?';
+  connection.query(sql,[req.body.type,req.body.detail,req.body.date,req.body.sID,req.body.userID],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    res.json({status:1}); //修改成成功
+  });
+});
+
+
 //查询手机号
 router.post('/api/queryPhone',function(req,res){ 
   const sql='select phoneNumber from login where ID=?'
@@ -455,6 +507,18 @@ router.post('/api/homedetail',function(req,res){
   });
 });
 
+//搜索功能
+router.post('/api/search',function(req,res){
+  var str='%'+req.body.searchText+'%';
+  const sql="select * from homeRecommend,mine,info where keyword like ? and homeRecommend.userID=mine.ID and mine.ID=info.ID";
+  connection.query(sql,[str],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    res.json(results);
+  });
+});
 
 //添加评论
 /*
@@ -639,6 +703,7 @@ router.post('/api/specificUserPublish',function(req,res){
   });
 });
 
+//删除用户发表的特定作品
 router.post('/api/delUserPublish',function(req,res){
   const sql='delete from myPublish where pID=?';
   connection.query(sql,[req.body.pID],function(err,results){
