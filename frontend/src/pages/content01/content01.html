@@ -43,47 +43,24 @@
 
   <div class="comment">
       <ul class="exter">
-        <li *ngFor="let item of homeComments;let i = index" class="">
-          <div *ngIf="item?.ParentGuid==null">
-              <span id="user" ><img src="{{item?.head}}"></span>
-              <div id="commentdetail">
+        <li *ngFor="let item of homeComments;let i = index" class="exterli">
+            <span id="user" ><img src="{{item?.head}}"></span>
+            <div id="commentdetail">
                 <p style="margin:0  ">{{item?.userName}}</p>
                 <p style="margin:0  ">{{item?.CommentText}}</p>
                 <p style="margin:0  " class="data">
-                  {{item.CommentDate.substr(5,5)+" "+item.CommentDate.substr(11,5)}}
-                  <button class="reply_btn" (click)='reply(item?.RowGuid,i)'>回复</button>
-                  <!-- (click)='reply(item?.RowGuid)' -->
+                    {{item.CommentDate.substr(5,5)+" "+item.CommentDate.substr(11,5)}}
                 </p>
-                <div class='reply_textarea'>
-                    <textarea class='textarea' cols='45' rows='4' placeholder="快写下你的评论吧~"></textarea><br/>
-                    <button class='publish'>发表</button>
-                </div>
-                <!-- <button id="replyButton">查看回复..</button> -->
-              </div>
-              
-              <ul class="inner">
-                <li *ngFor = "let initem of homeComments;">
-                  <div *ngIf="initem?.ParentGuid==item?.RowGuid">
-                      <span id="user" ><img src="{{initem?.head}}"></span>
-                      <div>
-                          <p style="margin:0  ">{{initem?.userName}}</p>
-                          <p style="margin:0  ">{{initem?.CommentText}}</p>
-                          <p style="margin:0  " class="data">{{initem.CommentDate.substr(5,5)+" "+initem.CommentDate.substr(11,5)}}</p>
-                      </div>
-                  </div>
-                </li>
-              </ul>
-          </div>
+            </div>
         </li>
       </ul>
       <br>
-      <!-- <span style=" margin-left:-10px; font-size:13px">
-        2018年11月29日 09:41
-        <button style="height:25px;width:50px;border-radius: 8px; background-color:white; border:grey 1px solid" >回复</button>
-      </span> -->
-    </div>
+    </div> 
+  
 </div>
-  <!-- <input type="text" placeholder="快来写下你的评论吧~">
-  <button style="height:30px;width:50px;border-radius: 8px; background-color:white;color:rgb(253, 39, 63);border:rgb(253, 39, 63) 1px solid" >发布</button> -->
 </ion-content>
 
+<ion-footer>
+    <input type="text" id="inpcomment">
+    <button id="btncomment" (click)='comment()'>评论</button>
+</ion-footer>

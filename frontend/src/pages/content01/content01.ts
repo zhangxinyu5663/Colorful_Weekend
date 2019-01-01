@@ -127,16 +127,6 @@ export class Content01Page {
   }
 
   //弹出评论框
-  reply_textarea;
-  textarea;
-  publish;
-  reply(RowGuid,i){
-    console.log(RowGuid,i);
-    this.reply_textarea=document.getElementsByClassName('reply_textarea');
-    console.log(this.reply_textarea);
-    this.reply_textarea[i].style.display="block";
-  };
-
   presentAlert() {
     let alert = this.alertCtrl.create({
       title: '评论不能为空',
@@ -145,7 +135,26 @@ export class Content01Page {
     });
     alert.present();
   }
-
+//评论作品
+inpcomment;
+head;//头像
+userName;//用户名
+comment(){
+  this.inpcomment=document.getElementById('inpcomment');
+  this.http.post('/api/majorcomment',{userID:this.userID,context:this.inpcomment.value,projectID:this.homedetailID}).subscribe(data=>{
+      console.log(data);
+      this.head=data['head'];
+      this.userName=data['userName'];
+      $(".exter").append("<li class='exterli'><span id='user' ><img src='' id='uimg'></span><div id='commentdetail'><p style='margin:0' id='p1'></p><p style='margin:0  ' id='p2'></p><p style='margin:0  ' class='data' id='p3'></p></div></li>");
+      $("#uimg").attr('src',this.head);
+      $("#p1").text(this.userName);//username
+      $("#p2").text(this.inpcomment.value);
+      var time=String(new Date()).substr(8,17);
+      $("#p3").text(time);//时间
+      this.inpcomment.value='';
+    });
+  
+}
 //点击展开全部和收起的函数
 show(){ 
     var box = document.getElementById("box");
