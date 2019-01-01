@@ -9,9 +9,10 @@
 
 <ion-content >
   <div class="head">
-      <ion-icon  (click)="close()" ios="ios-arrow-back-outline" md="md-arrow-back"></ion-icon>
+      <!-- <ion-icon  (click)="close()" ios="ios-arrow-back-outline" md="md-arrow-back"></ion-icon> -->
+      <img src="assets/icon/left.png" alt="" (click)="close()" style="float:left;margin-top:14px">
       <!-- <i class="iconfont icon-back" (click)="close()"></i> -->
-      <img id="tou" src="{{homeDetail?.head}}">&nbsp;&nbsp;{{homeDetail?.userName}}
+      <img id="tou" src="{{homeDetail?.head}}"><div id="name">{{homeDetail?.userName}}</div>
       <button id="abtn" ion-button small item-end [style.backgroundColor]="Myattention==1?'rgb(212, 208, 208)':'#fd273f'" (click)="attention()">关注</button> 
   </div>
 

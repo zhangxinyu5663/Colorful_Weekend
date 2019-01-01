@@ -1,8 +1,5 @@
-
+<!-- 
 <ion-content>
-    <!-- <img src="assets/imgs/fault.png" 
-    alt="" (click)="goBack()" class="fault"> -->
-    <!-- <i class="iconfont icon-chahao" (click)="goback()"></i> -->
     <div id="title">
       <span>乌镇游</span>
       <i class="iconfont icon-chahao" (click)="goBack()"></i>
@@ -55,4 +52,48 @@
   
   
   
+ -->
+ 
+<ion-content>
+  <div id="title">
+    <span>{{schedule[0]?.title}}</span>
+    <i class="iconfont icon-chahao" (click)="goBack()"></i>
+  </div>
+  <ion-scroll scrollY="true">
+      <div id="line"></div>
+      <div id="schedule">
+        <div class="top">
+          <div class="scheduleleft">
+            <div class="sta">{{schedule[0]?.detailTime}}  <ion-icon name="ios-radio-button-on"></ion-icon>
+          </div>
+          <div class="scheduleright">
+            <ul>
+              <li *ngFor="let item of detailone;let i=index">
+                <ion-icon name="md-alarm"></ion-icon>
+                {{item}}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="bottom">
+            <div class="scheduleleft">
+              <div class="sun">{{schedule[1]?.detailTime}}  <ion-icon name="ios-radio-button-on"></ion-icon></div>
+            </div>
+            <div class="scheduleright">
+              <ul>
+                  <li *ngFor="let item of detailtwo;let i=index">
+                      <ion-icon name="md-alarm"></ion-icon>
+                      {{item}}
+                  </li>
+              </ul>
+            </div>
+        </div>  
+      </div>
+    </div>      
+    </ion-scroll> 
+</ion-content>
+
+
+
+
 

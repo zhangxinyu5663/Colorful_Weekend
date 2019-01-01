@@ -56,12 +56,12 @@
       -->
     </div>
     <ul *ngFor="let item of mySchedule;let i=index;">
-        <li>
+        <li class="li">
           <span class="span"><ion-icon name="{{item?.type}}"></ion-icon></span>
           <span class="Date">{{item?.date.substring(5)}}</span>
-          <span class="detail">啦啦嗯嗯嗯啦啦啦啦拉拉拉拉啦</span>
-          <ion-icon ios="ios-create" md="md-create" class="edit"></ion-icon>
-          <ion-icon ios="ios-trash" md="md-trash" class="delete"></ion-icon>
+          <span class="detail">{{item?.detail.length>12?item?.detail.substring(0,10)+'...':item?.detail}}</span>
+          <ion-icon ios="ios-trash" md="md-trash" class="delete" (click)="delete(i)"></ion-icon>
+          <ion-icon ios="ios-create" md="md-create" class="edit" (click)="edit(i)"></ion-icon>       
         </li>
       </ul>
     <a id="addcalendar">

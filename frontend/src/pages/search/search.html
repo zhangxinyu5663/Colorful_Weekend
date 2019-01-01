@@ -1,0 +1,26 @@
+<!--
+  Generated template for the SearchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content>
+  <div class="head">
+    <!-- <ion-icon ios="ios-pin" md="md-pin"></ion-icon> -->
+    <i class="iconfont icon-backarrow" id="back" (click)="goBack()"></i>
+    <input type="text" placeholder="大家都在搜“毒液”" [(ngModel)]="searchText">
+    <!-- <ion-icon ios="ios-search" md="md-search"></ion-icon> -->
+    <i class="iconfont icon-sousuo1" id="search" (click)="search()"></i>
+    <!-- <span>取消</span> -->
+  </div>
+  <div>
+    <p style="margin-left:15px">搜索主题</p>
+    <ul>
+      <li (click)="fun(1)">美食</li>
+      <li (click)="fun(2)">电影</li>
+      <li (click)="fun(3)">游玩</li>
+      <li (click)="fun(4)">拍照</li>
+    </ul>
+  </div>
+</ion-content>

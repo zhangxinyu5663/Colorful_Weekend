@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { PicturePage } from '../picture/picture';
 import { AddPage } from '../add/add';
 import { ActionSheetController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';

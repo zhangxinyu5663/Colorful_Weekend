@@ -1,7 +1,7 @@
 <ion-content>
     <div class="head">
         <!-- <ion-icon ios="ios-pin" md="md-pin"></ion-icon> -->
-        <input id="search" type="text" placeholder="大家都在搜“毒液”">
+        <input id="search" type="text" placeholder="大家都在搜“毒液”" (focus)="toSearch()">
         <!-- <ion-icon ios="ios-search" md="md-search"></ion-icon> -->
         <i class="iconfont icon-sousuo1"></i>
     </div>
@@ -18,7 +18,7 @@
                     <div id="below">
                         <img id="tou" src="{{item.head}}">&nbsp;&nbsp;{{item.userName}}
                         <div id="right"> 
-                            <ion-icon class="heart" ios="ios-heart" md="md-heart" (click)="clickZan(i)"></ion-icon>&nbsp;
+                            <ion-icon ios="ios-heart" md="md-heart" (click)="clickZan(i)" [style.color]="Flag[i]?'#fd273f':'rgb(212, 208, 208)'"></ion-icon>&nbsp;
                             <span class="zanNum">{{item.zan}}</span>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
       <div *ngSwitchCase='1'>
           <ul class="schedule">
               <li *ngFor="let item of schedule;let i=index" (click)="goPlan(i)">
-                  <img src="{{item.img}}" alt="">
+                  <img src="{{item.img}}" alt="" (click)="goPlan(i)">
                   <span class="title">{{item.title}}</span>
                   <span class="time">{{item.time}}</span>
               </li>

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { PicturePage } from '../picture/picture';
 import { ReleaseonePage } from '../releaseone/releaseone';
 import { HttpClient } from '@angular/common/http';
 import { EditmypublishPage } from '../editmypublish/editmypublish';

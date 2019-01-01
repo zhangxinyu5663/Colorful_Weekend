@@ -1,108 +1,74 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
-import { PlanonePage } from '../planone/planone';
-import { PlantwoPage } from '../plantwo/plantwo';
-import { PlanthreePage } from '../planthree/planthree';
-import { PlanfourPage } from '../planfour/planfour';
-import { PlanfivePage } from '../planfive/planfive';
-import { PlansixPage } from '../plansix/plansix';
-import { PlansevenPage } from '../planseven/planseven';
-import { PlaneightPage } from '../planeight/planeight';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { Content01Page } from '../content01/content01';
-import { SearchPage } from '../search/search';
 
+/**
+ * Generated class for the SearchtwoPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-searchtwo',
+  templateUrl: 'searchtwo.html',
 })
-export class HomePage {
+export class SearchtwoPage {
 
-  imgs;//用于盛放从后端传回来的图片路径数组
-  projectId;//作品ID
-  userID;//用于标记当前是哪个用户登录 用户ID
-  items=[];
-  isActive=0;
-  isClick(i){
-    this.isActive=i;
-  }
-  goPlan(i){
-    if(i==0){
-      localStorage.setItem('hsID',this.schedule[i].hsID);
-      this.navCtrl.push(PlanonePage);
-    }else if(i==1){
-      this.navCtrl.push(PlantwoPage);
-    }else if(i==2){
-      this.navCtrl.push(PlanthreePage);
-    }else if(i==3){
-      this.navCtrl.push(PlanfourPage);
-    }else if(i==4){
-      this.navCtrl.push(PlanfivePage);
-    }else if(i==5){
-      this.navCtrl.push(PlansixPage);
-    }else if(i==6){
-      this.navCtrl.push(PlansevenPage);
-    }else if(i==7){
-      this.navCtrl.push(PlaneightPage);
-    }
+  constructor(public navCtrl: NavController, public navParams: NavParams,public http:HttpClient) {
   }
 
-
-  constructor(public modalCtrl:ModalController,public navCtrl: NavController,public http:HttpClient) {
-    for (let i = 0; i < 30; i++) {
-      this.items.push(this.items.length);
-    }
-  }
-  schedule=[];
-  num;
-  btn;
-  flag=true;
-  change(i){
-    this.btn=document.getElementsByClassName('btn')[i];
-    if(this.flag==true){
-      this.num=i;
-      this.btn.style.color="black";
-    }else{
-      this.btn.style.color="#fd273f";
-    }
-    this.flag=!this.flag;
+  // searchText;
+  // ionViewDidLoad() {
+  //   this.searchText=localStorage.getItem('searchText');
+  //   this.http.post('/api/search',{searchText:this.searchText}).subscribe(data=>{
+  //     console.log(data);
+  //   });
+  // }
+  goBack(){
+    this.navCtrl.pop();
   }
 
-  obj=[];//用于盛放后端传回的首页推荐作品的类数组对象
+  obj=[];//用于盛放后端传回的搜索结果
   Myzan=[];
   Flag=[];//标记心是否被点击过
+  userID; //用户ID
+  searchText; //搜索的内容
+  heart;
+  zanflag;
+
   ionViewWillEnter(){
     this.userID=localStorage.getItem('id');
     this.heart = document.getElementsByClassName('heart'); 
-    this.http.get('/api/homeSchedule').subscribe(data=>{
-      this.schedule=Array.prototype.slice.call(data);
-      // for(var i=0;i<this.schedule.length;i++){
-      //   console.log(this.schedule[i].imgDetail);
-      // } 
-    });
+    // console.log(this.heart);
+    this.searchText=localStorage.getItem('searchText');
 
-    this.http.get('/api/home').subscribe(data=>{
+    this.http.post('/api/search',{searchText:this.searchText}).subscribe(data=>{
       this.obj=Array.prototype.slice.call(data);
       console.log(this.obj);
       for(var k=0;k<this.obj.length;k++){
         this.Flag[k]=false;
       }
+      // console.log(this.Flag);
       this.http.post('/api/zan',{userID:this.userID}).subscribe(data=>{
         this.Myzan=data['Myzan'];
-        //console.log(this.Myzan);  
+        console.log(this.Myzan);  
         for(var j=0;j<this.Myzan.length;j++){
           for(var i=0;i<this.obj.length;i++){
             if(this.Myzan[j].projectID == this.obj[i].projectID){
-              //console.log(this.obj[i].projectID);
+              // console.log(this.obj[i].projectID);
               // this.heart[i].style.color="#fd273f";
               this.Flag[i]=true;
             }
           }
         }
-        //console.log(this.Flag);
+        console.log(this.Flag);
       });
     });
   }
+
   detail(i){
     localStorage.setItem('homedetailID',this.obj[i].projectID);
     this.navCtrl.push(Content01Page);
@@ -110,7 +76,6 @@ export class HomePage {
 
   //点赞
   // tag=true;
-  heart;
   // homeProjectZanFlag=[];
   // zanflag;
   
@@ -120,6 +85,7 @@ export class HomePage {
     //console.log(zanNum[i].innerHTML);
     if(this.Flag[i]==false){
       // this.heart.style.color="#fd273f";
+      // this.zanflag=1;
       // var zanNum=parseInt(zanNum[i].innerHTML);
       this.obj[i].zan+=1;
       // this.zanflag='true';
@@ -136,7 +102,8 @@ export class HomePage {
       });
       this.Flag[i]=true;
     }else{
-      // this.heart.style.color="rgb(212, 208, 208)";
+      //this.heart.style.color="rgb(212, 208, 208)";
+      // this.zanflag=0;
       this.obj[i].zan-=1;
       this.http.post('/api/home/delzan',{zanNum:this.obj[i].zan,userID:this.userID,projectID:this.obj[i].projectID}).subscribe(data=>{
         //console.log(data);
@@ -154,9 +121,29 @@ export class HomePage {
     // })
     //}
   }
-  searchText;
-  toSearch(){
-    this.navCtrl.push(SearchPage);
-  }
 
+  search(){
+    this.http.post('/api/search',{searchText:this.searchText}).subscribe(data=>{
+      this.obj=Array.prototype.slice.call(data);
+      console.log(this.obj);
+      for(var k=0;k<this.obj.length;k++){
+        this.Flag[k]=false;
+      }
+      // console.log(this.Flag);
+      this.http.post('/api/zan',{userID:this.userID}).subscribe(data=>{
+        this.Myzan=data['Myzan'];
+        console.log(this.Myzan);  
+        for(var j=0;j<this.Myzan.length;j++){
+          for(var i=0;i<this.obj.length;i++){
+            if(this.Myzan[j].projectID == this.obj[i].projectID){
+              // console.log(this.obj[i].projectID);
+              // this.heart[i].style.color="#fd273f";
+              this.Flag[i]=true;
+            }
+          }
+        }
+        console.log(this.Flag);
+      });
+    });
+  }
 }

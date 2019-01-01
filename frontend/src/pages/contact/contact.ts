@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 import { CalendarPage } from '../calendar/calendar';
 import { HttpClient } from '@angular/common/http';
+import { EditmyschedulePage } from '../editmyschedule/editmyschedule';
 
 @Component({
   selector: 'page-contact',
@@ -39,4 +40,23 @@ export class ContactPage {
   goCalender(){
     this.navCtrl.push(CalendarPage);
   }
+
+  edit(i){
+    localStorage.setItem('userScheduleID',this.mySchedule[i].scheduleID);
+    this.navCtrl.push(EditmyschedulePage);
+  }
+
+  li;
+  delete(i){
+    this.li=document.getElementsByClassName('li')[i];
+    this.li.parentNode.removeChild(this.li);    
+    
+    this.http.post('/api/delmySchedule',{sID:this.mySchedule[i].scheduleID}).subscribe(data=>{
+      if(data['status']==1){
+        console.log('删除成功');
+      }
+    });
+    
+  }
+
 }

@@ -1,0 +1,234 @@
+<ion-content >
+    <div class="head">
+      <img src="assets/icon/left.png" alt="" (click)="close()">
+      评论
+    </div>
+    <ul class="navList">
+        <li (click)="isClick(0)" [class.first]="isActive==0" >收到评论</li>
+        <li (click)="isClick(1)" [class.second]="isActive==1">发出评论</li>
+    </ul>
+    <div [ngSwitch]='isActive' id="switch">
+      <ion-list *ngSwitchCase="0">
+          <ion-item>
+            <ion-thumbnail item-start>
+                <img src="assets/imgs/头像0.jpg" alt="">
+            </ion-thumbnail>
+            <ion-label>
+              <div class="comments">
+                <p>李雪琴</p>
+                <span class="time">2018.12.7 11:00</span>
+                <textarea cols="30" rows="3" readonly="readonly">我非常喜欢你的作品！！！你发的照片实在是太好看了！！小姐姐这是怎么修图的啊教教我！！</textarea>
+                <ion-icon ios="ios-text" md="md-text"></ion-icon><span class="response">回复</span>
+              </div>
+              <div class="project">
+                <img src="assets/imgs/comment6.png" alt="">
+              </div>
+            </ion-label> 
+          </ion-item>
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img src="assets/imgs/头像1.jpg" alt="">
+            </ion-thumbnail>
+            <ion-label>
+              <div class="comments">
+                <p>卢佳怡</p>
+                <span class="time">2018.12.7 11:00</span>
+                <textarea cols="30" rows="3" readonly="readonly">石家庄终于开了万象城，下周要不要一起去？</textarea>
+                <ion-icon ios="ios-text" md="md-text"></ion-icon><span class="response">回复</span>
+              </div>
+              <div class="project">
+                <img src="assets/imgs/comment1.jpg" alt="IMG">
+              </div>
+            </ion-label> 
+          </ion-item>
+          <ion-item>
+              <ion-thumbnail item-start>
+                  <img src="assets/imgs/头像4.jpg" alt="">
+              </ion-thumbnail>
+              <ion-label>
+                <div class="comments">
+                  <p>Bethidear</p>
+                  <span class="time">2018.12.7 11:00</span>
+                  <textarea cols="30" rows="3" readonly="readonly">很不错，关注了，感觉是一个乐于生活的人。</textarea>
+                  <ion-icon ios="ios-text" md="md-text"></ion-icon><span class="response">回复</span>
+                </div>
+                <div class="project">
+                  <img src="assets/imgs/comment3.jpg" alt="IMG">
+                </div>
+              </ion-label> 
+            </ion-item>
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img src="assets/imgs/头像2.jpg" alt="">
+              </ion-thumbnail>
+              <ion-label>
+                <div class="comments">
+                  <p>崔江米</p>
+                  <span class="time">2018.12.7 11:00</span>
+                  <textarea cols="30" rows="3" readonly="readonly">这个周末很充实！希望下个周末也可以从这里得到乐趣！</textarea>
+                  <ion-icon ios="ios-text" md="md-text"></ion-icon><span class="response">回复</span>
+                </div>
+                <div class="project">
+                  本周去石家庄玩
+                </div>
+              </ion-label> 
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail item-start>
+                    <img src="assets/imgs/头像0.jpg" alt="">
+                </ion-thumbnail>
+                <ion-label>
+                  <div class="comments">
+                    <p>李雪琴</p>
+                    <span class="time">2018.12.7 11:00</span>
+                    <textarea cols="30" rows="3" readonly="readonly">上周去滑雪场玩了感觉很不错告诉你</textarea>
+                    <ion-icon ios="ios-text" md="md-text"></ion-icon><span class="response">回复</span>
+                  </div>
+                  <div class="project">
+                    <img src="assets/imgs/comment4.jpg" alt="IMG">
+                  </div>
+                </ion-label> 
+              </ion-item>
+              <ion-item>
+                <ion-thumbnail item-start>
+                  <img src="assets/imgs/头像1.jpg" alt="">
+                </ion-thumbnail>
+                <ion-label>
+                  <div class="comments">
+                    <p>卢佳怡</p>
+                    <span class="time">2018.12.7 11:00</span>
+                    <textarea cols="30" rows="3" readonly="readonly">小姐姐皮肤真好啊好羡慕哦</textarea>
+                    <ion-icon ios="ios-text" md="md-text"></ion-icon><span class="response">回复</span>
+                  </div>
+                  <div class="project">
+                    太开心啦
+                  </div>
+                </ion-label> 
+              </ion-item>
+              <ion-item>
+                  <ion-thumbnail item-start>
+                      <img src="assets/imgs/头像4.jpg" alt="">
+                  </ion-thumbnail>
+                  <ion-label>
+                    <div class="comments">
+                      <p>Bethidear</p>
+                      <span class="time">2018.12.7 11:00</span>
+                      <textarea cols="30" rows="3" readonly="readonly">生活真是太丰富多彩了。</textarea>
+                      <ion-icon ios="ios-text" md="md-text"></ion-icon><span class="response">回复</span>
+                    </div>
+                    <div class="project">
+                      <img src="assets/imgs/comment2.jpg" alt="IMG">
+                    </div>
+                  </ion-label> 
+                </ion-item>
+      </ion-list>
+      <ion-list *ngSwitchCase="1">
+          <ion-item>
+              <ion-thumbnail item-start>
+                  <img src="assets/imgs/head.jpg" alt="">
+              </ion-thumbnail>
+              <ion-label>
+                <div class="comments">
+                  <p>柚子z</p>
+                  <span class="time">2018.12.7 11:00</span>
+                  <textarea cols="30" rows="3" readonly="readonly">我非常喜欢你的作品</textarea>
+                </div>
+                <div class="project">
+                  <img src="assets/imgs/t3.jpg" alt="IMG">
+                </div>
+              </ion-label> 
+            </ion-item>
+            <ion-item>
+              <ion-thumbnail item-start>
+                <img src="assets/imgs/head.jpg" alt="">
+              </ion-thumbnail>
+              <ion-label>
+                <div class="comments">
+                  <p>柚子z</p>
+                  <span class="time">2018.12.7 11:00</span>
+                  <textarea cols="30" rows="3" readonly="readonly">这是在石家庄哪里啊想去</textarea>
+                </div>
+                <div class="project">
+                  <img src="assets/imgs/comment8.jpg" alt="">
+                </div>
+              </ion-label> 
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail item-start>
+                    <img src="assets/imgs/head.jpg" alt="">
+                </ion-thumbnail>
+                <ion-label>
+                  <div class="comments">
+                    <p>柚子z</p>
+                    <span class="time">2018.12.7 11:00</span>
+                    <textarea cols="30" rows="3" readonly="readonly">这个地方看起来真不错，应该玩的很开心</textarea>
+                  </div>
+                  <div class="project">
+                    <img src="assets/imgs/comment2.jpg" alt="IMG">
+                  </div>
+                </ion-label> 
+              </ion-item>
+              <ion-item>
+                <ion-thumbnail item-start>
+                  <img src="assets/imgs/head.jpg" alt="">
+                </ion-thumbnail>
+                <ion-label>
+                  <div class="comments">
+                    <p>柚子z</p>
+                    <span class="time">2018.12.7 11:00</span>
+                    <textarea cols="30" rows="3" readonly="readonly">这周学习了很久吧，快放松一下吧</textarea>
+                  </div>
+                  <div class="project">
+                    <img src="assets/imgs/comment9.jpg" alt="IMG">
+                  </div>
+                </ion-label> 
+              </ion-item>
+        <ion-item>
+              <ion-thumbnail item-start>
+                <img src="assets/imgs/head.jpg" alt="">
+              </ion-thumbnail>
+              <ion-label>
+                <div class="comments">
+                  <p>柚子z</p>
+                  <span class="time">2018.12.7 11:00</span>
+                  <textarea cols="30" rows="3" readonly="readonly">博主又换发型了！好看的！</textarea>
+                </div>
+                <div class="project">
+                  <img src="assets/imgs/comment5.png" alt="">
+                </div>
+              </ion-label> 
+            </ion-item>
+            <ion-item>
+                <ion-thumbnail item-start>
+                    <img src="assets/imgs/head.jpg" alt="">
+                </ion-thumbnail>
+                <ion-label>
+                  <div class="comments">
+                    <p>柚子z</p>
+                    <span class="time">2018.12.7 11:00</span>
+                    <textarea cols="30" rows="3" readonly="readonly">博主又换美瞳了！也是好看的！</textarea>
+                  </div>
+                  <div class="project">
+                    <img src="assets/imgs/comment6.png" alt="IMG">
+                  </div>
+                </ion-label> 
+              </ion-item>
+              <ion-item>
+                <ion-thumbnail item-start>
+                  <img src="assets/imgs/head.jpg" alt="">
+                </ion-thumbnail>
+                <ion-label>
+                  <div class="comments">
+                    <p>柚子z</p>
+                    <span class="time">2018.12.7 11:00</span>
+                    <textarea cols="30" rows="3" readonly="readonly">博主这是去哪了？</textarea>
+                  </div>
+                  <div class="project">
+                    <img src="assets/imgs/comment10.jpg" alt="">
+                  </div>
+                </ion-label> 
+              </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+  

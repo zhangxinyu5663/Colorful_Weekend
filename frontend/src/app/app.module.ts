@@ -16,7 +16,6 @@ import {Camera,CameraOptions} from "@ionic-native/camera";
 import {ImagePicker,ImagePickerOptions} from "@ionic-native/image-picker";
 
 import { AddPage } from '../pages/add/add';
-import { Content02Page } from '../pages/content02/content02';
 import { PlanonePage } from '../pages/planone/planone';
 import { PlantwoPage } from '../pages/plantwo/plantwo';
 import { PlanthreePage } from '../pages/planthree/planthree';
@@ -26,7 +25,6 @@ import { PlansixPage } from '../pages/plansix/plansix';
 import { PlansevenPage } from '../pages/planseven/planseven';
 import { PlaneightPage } from '../pages/planeight/planeight';
 import { CalendarPage } from '../pages/calendar/calendar';
-import { AtPage } from '../pages/at/at';
 import { GuanzhuPage } from '../pages/guanzhu/guanzhu';
 import { FollowpersonPage } from '../pages/followperson/followperson';
 import { ZanPage } from '../pages/zan/zan';
@@ -43,7 +41,6 @@ import { SetPage } from '../pages/set/set';
 import { SetdataPage } from '../pages/setdata/setdata';
 import { FansmyPage } from '../pages/fansmy/fansmy';
 import { ReleaseonePage } from '../pages/releaseone/releaseone';
-import { PicturePage } from '../pages/picture/picture';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { ForgetpwdPage } from '../pages/forgetpwd/forgetpwd';
@@ -52,18 +49,12 @@ import { ChangepwdalertPage } from '../pages/changepwdalert/changepwdalert';
 import { Register2Page } from '../pages/register2/register2';
 import { UserinfoPage } from '../pages/userinfo/userinfo';
 import { Content01Page } from '../pages/content01/content01';
-import { Content03Page } from '../pages/content03/content03';
-import { Content04Page } from '../pages/content04/content04';
-import { Content05Page } from '../pages/content05/content05';
-import { Content06Page } from '../pages/content06/content06';
-import { Content12Page } from '../pages/content12/content12';
-import { Content11Page } from '../pages/content11/content11';
-import { Content10Page } from '../pages/content10/content10';
-import { Content09Page } from '../pages/content09/content09';
-import { Content08Page } from '../pages/content08/content08';
-import { Content07Page } from '../pages/content07/content07';
 import { EditmypublishPage } from '../pages/editmypublish/editmypublish';
 import { ReleasetwoPage } from '../pages/releasetwo/releasetwo';
+import { SearchPage } from '../pages/search/search';
+import { SearchtwoPage } from '../pages/searchtwo/searchtwo';
+import { EditmyschedulePage } from '../pages/editmyschedule/editmyschedule';
+import { CommentPage } from '../pages/comment/comment';
 
 
 
@@ -77,17 +68,6 @@ import { ReleasetwoPage } from '../pages/releasetwo/releasetwo';
     MyPage,
     AddPage,
     Content01Page,
-    Content02Page,
-    Content03Page,
-    Content04Page,
-    Content05Page,
-    Content06Page,
-    Content07Page,
-    Content08Page,
-    Content09Page,
-    Content10Page,
-    Content11Page,
-    Content12Page,
     PlanonePage,
     PlantwoPage,
     PlanthreePage,
@@ -97,7 +77,6 @@ import { ReleasetwoPage } from '../pages/releasetwo/releasetwo';
     PlansevenPage,
     PlaneightPage,
     CalendarPage,
-    AtPage,
     GuanzhuPage,
     FollowpersonPage,
     ZanPage,
@@ -113,7 +92,6 @@ import { ReleasetwoPage } from '../pages/releasetwo/releasetwo';
     SetdataPage,
     FansmyPage,
     ReleaseonePage,
-    PicturePage,
     LoginPage,
     RegisterPage,
     Register2Page,
@@ -122,7 +100,11 @@ import { ReleasetwoPage } from '../pages/releasetwo/releasetwo';
     ChangepwdalertPage,
     UserinfoPage,
     EditmypublishPage,
-    ReleasetwoPage
+    ReleasetwoPage,
+    SearchPage,
+    SearchtwoPage,
+    EditmyschedulePage,
+    CommentPage
   ],
   imports: [
     BrowserModule,
@@ -144,17 +126,6 @@ import { ReleasetwoPage } from '../pages/releasetwo/releasetwo';
     MyPage,
     AddPage,
     Content01Page,
-    Content02Page,
-    Content03Page,
-    Content04Page,
-    Content05Page,
-    Content06Page,
-    Content07Page,
-    Content08Page,
-    Content09Page,
-    Content10Page,
-    Content11Page,
-    Content12Page,
     PlanonePage,
     PlantwoPage,
     PlanthreePage,
@@ -164,7 +135,6 @@ import { ReleasetwoPage } from '../pages/releasetwo/releasetwo';
     PlansevenPage,
     PlaneightPage,
     CalendarPage,
-    AtPage,
     GuanzhuPage,
     FollowpersonPage,
     ZanPage,
@@ -180,7 +150,6 @@ import { ReleasetwoPage } from '../pages/releasetwo/releasetwo';
     SetdataPage,
     FansmyPage,
     ReleaseonePage,
-    PicturePage,
     LoginPage,
     RegisterPage,
     Register2Page,
@@ -190,7 +159,12 @@ import { ReleasetwoPage } from '../pages/releasetwo/releasetwo';
     UserinfoPage,
     EditmypublishPage,
     UserinfoPage,
-    ReleasetwoPage
+    ReleasetwoPage,
+    SearchPage,
+    SearchtwoPage,
+    EditmypublishPage,
+    EditmyschedulePage,
+    CommentPage
   ],
   providers: [
     StatusBar,

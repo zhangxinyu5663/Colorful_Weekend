@@ -39,16 +39,19 @@ export class CalendarPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:HttpClient) {
   }
+
+  userID;  //用户ID
   save(){
-    this.id=localStorage.getItem('id');
-    var arr=this.myDate.split('-');
-    this.year=arr[0];
-    this.date=arr[1]+'-'+arr[2];
+    this.userID=localStorage.getItem('id');
+    // var arr=this.myDate.split('-');
+    // this.year=arr[0];
+    // this.date=arr[1]+'-'+arr[2];
     // console.log(this.year);
     // console.log(this.date);
-    this.http.post('/api/addMySchedule',{type:this.typeTxt,year:this.year,date:this.date,detail:this.detail,id:this.id}).subscribe(data=>{
+    this.http.post('/api/addMySchedule',{type:this.typeTxt,year:this.year,date:this.myDate,detail:this.detail,userID:this.userID}).subscribe(data=>{
       this.back=data;
       if(this.back.status==1){
+        console.log('添加成功');
         this.navCtrl.pop();
       }
     })

@@ -1,6 +1,6 @@
 <ion-content>
     <div id="head">
-      <img src="{{mine[0]?.head}}" alt="">
+      <img src="{{avatar}}" alt="" (click)="presentActionSheet()">
       <ul>
         <li>{{mine[0]?.userName}}</li>
         <li>ID号:{{mine[0]?.ID}}</li>

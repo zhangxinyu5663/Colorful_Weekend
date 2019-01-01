@@ -25,35 +25,40 @@ page-contact {
             .span{
                 margin-left:5px;
                 width:30px;
-                border:1px solid black;
+                //border:1px solid black;
                 text-align: center;
+                ion-icon{
+                    line-height: 45px;
+                }
             }
             .Date{
                 margin-left:5px;
                 width:40px;
-                border:1px solid black;
+                //border:1px solid black;
+                height:45px;
                 text-align: center;
+                line-height: 45px;
             }
             ion-icon{
                 font-size: 23px;
             }
             .delete{
                 float: right;
-                margin-right:10px;
+                margin-right:12px;
                 line-height: 45px;
             }
             .detail{
-                white-space: nowrap;
+                // white-space: nowrap;
                 margin-left:5px;
-                border:1px solid black;
+                //border:1px solid black;
                 width:170px;
-                overflow: hidden;
-                text-overflow:ellipsis;
+                // overflow: hidden;
+                // text-overflow:ellipsis;
             }
             .edit{
                 float:right;
                 line-height: 45px;
-                margin-right: 10px;
+                margin-right: 12px;
             }
             line-height: 45px;
             color: #FD273F;        
