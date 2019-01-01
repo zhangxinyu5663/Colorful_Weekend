@@ -150,5 +150,14 @@ page-content01 {
     input{
         width: 85%;
         height: 30px;
+        border-radius: 3px;
+        margin: 5px;
+        border: 1px solid rgb(251, 95, 113);
+    }
+    #btncomment{
+        height: 30px;
+        border-radius: 3px;
+        background-color: #FD273F;
+        color: white;
     }
 }
