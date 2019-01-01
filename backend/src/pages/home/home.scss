@@ -29,11 +29,11 @@ page-home {
                 float: left;
                 color:#fffafa;
                 font-size: 25px;
-                margin-left:20px;
+                margin-left:10px;
             }
             .btn{
                 float: left;
-                margin-left:1100px;
+                margin-left:800px;
                 // margin:0;
                 padding: 0;
                 list-style: none;
@@ -82,7 +82,7 @@ page-home {
         }
         .left{
            float: left;
-            width: 17%;
+            width: 15%;
             height:740px;
             //border:1px solid #6E83F7;、
             background: #32c2cd url(../assets/imgs/bg-img.jpg);
@@ -93,23 +93,22 @@ page-home {
                 img{
                     float: left;
                     border-radius: 50%;
-                    width:100px;
-                    height:100px;
+                    width:30%;
                     margin-top:40px;
                     margin-left:20px;
                     //border:1px solid black;
                 }
                 div{
-                    margin-left:10px;
+                    //margin-left:10px;
                     margin-top:60px;
                     float: left;
-                    width:140px;
+                    width:100px;
                     height:70px;
                     //border:1px solid black;
                     span{
                         margin-top:5px;
                         color:#f9fcfc;
-                        font-size:18px;
+                        font-size:16px;
                         display: block;
                         width:100%;
                         text-align: center;
@@ -129,7 +128,7 @@ page-home {
                     //text-align: center;
                     // padding-left:20px;
                     line-height: 60px;
-                    font-size: 17px;
+                    font-size: 15px;
                     cursor: pointer;
                     i{
                         font-size:18px!important;
@@ -170,8 +169,8 @@ page-home {
             .div{
                 float: left;
                 left:0;
-                width:83%;
-                height:708px;
+                width:85%;
+                height:740px;
                 background: rgb(250, 249, 249);
                 #searchone{
                     margin-top:10px;
@@ -241,7 +240,7 @@ page-home {
                 }   
                 #searchtwo{
                     margin-top:10px;
-                    //border:1px solid yellow;
+                    // border:1px solid yellow;
                     width:100%;
                     height:40px;
                     select{
@@ -299,6 +298,72 @@ page-home {
                         }
                     }
                 }
+                #searchthree{
+                    margin-top:10px;
+                    //border:1px solid yellow;
+                    width:100%;
+                    height:40px;
+                    select{
+                        margin-left:20px;
+                        width:160px;
+                        height:40px;
+                        border:2px solid #5f9ea0;
+                        border-radius: 5px;
+                        option{
+                            height:20px;
+                            line-height: 20px;
+                            border:2px solid #5f9ea0;
+                        }
+                    }
+                    input{
+                        // float:left;
+                        margin-left:40px;
+                        width:160px;
+                        height:40px;
+                        line-height: 40px;
+                        border:2px solid #5f9ea0;
+                        border-radius: 5px;                            
+                    }
+                    i{
+                        color:#5f9ea0;
+                        font-size:26px!important;
+                        // line-height: 40px;
+                    }
+                }
+                .biao3{
+                    overflow-y:scroll;
+                    width: 100%;
+                    height:600px;
+                    margin: 50px auto;
+                    text-align: center;
+                    #table3{
+                        font-size:14px;
+                        padding-left: 10px;
+                        th{
+                            font-size:18px;
+                            font-family: '宋体';
+                        }
+                        tr{
+                            border-bottom:1px solid gray;
+                        }
+                        td{
+                            border-bottom:1px solid gray;
+                            text-align: center;
+                            button{
+                                color: #5f9ea0;
+                                font-size:16px;
+                                background: none;
+                                i{
+                                    color:#5f9ea0;
+                                    margin-right:5px;
+                                }
+                            }
+                            button:hover{
+                                font-weight: 700;
+                            }
+                        }
+                    }
+                } 
                 #searchseven{
                     margin-top:10px;
                     //border:1px solid yellow;
@@ -374,12 +439,13 @@ page-home {
             }
             .data{
                 width:100%;
+                //height:600px;
                 margin-left:11%;
                 div{
                     border:1px solid black;
                     margin-left:11%;
-                }
-                    
+                    height:600px;
+                }      
             }
         }
     }

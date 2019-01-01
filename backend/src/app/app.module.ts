@@ -12,6 +12,10 @@ import { UserdetailPage } from '../pages/userdetail/userdetail';
 import { LoginPage } from '../pages/login/login';
 import { HomeScheduleDetailPage } from '../pages/home-schedule-detail/home-schedule-detail';
 import { NewhomeSchedulePage } from '../pages/newhome-schedule/newhome-schedule';
+import { ProjectDetailPage } from '../pages/project-detail/project-detail';
+import { OfficalprojectPage } from '../pages/officalproject/officalproject';
+import { UserprojectPage } from '../pages/userproject/userproject';
+import { CreateprojectPage } from '../pages/createproject/createproject';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { NewhomeSchedulePage } from '../pages/newhome-schedule/newhome-schedule'
     UserdetailPage, //用户详情页
     LoginPage,  //登录页
     HomeScheduleDetailPage,  //首页推荐日程详情页
-    NewhomeSchedulePage //新建首页推荐日程页
+    NewhomeSchedulePage, //新建首页推荐日程页
+    ProjectDetailPage,//作品详情页
+    OfficalprojectPage,//系统作品详情
+    UserprojectPage,//用户作品详情页
+    CreateprojectPage,//创建新作品页面
   ],
   imports: [
     BrowserModule,
@@ -35,7 +43,11 @@ import { NewhomeSchedulePage } from '../pages/newhome-schedule/newhome-schedule'
     UserdetailPage,
     LoginPage,
     HomeScheduleDetailPage,
-    NewhomeSchedulePage
+    NewhomeSchedulePage,
+    ProjectDetailPage,
+    OfficalprojectPage,
+    UserprojectPage,
+    CreateprojectPage,
   ],
   providers: [
     StatusBar,
