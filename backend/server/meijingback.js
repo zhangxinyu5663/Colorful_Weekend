@@ -440,7 +440,7 @@ router.post('/api/searchfive/projectID',function(req,res){
 //用户作品按照用户ID搜索
 router.post('/api/searchfive/userID',function(req,res){
   const sql='select * from userProject where userID=?';
-  connection.query(sql,[req.body.projectID],function(err,results){
+  connection.query(sql,[req.body.userID],function(err,results){
     if(err){
       console.error(err);
       process.exit(1);
@@ -669,6 +669,53 @@ router.post('/api/officialProject/create',function(req,res){
    //log(results);
     res.json({'message':'create success'});    
   });
+});
+//拿到所有评论
+router.get('/api/comment',function(req,res){
+  const sql='select * from comment';
+  connection.query(sql,function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    res.json(results);
+  })
+});
+//按照作品ID号搜索评论
+router.post('/api/searchnine/projectID',function(req,res){
+  const sql='select * from comment where ProjectID=?';
+  connection.query(sql,[req.body.projectID],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }     
+   // log(results);
+    res.json(results);    
+  });
+});
+//按照用户ID搜索评论
+router.post('/api/searchnine/userID',function(req,res){
+  const sql='select * from comment where CommentUserID=?';
+  connection.query(sql,[req.body.userID],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }     
+   // log(results);
+    res.json(results);    
+  });
+});
+//删除评论
+router.post('/api/comment/delete',function(req,res){
+  const sql='delete from comment where RowGuid=?';
+
+  connection.query(sql,[req.body.RowGuid],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    res.json({'message':'del success'});
+  })
 });
 
 
