@@ -121,15 +121,21 @@ router.post('/api/homedetail',function(req,res){
 //添加评论
 router.post('/api/majorcomment',function(req,res){
   const sql1 = "insert into comment values(uuid(),null,?,?,now(),null,?)";
-
+  const sql2 = "select head,userName from user where ID=?"
   connection.query(sql1,[req.body.context,req.body.userID,req.body.projectID],function(err,results){
   
     if(err){
       console.log(err);
       project.exit(1);
     }
-    console.log(results);
-    res.json({"message":"sucessful"});
+    connection.query(sql2,[req.body.userID],function(err,results){
+      if(err){
+        console.log(err);
+        project.exit(1);
+      }
+    console.log(results[0]);
+    res.json(results[0]);
+    })
   });
 
 })
