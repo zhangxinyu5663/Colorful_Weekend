@@ -486,8 +486,8 @@ router.get('/api/home',function(req,res){
 
 //请求首页详情和首页作品评论
 router.post('/api/homedetail',function(req,res){
-  const sql1 = "select homeRecommend.*,mine.userName,head from homeRecommend,info,mine where homeRecommend.userID=info.ID and info.ID=mine.ID and projectID=?";
-  const sql2 = "select comment.*,mine.userName,head from comment,info,mine where comment.CommentUserID=info.ID and info.ID=mine.ID and projectID=?";
+  const sql1 = "select homeRecommend.*,mine.userName,head from homeRecommend,mine where homeRecommend.userID=mine.ID and projectID=?";
+  const sql2 = "select comment.*,mine.userName,head from comment,mine where comment.CommentUserID=mine.ID and projectID=? order by CommentDate";
   var detail,comments;
 
   connection.query(sql1,[req.body.id],function(err,results){
@@ -507,21 +507,29 @@ router.post('/api/homedetail',function(req,res){
   });
 });
 
-//搜索功能
-router.post('/api/search',function(req,res){
-  var str='%'+req.body.searchText+'%';
-  const sql="select * from homeRecommend,mine,info where keyword like ? and homeRecommend.userID=mine.ID and mine.ID=info.ID";
-  connection.query(sql,[str],function(err,results){
-    if(err){
-      console.error(err);
-      process.exit(1);
-    }
-    res.json(results);
-  });
-});
-
 //添加评论
-/*
+router.post('/api/majorcomment',function(req,res){
+  const sql1 = "insert into comment values(uuid(),null,?,?,?,null,?)";
+  const sql2 = "select head,userName from mine where ID=?"
+  connection.query(sql1,[req.body.context,req.body.userID,req.body.date,req.body.projectID],function(err,results){
+  
+    if(err){
+      console.log(err);
+      project.exit(1);
+    }
+    connection.query(sql2,[req.body.userID],function(err,results){
+      if(err){
+        console.log(err);
+        project.exit(1);
+      }
+    console.log(results[0]);
+    res.json(results[0]);
+    })
+  });
+
+})
+
+//回复评论
 router.post('/api/addcomment',function(req,res){
   const sql1 = "insert into comment values(uuid(),?,?,?,now(),?,?)";
   const sql2 = "select CommentUserID from comment where RowGuid=?";
@@ -536,18 +544,58 @@ router.post('/api/addcomment',function(req,res){
     ToUserID=results[0].CommentUserID;
     console.log(ToUserID);
 
-    connection.query(sql1,[req.body.RowGuid,req.body.context,req.body.userID,ToUserID,req.body.projectID],function(err,results){
-      console.log(ToUserID);
+  connection.query(sql1,[req.body.RowGuid,req.body.context,req.body.userID,ToUserID,req.body.projectID],function(err,results){
+    console.log(ToUserID);
+    if(err){
+      console.log(err);
+      project.exit(1);
+    }
+    console.log(results);
+    res.json({"message":"sucessful"});
+  });
+
+})
+});
+
+//我评论的和评论我的。
+router.post('/api/comment',function(req,res){
+  const sql1="select comment.CommentText,CommentDate,mine.head,userName,homeRecommend.imgs from comment,mine,homeRecommend where comment.CommentUserID=mine.ID and comment.CommentUserID=? and comment.ProjectID=homeRecommend.projectID"; 
+  const sql2="select comment.CommentText,CommentDate,mine.head,userName,homeRecommend.imgs from homeRecommend,comment,mine where homeRecommend.userID=? and mine.ID=homeRecommend.userID and homeRecommend.projectID=comment.ProjectID" 
+
+  var Mycomment=[],commentMy=[];
+  connection.query(sql1,[req.body.userID],function(err,results){
+    if(err){
+      console.log(err);
+      process.exit(1);
+    }
+    Mycomment=results;
+    log(Mycomment);
+    connection.query(sql2,[req.body.userID],function(err,results){ 
       if(err){
         console.log(err);
-        project.exit(1);
+        process.exit(1);
       }
-      console.log(results);
-      res.json({"message":"sucessful"});
-    });
+      commentMy=results;
+
+      res.json({"commentMy":commentMy,"Mycomment":Mycomment});
+    })
+  })
+});
+
+
+//搜索功能
+router.post('/api/search',function(req,res){
+  var str='%'+req.body.searchText+'%';
+  const sql="select * from homeRecommend,mine,info where keyword like ? and homeRecommend.userID=mine.ID and mine.ID=info.ID";
+  connection.query(sql,[str],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    res.json(results);
   });
 });
-*/
+
 
 //用户上传作品
 router.post('/api/userPublishUpload',function(req,res){
@@ -1157,4 +1205,5 @@ router.post('/api/userInfo',function(req,res){
 app.use(router);
 
 app.listen(8080);
+
 
