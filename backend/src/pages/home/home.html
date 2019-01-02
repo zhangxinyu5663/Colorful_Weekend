@@ -49,7 +49,7 @@
           <li (click)="fun(8)" class="li">用户日程管理</li>
         </ul>
         <li (click)="fun(9)" class="li"><i class="iconfont icon-pinglun"></i>评论管理</li>
-        <li (click)="fun(10)" class="li"><i class="iconfont shujufenxi"></i>数据分析</li>
+        <li (click)="fun(10)" class="li"><i class="iconfont icon-shujufenxi"></i>数据分析</li>
       </ul>
     </div>
     <div class="right" [ngSwitch]="num">
@@ -142,18 +142,18 @@
             <i class="iconfont icon-sousuo" (click)="searchthree()"></i>
           </div>
           <div class="biao3">
-            <table  border="0" cellspacing="0" cellpadding="0" id="table3">
-              <tr style="position:fixed;background-color:white;width:100%">
-                <th style="width:5%;">序号</th>
-                <th style="width:7%;">作品ID</th>
-                <th style="width:7%;">用户ID</th>
-                <th style="width:25%;">活动内容</th>
-                <th style="width:5%;">地点</th>
-                <th style="width:10%;">主题</th>
-                <th style="width:10%;">时间</th>
-                <th style="width:5%;">点赞数</th>
-                <th style="width:5%;">收藏数</th>
-                <th style="width:5%;">评论数</th>
+            <table  border="0" cellspacing="0" cellpadding="0" id="table3" width="100%">
+              <tr>
+                <th>序号</th>
+                <th>作品ID</th>
+                <th>用户ID</th>
+                <th>活动内容</th>
+                <th>地点</th>
+                <th>主题</th>
+                <!-- <th>时间</th> -->
+                <th>点赞数</th>
+                <th>收藏数</th>
+                <th>评论数</th>
                 <th>操作</th>
               </tr>
               <tr *ngFor="let item of homeProject;let i=index" id="tr">
@@ -163,7 +163,7 @@
                 <td style="width:25%;height:100px;padding:15px;padding-top:30px;">{{item.context}}</td>
                 <td style="width:5%;">{{item.place}}上海</td>
                 <td style="width:10%;">{{item.keyword}}</td>
-                <td style="width:10%;">{{item.time.substr(0,10)+" "+item.time.substr(11,8)}}</td>
+                <!-- <td style="width:10%;">{{item.time.substr(0,10)+" "+item.time.substr(11,8)}}</td> -->
                 <td style="width:5%;">{{item.zan}}</td>
                 <td style="width:5%;">{{item.collection}}</td>
                 <td style="width:5%;">{{item.comment}}</td>
@@ -188,18 +188,18 @@
                 <button (click)="createOproject()" style="color:white;background-color:#5f9ea0;width:80px;height:40px;border-radius:5px;float:right;margin-right:50px;">创建</button>
               </div>
               <div class="biao3">
-                <table  border="0" cellspacing="0" cellpadding="0" id="table3">
-                  <tr style="position:fixed;background-color:white;width:100%">
+                <table  border="0" cellspacing="0" cellpadding="0" id="table3" width="100%">
+                  <tr width="100%">
                     <th style="width:5%;">序号</th>
                     <th style="width:10%;">作品ID</th>
                     <th style="width:25%;">活动内容</th>
                     <th style="width:5%;">地点</th>
                     <th style="width:10%;">主题</th>
-                    <th style="width:10%;">时间</th>
+                    <!-- <th style="width:10%;">时间</th> -->
                     <th style="width:5%;">点赞数</th>
                     <th style="width:5%;">收藏数</th>
                     <th style="width:5%;">评论数</th>
-                    <th>操作</th>
+                    <th  style="width:20%;">操作</th>
                   </tr>
                   <tr *ngFor="let item of homeProject;let i=index" id="tr">
                     <td style="width:5%;">{{i+1}}</td>
@@ -207,14 +207,14 @@
                     <td style="width:25%;height:100px;padding:15px;padding-top:30px;">{{item.context}}</td>
                     <td style="width:5%;">{{item.place}}上海</td>
                     <td style="width:10%;">{{item.keyword}}</td>
-                    <td style="width:10%;">{{item.time.substr(0,10)+" "+item.time.substr(11,8)}}</td>
+                    <!-- <td style="width:10%;">{{item.time.substr(0,10)+" "+item.time.substr(11,8)}}</td> -->
                     <td style="width:5%;">{{item.zan}}</td>
                     <td style="width:5%;">{{item.collection}}</td>
                     <td style="width:5%;">{{item.comment}}</td>
                     <td>
                       <button (click)="opcheck(i)"><i class="iconfont icon-chakan"></i>查看详情</button>&nbsp;|&nbsp;
                       <button (click)="opdelete(i)"><i class="iconfont icon-shanchu"></i>删除</button>&nbsp;&nbsp;
-                      <button (click)="oppush(i)"><i class="iconfont icon-shanchu"></i>推送</button>&nbsp;&nbsp;
+                      <button (click)="oppush(i)"> <ion-icon name="send"></ion-icon>推送</button>&nbsp;&nbsp;
                       <!-- <button class="freeze" (click)="freeze(i)"><i class="iconfont icon-snow"></i>冻结账号</button>&nbsp;|&nbsp; -->
                       <!-- <button class="unfreeze" (click)="unfreeze(i)"><i class="iconfont icon-lock-open"></i>解冻账号</button></td> -->
                   </tr>
@@ -223,7 +223,7 @@
         </div>
         <div *ngSwitchCase="5" class="div">
           <div id="searchthree">
-            <select id="select3" [(ngModel)]="typeTextfive" (focus)="clear()" >
+            <select id="select3" [(ngModel)]="typeTextfive" (focus)="clear()" width="100%">
                 <option value="all" selected = "selected">全部</option>
                 <option value="projectID">作品ID</option>
                 <option value="userID">用户ID</option>
@@ -233,15 +233,15 @@
             <i class="iconfont icon-sousuo" (click)="searchfive()"></i>
           </div>
           <div class="biao3">
-            <table  border="0" cellspacing="0" cellpadding="0" id="table3">
-              <tr style="position:fixed;background-color:white;width:100%">
+            <table  border="0" cellspacing="0" cellpadding="0" id="table3" width="100%">
+              <tr>
                 <th style="width:5%;">序号</th>
                 <th style="width:7%;">用户ID</th>
                 <th style="width:7%;">作品ID</th>
                 <th style="width:25%;">活动内容</th>
-                <th style="width:5%;">地点</th>
-                <th style="width:10%;">主题</th>
-                <th style="width:10%;">时间</th>
+                <!-- <th style="width:5%;">地点</th> -->
+                <!-- <th style="width:10%;">主题</th> -->
+                <!-- <th style="width:10%;">时间</th> -->
                 <th style="width:5%;">点赞数</th>
                 <th style="width:5%;">收藏数</th>
                 <th style="width:5%;">评论数</th>
@@ -249,19 +249,19 @@
               </tr>
               <tr *ngFor="let item of homeProject;let i=index" id="tr">
                 <td style="width:5%;">{{i+1}}</td>
-                <td style="width:7%;">{{item.userID}}</td>
-                <td style="width:7%;">{{item.projectID}}</td>
-                <td style="width:25%;height:100px;padding:15px;padding-top:30px;">{{item.context}}</td>
-                <td style="width:5%;">{{item.place}}上海</td>
-                <td style="width:10%;">{{item.keyword}}</td>
-                <td style="width:10%;">{{item.time.substr(0,10)+" "+item.time.substr(11,8)}}</td>
+                <td style="width:7%;">{{item.ID}}</td>
+                <td style="width:7%;">{{item.pID}}</td>
+                <td style="width:25%;height:100px;padding:15px;padding-top:30px;">{{item.text}}</td>
+                <!-- <td style="width:5%;">{{item.place}}上海</td> -->
+                <!-- <td style="width:10%;">{{item.keyword}}</td> -->
+                <!-- <td style="width:10%;">{{item.time.substr(0,10)+" "+item.time.substr(11,8)}}</td> -->
                 <td style="width:5%;">{{item.zan}}</td>
-                <td style="width:5%;">{{item.collection}}</td>
+                <td style="width:5%;">{{item.collect}}</td>
                 <td style="width:5%;">{{item.comment}}</td>
                 <td>
                   <button (click)="upcheck(i)"><i class="iconfont icon-chakan"></i>查看详情</button>&nbsp;|&nbsp;
                   <button (click)="updelete(i)"><i class="iconfont icon-shanchu"></i>删除</button>&nbsp;&nbsp;
-                  <button (click)="uppush(i)"><i class="iconfont icon-shanchu"></i>推送</button>&nbsp;&nbsp;
+                  <button (click)="uppush(i)"> <ion-icon name="send"></ion-icon>推送</button>&nbsp;&nbsp;
                   <!-- <button class="freeze" (click)="freeze(i)"><i class="iconfont icon-snow"></i>冻结账号</button>&nbsp;|&nbsp; -->
                   <!-- <button class="unfreeze" (click)="unfreeze(i)"><i class="iconfont icon-lock-open"></i>解冻账号</button></td> -->
               </tr>
@@ -316,8 +316,8 @@
             <input type="text" [(ngModel)]="texteight" placeholder="请输入搜索内容" class="search">
             <i class="iconfont icon-sousuo" (click)="searcheight()"></i>
           </div>
-          <div class="biao1">
-            <table  width="100%" border="0" cellspacing="0" cellpadding="0" id="table1">
+          <div class="biao8">
+            <table  width="100%" border="0" cellspacing="0" cellpadding="0" id="table8">
               <tr>
                 <th>序号</th>
                 <th>登录名</th>
@@ -353,21 +353,21 @@
                 <i class="iconfont icon-sousuo" (click)="searchnine()"></i>
               </div>
               <div class="biao3">
-                <table  border="0" cellspacing="0" cellpadding="0" id="table3">
-                  <tr style="position:fixed;background-color:white;width:100%">
-                    <th style="width:10%;">序号</th>
-                    <th style="width:15%;">用户ID</th>
-                    <th style="width:15%;">作品ID</th>
-                    <th style="width:25%;">评论内容</th>
-                    <th style="width:15%;">时间</th>
-                    <th style="width:20%;">操作</th>
+                <table  border="0" cellspacing="0" cellpadding="0" id="table3" width="100%">
+                  <tr>
+                    <th>序号</th>
+                    <th>用户ID</th>
+                    <th>作品ID</th>
+                    <th>评论内容</th>
+                    <!-- <th>时间</th> -->
+                    <th>操作</th>
                   </tr>
-                  <tr *ngFor="let item of comment;let i=index" id="tr" style="width:8000px;">
+                  <tr *ngFor="let item of comment;let i=index" id="tr">
                     <td style="width:10%;">{{i+1}}</td>
                     <td style="width:15%;">{{item.CommentUserID}}</td>
                     <td style="width:15%;">{{item.ProjectID}}</td>
                     <td style="width:25%;height:100px;padding:15px;padding-top:30px;">{{item.CommentText}}</td>
-                    <td style="width:15%;">{{item.CommentDate.substr(0,10)+" "+item.CommentDate.substr(11,8)}}</td>
+                    <!-- <td style="width:15%;">{{item.CommentDate.substr(0,10)+" "+item.CommentDate.substr(11,8)}}</td> -->
                     <td style="width:20%;">
                       <button (click)="commentdelete(i)"><i class="iconfont icon-shanchu"></i>删除</button>&nbsp;&nbsp;
                   </tr>

@@ -3,18 +3,14 @@
   
   <ul>
     <li>
-      <span>作品id</span>
-      <input type="text" class="inp" id="projectID">
+      <span>作品关键字</span>
+      <input type="text"class="inp" [(ngModel)]="keyword">
     </li>
-    <li>
-      <span>作品主题</span>
-      <input type="text"class="inp" id="keyword">
-    </li>
-    <li>
+    <!-- <li>
         <span>作品地点</span>
         <input type="text"class="inp" id="place">
-      </li>
-      <li>
+    </li> -->
+
     <li>
       <span>作品类型</span>
       <input type="text"class="inp">
@@ -29,7 +25,7 @@
     </li>
     <li>
       <span style="float:left">作品描述</span>
-      <textarea class="detail" id="context"></textarea> 
+      <textarea class="detail" [(ngModel)]="context"></textarea> 
     </li>
   </ul>
 </ion-content>

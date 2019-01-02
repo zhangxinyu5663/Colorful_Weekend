@@ -27,7 +27,7 @@ export class UserprojectPage {
     this.projectID=localStorage.getItem('projectdetailID');
     this.http.post('/api/searchfive/projectID',{projectID:this.projectID}).subscribe(data=>{
       this.project=Array.prototype.slice.call(data)[0];
-      this.imgs=this.project.imgs.split("|");
+      this.imgs=this.project.pictureORvideo.split("|");
       console.log(this.imgs);
       console.log(this.project.number);
     })

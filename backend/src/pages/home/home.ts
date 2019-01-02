@@ -342,6 +342,7 @@ export class HomePage {
     }else if(i==5){
       this.endFive(i);
     }else if(i==6){
+      
       var hiddenul=document.getElementById('hiddenUL2');
       if(this.flag==false){
         hiddenul.style.display='block';
@@ -496,7 +497,7 @@ endFive(i){
 }
 comment;//所有评论
 endNine(i){
-  this.http.get('/api/comment').subscribe(data=>{  //请求系统推荐作品
+  this.http.get('/api/comment').subscribe(data=>{  
     this.comment=Array.prototype.slice.call(data); 
     console.log(this.comment);
   });
@@ -594,11 +595,15 @@ searchnine(){
 }
 //删除评论
 commentID;
-commentdelete(i){//删除推荐作品
+commentdelete(i){
   this.commentID=this.comment[i].RowGuid;
   this.http.post('/api/comment/delete',{RowGuid:this.commentID}).subscribe(data=>{
     console.log(data);
-  })
+  });
+  this.http.get('/api/comment').subscribe(data=>{  
+    this.comment=Array.prototype.slice.call(data); 
+    console.log(this.comment);
+  });
 }
 //创建新的系统作品
 createOproject(){
@@ -622,7 +627,7 @@ opcheck(i){//查看系统作品详情
   profileModal.present();
 }
 upcheck(i){//查看用户作品详情
-  this.projectdetailID=this.homeProject[i].projectID;
+  this.projectdetailID=this.homeProject[i].pID;
   localStorage.setItem("projectdetailID",this.projectdetailID);
 
   let profileModal = this.modalCtrl.create(UserprojectPage);
@@ -633,7 +638,11 @@ pdelete(i){//删除推荐作品
   this.projectdetailID=this.homeProject[i].projectID;
   this.http.post('/api/homeProject/delete',{projectID:this.projectdetailID}).subscribe(data=>{
     console.log(data);
-  })
+  });
+  this.http.get('/api/homeProject').subscribe(data=>{  //请求首页推荐作品
+    this.homeProject=Array.prototype.slice.call(data); 
+    console.log(this.homeProject);
+  });
 }
 opdelete(i){//删除系统作品
   this.projectdetailID=this.homeProject[i].projectID;
@@ -656,7 +665,7 @@ oppush(i){
 }
 //推送用户作品到推荐
 uppush(i){
-  this.projectdetailID=this.homeProject[i].projectID;
+  this.projectdetailID=this.homeProject[i].pID;
   this.http.post('/api/userProject/push',{projectID:this.projectdetailID}).subscribe(data=>{
     console.log(data);
   })
@@ -717,3 +726,5 @@ uppush(i){
   
   
 }
+
+

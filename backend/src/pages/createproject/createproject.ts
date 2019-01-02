@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 
 /**
@@ -16,7 +16,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CreateprojectPage {
 
-  constructor(public http:HttpClient,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public http:HttpClient,public navCtrl: NavController, public navParams: NavParams,public alertCtrl:AlertController) {
   }
 
   ionViewDidLoad() {
@@ -61,14 +61,22 @@ export class CreateprojectPage {
   img;//作品图片
   place;//作品地点
   create(){
-    this.projectID=document.getElementById('projectID');
-    console.log(this.projectID.value);
-    this.place=document.getElementById('place');
-    this.keyword=document.getElementById('keyword');console.log(this.keyword.value);
-    this.context=document.getElementById('context');console.log(this.context.value);
-    this.img=document.getElementById('imga');console.log(this.img.src);
-    this.http.post('/api/officialProject/create',{projectID:parseInt(this.projectID.value),imgs:this.img.src,context:this.context.value,keyword:this.keyword.value,place:this.place.value}).subscribe(data=>{
-      console.log(data);
-    })
+    this.img=document.getElementById('imga');
+    console.log(this.img.src);
+    this.http.post('/api/officialProject/create',{imgs:this.img.src,context:this.context,keyword:this.keyword}).subscribe(data=>{
+      if(data['status']==1){
+        const alert = this.alertCtrl.create({
+          title: '添加成功',
+          subTitle: '',
+          buttons: ['OK']
+        });
+        alert.present();
+        this.navCtrl.pop();
+      }
+    });
+  }
+
+  back(){
+    this.navCtrl.pop();
   }
 }
