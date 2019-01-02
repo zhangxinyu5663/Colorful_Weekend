@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ZanPage } from '../zan/zan';
 import { CommentPage } from '../comment/comment';
+import { AtPage } from '../at/at';
 // import {  }
 @Component({
   selector: 'page-about',
@@ -19,7 +20,7 @@ export class AboutPage {
     this.navCtrl.push(ZanPage);
   }
   goat(){
-    this.navCtrl.push(CommentPage);
+    this.navCtrl.push(AtPage);
   }
   
 

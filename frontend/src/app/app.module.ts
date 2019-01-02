@@ -55,6 +55,7 @@ import { SearchPage } from '../pages/search/search';
 import { SearchtwoPage } from '../pages/searchtwo/searchtwo';
 import { EditmyschedulePage } from '../pages/editmyschedule/editmyschedule';
 import { CommentPage } from '../pages/comment/comment';
+import { AtPage } from '../pages/at/at';
 
 
 
@@ -67,6 +68,7 @@ import { CommentPage } from '../pages/comment/comment';
     TabsPage,
     MyPage,
     AddPage,
+    AtPage,
     Content01Page,
     PlanonePage,
     PlantwoPage,
@@ -125,6 +127,7 @@ import { CommentPage } from '../pages/comment/comment';
     TabsPage,
     MyPage,
     AddPage,
+    AtPage,
     Content01Page,
     PlanonePage,
     PlantwoPage,

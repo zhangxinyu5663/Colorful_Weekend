@@ -22,11 +22,11 @@ export class AtPage {
   Mycomment;//盛放我赞过的作品数组
   commentMy;//盛放赞过我的作品数组
   ionViewDidLoad(){
-    this.userID=localStorage.getItem('userID');
+    this.userID=localStorage.getItem('id');
     // {userID:this.userID}
-    this.http.post('/api/comment',{userID:123456}).subscribe(data=>{
-        this.Mycomment=data['Mycomment'];
-        this.commentMy=data['commentMy'];
+    this.http.post('/api/comment',{userID:this.userID}).subscribe(data=>{
+        this.Mycomment=data['commentMy'];
+        this.commentMy=data['Mycomment'];
         console.log(this.Mycomment);
         
     })
