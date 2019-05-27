@@ -18,18 +18,16 @@ const connection = mysql.createConnection({
 });
 connection.connect();
 
-//登录
+//登录验证
 router.post('/api/login',function(req,res){
-  //res.setHeader('Access-Control-Allow-Origin', '*');
-  //res.json({"name":"zhang"});
-  
   const sql='select password,ID,userStatus from login where phoneNumber=?';
   connection.query(sql,[req.body.phone],function(err,results){
     if(err){
       console.error(err);
       process.exit(1);
     }
-    //log(results[0]);
+    //console.log(results);  一个对象数组
+    //console.log(results[0]);
     if(results[0]==undefined){
       res.json({status:0});  //该手机号未被注册过
     }else{
@@ -182,8 +180,10 @@ router.post('/api/changePwdtwo',function(req,res){
 
 //查询我的表
 router.post('/api/mine',function(req,res){
-  var collectNum,publishNum,attentionNum,fansNum;
-  const sql='select * from mine where ID=?';
+  var collectNum,zanNum,attentionNum,fansNum,publishNum;
+  const sql="select * from mine where ID=?"
+
+  const sql1='select COUNT(*) from myPublish where ID=?';
   
   const sql2='select COUNT(*) num from collect where userID=?';
 
@@ -191,9 +191,9 @@ router.post('/api/mine',function(req,res){
 
   const sql4='select COUNT(*) num from attention where TouserID=?';
 
-  const sql5='select COUNT(*) num from myPublish where ID=?';
+  const sql5='select COUNT(*) num from zan where userID=?';
 
-  const sql6='update mine set collect=?,publish=?,interest=?,fans=? where ID=?';
+  const sql6='update mine set collect=?,publish=?,interest=?,fans=?,zan=? where ID=?';
   connection.query(sql2,[req.body.id],function(err,results){
     if(err){
       console.error(err);
@@ -217,19 +217,25 @@ router.post('/api/mine',function(req,res){
             console.error(err);
             process.exit(1);
           }
-          publishNum=results[0].num;
-          connection.query(sql6,[collectNum,publishNum,attentionNum,fansNum,req.body.id],function(err,results){
+          zanNum=results[0].num;
+          connection.query(sql6,[collectNum,publishNum,attentionNum,fansNum,zanNum,req.body.id],function(err,results){
             if(err){
               console.error(err);
               process.exit(1);
             }
-            connection.query(sql,[req.body.id],function(err,results){
+            connection.query(sql1,[req.body.id],function(err,results){
               if(err){
                 console.error(err);
                 process.exit(1);
               }
-              //log(results); 
-              res.json(results);
+              publishNum=results[0].num;
+              connection.query(sql,[req.body.id],function(err,results){
+                if(err){
+                  console.error(err);
+                  process.exit(1);
+                }
+                res.json(results);
+              });    
             });    
           }); 
         });
@@ -254,7 +260,7 @@ router.get('/api/homeSchedule',function(req,res){
 
 //查询首页推荐日程详情
 router.post('/api/homeScheduleDetail',function(req,res){
-  const sql='select homeScheduleDetail.*,title from homeScheduleDetail,homeSchedule where homeScheduleDetail.hsID=? and homeScheduleDetail.hsID=homeSchedule.hsID';
+  const sql='select homeScheduleDetail.*,title,bkimg from homeScheduleDetail,homeSchedule where homeScheduleDetail.hsID=? and homeScheduleDetail.hsID=homeSchedule.hsID';
   connection.query(sql,[req.body.hsID],function(err,results){
     if(err){
       console.log(err);
@@ -484,52 +490,69 @@ router.get('/api/home',function(req,res){
    });
 });
 
-//请求首页详情和首页作品评论
+//请求首页推荐详情
 router.post('/api/homedetail',function(req,res){
-  const sql1 = "select homeRecommend.*,mine.userName,head from homeRecommend,mine where homeRecommend.userID=mine.ID and projectID=?";
-  const sql2 = "select comment.*,mine.userName,head from comment,mine where comment.CommentUserID=mine.ID and projectID=? order by CommentDate";
-  var detail,comments;
+  const sql= "select homeRecommend.*,mine.userName,head from homeRecommend,mine where homeRecommend.userID=mine.ID and projectID=?";
+  var detail;
 
-  connection.query(sql1,[req.body.id],function(err,results){
+  connection.query(sql,[req.body.hdID],function(err,results){
     if(err){
       console.log(err);
       process.exit(1);
     }
     detail=results;
+    res.json({"detail":detail});
   });
-  connection.query(sql2,[req.body.id],function(err,results){
+});
+
+//请求所有评论
+router.post('/api/comments',function(req,res){
+  const sql = "select comment.*,mine.userName,head from comment,mine where comment.CommentUserID=mine.ID and projectID=? order by CommentDate desc";
+  var comments;
+
+  connection.query(sql,[req.body.hdID],function(err,results){
     if(err){
       console.log(err);
       process.exit(1);
     }
     comments=results;
-    res.json({"detail":detail,"comments":comments});
+    res.json({"comments":comments});
   });
 });
 
 //添加评论
-router.post('/api/majorcomment',function(req,res){
-  const sql1 = "insert into comment values(uuid(),null,?,?,?,null,?)";
-  const sql2 = "select head,userName from mine where ID=?"
-  connection.query(sql1,[req.body.context,req.body.userID,req.body.date,req.body.projectID],function(err,results){
-  
+router.post('/api/addComment',function(req,res){
+  const sql="select userID from homeRecommend where projectID=?";
+  const sql1 = "insert into comment values(uuid(),null,?,?,?,?,?)";
+  const sql2 = "select head,userName from mine where ID=?";
+  const sql3="update homeRecommend set comment=? where projectID=?";
+  var toUserID;
+  connection.query(sql,[req.body.projectID],function(err,results){
     if(err){
       console.log(err);
       project.exit(1);
     }
-    connection.query(sql2,[req.body.userID],function(err,results){
+    toUserID=results[0].userID;
+    //console.log(toUserID);
+    connection.query(sql1,[req.body.context,req.body.userID,req.body.date,toUserID,req.body.projectID],function(err,results){
       if(err){
         console.log(err);
         project.exit(1);
       }
-    console.log(results[0]);
-    res.json(results[0]);
-    })
+      connection.query(sql3,[req.body.commentnum,req.body.projectID],function(err,results){
+        if(err){
+          console.log(err);
+          project.exit(1);
+        }
+        res.json(results[0]);
+      });
+      res.json({status:1}); //评论添加成功
+    });
   });
-
 })
 
 //回复评论
+/*
 router.post('/api/addcomment',function(req,res){
   const sql1 = "insert into comment values(uuid(),?,?,?,now(),?,?)";
   const sql2 = "select CommentUserID from comment where RowGuid=?";
@@ -556,11 +579,12 @@ router.post('/api/addcomment',function(req,res){
 
 })
 });
+*/
 
 //我评论的和评论我的。
 router.post('/api/comment',function(req,res){
-  const sql1="select comment.CommentText,CommentDate,mine.head,userName,homeRecommend.imgs from comment,mine,homeRecommend where comment.CommentUserID=mine.ID and comment.CommentUserID=? and comment.ProjectID=homeRecommend.projectID"; 
-  const sql2="select comment.CommentText,CommentDate,mine.head,userName,homeRecommend.imgs from homeRecommend,comment,mine where homeRecommend.userID=? and mine.ID=homeRecommend.userID and homeRecommend.projectID=comment.ProjectID" 
+  const sql1="select comment.CommentText,CommentDate,comment.ProjectID,mine.head,userName,homeRecommend.imgs from comment,mine,homeRecommend where comment.CommentUserID=mine.ID and comment.CommentUserID=? and comment.ProjectID=homeRecommend.projectID order by CommentDate desc"; 
+  const sql2="select comment.CommentText,comment.ProjectID,CommentDate,mine.head,userName,homeRecommend.imgs from homeRecommend,comment,mine where homeRecommend.userID=? and mine.ID=homeRecommend.userID and homeRecommend.projectID=comment.ProjectID" 
 
   var Mycomment=[],commentMy=[];
   connection.query(sql1,[req.body.userID],function(err,results){
@@ -765,8 +789,6 @@ router.post('/api/delUserPublish',function(req,res){
 
 //我的作品点赞
 router.post('/api/addUserPublishZan',function(req,res){
-  //console.log(req.body.userPID,req.body.zanflag,req.body.zanNum);
-  
   const sql='update myPublish set zanflag=?,zan=? where pID=?';
   connection.query(sql,[req.body.zanflag,req.body.zanNum,req.body.userPID],function(err,results){
     if(err){
@@ -835,8 +857,6 @@ router.post('/api/home/addZan',function(req,res){
       process.exit(1);
     }
     ToUserID=results[0].userID; //被点赞的用户ID
-    //console.log(ToUserID);
-
     connection.query(sql4,[req.body.projectID,req.body.userID],function(err,results){
       if(err){
         log(err);
@@ -844,15 +864,12 @@ router.post('/api/home/addZan',function(req,res){
       }
       console.log(results);
       len=results.length;
-      console.log(len);
       if(len==0){
         connection.query(sql2,[req.body.userID,req.body.projectID,ToUserID],function(err,results){
           if(err){
             console.log(err);
             process.exit(1);
           }
-          //console.log("successful");
-
           connection.query(sql3,[req.body.zanNum,req.body.projectID],function(err,results){
             if(err){
               console.log(err);
@@ -886,8 +903,6 @@ router.post('/api/home/delzan',function(req,res){
         console.log(err);
         process.exit(1);
       }
-      //console.log("del success");
-
       connection.query(sql3,[req.body.zanNum,req.body.projectID],function(err,results){
         if(err){
           console.log(err);
@@ -903,7 +918,7 @@ router.post('/api/home/delzan',function(req,res){
 //我赞过的和赞过我的详情
 router.post('/api/zan',function(req,res){
   const sql1="select imgs,zan,zan.projectID from homeRecommend,zan where homeRecommend.projectID=zan.projectID and zan.userID=? order by time desc"; 
-  const sql2="select imgs,zan,zan.projectID from homeRecommend,zan where homeRecommend.projectID=zan.projectID and zan.ToUserID=? order by time desc";
+  const sql2="select imgs,zan,zan.* from homeRecommend,zan where homeRecommend.projectID=zan.projectID and zan.ToUserID=? order by time desc";
   
   var Myzan=[],zanMy=[];
   connection.query(sql1,[req.body.userID],function(err,results){
@@ -1153,9 +1168,9 @@ router.post('/api/my/attentUser',function(req,res){
 
 });
 
-//关注我的所有用户
+//查看我的粉丝
 router.post('/api/my/fans',function(req,res){
-  const sql1="select mine.ID,head,userName,info.introduction from mine,info,attention where attention.ToUserID=? and attention.userID=mine.ID and attention.userID=info.ID order by time desc";  
+  const sql1="select mine.ID,head,userName,info.introduction,attention.time from mine,info,attention where attention.ToUserID=? and attention.userID=mine.ID and attention.userID=info.ID order by time desc";  
   
   var fans=[];
   connection.query(sql1,[req.body.userID],function(err,results){
