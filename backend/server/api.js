@@ -18,7 +18,7 @@ app.use(require('body-parser').urlencoded({extended: true}));
 const connection = mysql.createConnection({
       host:"localhost",
       user:"root",
-      password:"yyy",
+      password:"ddd",
       database:"weekend"
 });
 connection.connect();
@@ -615,7 +615,9 @@ router.post('/api/searchfour/projectID',function(req,res){
 //});
 
 //上传系统作品图
+let showUrl;
 router.post('/api/uploadproject', function(req, res) {
+    showUrl=[];
     var form = new formidable.IncomingForm();   //创建上传表单
     form.encoding = 'utf-8';        //设置编辑
     form.uploadDir = AVATAR_UPLOAD_FOLDER+'officialProject/';     //设置上传目录
@@ -628,11 +630,12 @@ router.post('/api/uploadproject', function(req, res) {
             return;                    
       }
       log(files);
+    for(var i=0;i<Object.keys(files).length;i++){  
       //var fileName=files.imageIcon.name; //文件名字
       var extName = '';  //后缀名
-      console.log(files.imageIcon.type);
+     // console.log(files[i].type);
       
-      switch (files.imageIcon.type) {
+      switch (files[i].type) {
          case 'image/pjpeg':
            extName = 'jpg';
            break;
@@ -653,20 +656,21 @@ router.post('/api/uploadproject', function(req, res) {
         return;
       }
      // var avatarName = Date.now() + '.' + extName;
-      var fileNameArr=files.imageIcon.name.split('.');
+      var fileNameArr=files[i].name.split('.');
       var fileName=fileNameArr[0]+'.'+extName;
       console.log(fileName);
       //图片写入地址；
       var newPath = form.uploadDir + fileName;
       //显示地址；
-      var showUrl =domain+'/upload/officialProject/'+fileName;
+      showUrl[i] =domain+'/upload/officialProject/'+fileName;
       console.log("newPath",newPath);
       //console.log(showUrl);
-      console.log(files.imageIcon.path);
-      fs.renameSync(files.imageIcon.path, newPath);  //重命名
+      console.log(files[i].path);
+      fs.renameSync(files[i].path, newPath);  //重命名
       console.log(showUrl);
+    }
       res.send(showUrl);
-    });
+  });
 });
 
 //创建系统作品
@@ -717,8 +721,9 @@ router.post('/api/officialProject/create',function(req,res){
       process.exit(1);
     }    
     count=results[0].num+1;
+    var imgs=showUrl.join('|');
     const sql='insert into officialProject values(?,?,?,?,?,?,?,?)';
-    connection.query(sql,[count,randomHRID,req.body.imgs,req.body.context,0,req.body.keyword,0,0],function(err,results){
+    connection.query(sql,[count,randomHRID,imgs,req.body.context,0,req.body.keyword,0,0],function(err,results){
       if(err){
         console.error(err);
         process.exit(1);
@@ -777,8 +782,18 @@ router.post('/api/comment/delete',function(req,res){
   })
 });
 
+app.all('*', function(req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+          res.header("Access-Control-Allow-Headers", "X-Requested-With");
+              res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+                  res.header("X-Powered-By",' 3.2.1')
+      res.header("Content-Type", "application/json;charset=utf-8");
+    next();
+
+});
+
 app.use(router);
 
-app.listen(8000);
+app.listen(8080);
 
 
