@@ -3,29 +3,38 @@
   
   <ul>
     <li>
-      <span>作品关键字</span>
-      <input type="text"class="inp" [(ngModel)]="keyword">
+      <span>作品id</span>
+      <input type="text" class="inp" id="projectID">
     </li>
-    <!-- <li>
+    <li>
+      <span>作品主题</span>
+      <input type="text"class="inp" id="keyword">
+    </li>
+    <li>
         <span>作品地点</span>
-        <input type="text"class="inp" id="place">
-    </li> -->
-
+        <input type="text" class="inp" id="place">
+      </li>
+      <li>
     <li>
       <span>作品类型</span>
       <input type="text"class="inp">
     </li>
     <li>
-        <span>作品内容</span>
-        <input type="file" id="inputa" name="picture">
-        <button id="buta" (click)='btn()'style="height:30px;width:80px;border-radius:5px;">上传</button> 
-        <div class="imgdiv">
-          <img id="imga" src="" alt="" style="height:150px;">
-        </div>
+        <div class="container"> 
+          <label style="margin-left:60px;">作品图片：</label> 
+          <input type="file" id="file_input" multiple/> <!--multiple，可选择多张图片-->
+          (图片要求等于小于7张) 
+          <button id="push_btn" style="height:30px;width:80px;border-radius:5px;float:right;margin-right:230px;">上传</button> 
+          <!-- <input type="file" id="inputa" name="picture">
+          <button id="buta" (click)='btn()'style="height:30px;width:80px;border-radius:5px;">上传</button> -->
+          <div class="imgdiv">
+            <!-- <img id="imga" src="" alt="" style="height:150px;"> -->
+          </div>
+          </div>
     </li>
     <li>
       <span style="float:left">作品描述</span>
-      <textarea class="detail" [(ngModel)]="context"></textarea> 
+      <textarea class="detail" id="context"></textarea> 
     </li>
   </ul>
 </ion-content>
