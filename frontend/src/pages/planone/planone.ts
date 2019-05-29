@@ -19,7 +19,7 @@ export class PlanonePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:HttpClient) {
   }
 
-  hsID; //首页日程推荐详情ID
+  hsID; //首页日程推荐ID
   schedule=[];
   detailone;
   detailtwo;
@@ -27,6 +27,7 @@ export class PlanonePage {
     this.hsID=localStorage.getItem('hsID');
     this.http.post('/api/homeScheduleDetail',{hsID:this.hsID}).subscribe(data=>{
       this.schedule=Array.prototype.slice.call(data);
+      console.log(this.schedule);
       this.detailone=this.schedule[0].detail.split('|');
       this.detailtwo=this.schedule[1].detail.split('|');
       for(var i=0;i<this.detailone.length;i++){
@@ -35,12 +36,13 @@ export class PlanonePage {
           i=i-1;
         }
       }
-      for(var i=0;i<this.detailtwo.length;i++){
-        if(this.detailtwo[i]==""){
-          this.detailtwo.splice(i,1);
-          i=i-1;
+      for(var j=0;j<this.detailtwo.length;j++){
+        if(this.detailtwo[j]==""){
+          this.detailtwo.splice(j,1);
+          j=j-1;
         }
       }
+      document.getElementById("out").style.backgroundImage="url("+this.schedule[0].bkimg+")";
     });
   }
   goBack(){
