@@ -16,20 +16,15 @@
    <div class="content">
       <textarea placeholder="来分享你的快乐时光吧~" clearInput="true" [(ngModel)]="text"></textarea>
       <img src="{{avatar}}" alt="" id="img" width="120" height="120">
-      <!-- <ul>
-        <li *ngFor="let item of imgs;let i=index">
-            <img src="{{imgs[i]}}" alt="">
-        </li>
-      </ul> -->
       <div class="addpicture" (click)="presentActionSheet()" >
           <ion-icon ios="ios-camera" md="md-camera"></ion-icon><br>图片/视频
       </div>
         <!-- <button ion-button class="label" round><ion-icon name="pricetag"></ion-icon>&nbsp;添加标签</button>
         <button ion-button class="place" round><ion-icon name="pin"></ion-icon>&nbsp;添加地点</button> -->
-      <ul class="ul">
+      <!-- <ul class="ul">
         <li><ion-icon name="pricetag"></ion-icon>&nbsp;添加标签</li>
         <li><ion-icon name="pin"></ion-icon>&nbsp;添加地点</li>
-      </ul>
+      </ul> -->
    </div>
    <div class="below">
 

@@ -191,13 +191,22 @@ export class ReleaseonePage {
     this.time=this.getDate();
     console.log(this.time);
     this.userID=localStorage.getItem('id');
-    console.log(this.userID);
-    this.http.post('/api/userPublishUpload',{avatar:this.avatar,text:this.text,userID:this.userID,time:this.time}).subscribe(data=>{
-      this.backArr=data;
-      if(this.backArr.status==1){
-        this.navCtrl.pop();
-      }
-    });
+    console.log(this.avatar);
+    if(this.avatar===''){
+      this.http.post('/api/userPublishTxt',{avatar:this.avatar,text:this.text,userID:this.userID,time:this.time}).subscribe(data=>{
+        this.backArr=data;
+        if(this.backArr.status==1){
+          this.navCtrl.pop();
+        }
+      });
+    }else{
+      this.http.post('/api/userPublishUpload',{avatar:this.avatar,text:this.text,userID:this.userID,time:this.time}).subscribe(data=>{
+        this.backArr=data;
+        if(this.backArr.status==1){
+          this.navCtrl.pop();
+        }
+      });
+    }
   }
 
   month;
