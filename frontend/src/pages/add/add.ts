@@ -41,11 +41,7 @@ export class AddPage {
         if(this.myPublish[i].zanflag=='true'){
           this.userzanflag[i]=true;
         }
-        // if(this.myPublish[i].collectflag=='true'){
-        //   this.usercollectflag[i]=true;
-        // }
       }
-      console.log(this.userzanflag);
     });
   }
 

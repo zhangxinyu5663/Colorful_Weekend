@@ -1,9 +1,7 @@
 page-add {
     padding:0;
     margin:0;
-    ion-content{
-        background: url(../assets/imgs/planthreebg.png) no-repeat;
-        background-size: cover;
+    ion-header{
         span{
             display: block;
         }
@@ -28,6 +26,10 @@ page-add {
             // border:1px solid black;
             border-bottom:2px solid gray;
         }
+    }
+    ion-content{
+        background: url(../assets/imgs/planthreebg.png) no-repeat;
+        background-size: cover;
         .content{
             // border:1px solid black;
             width: 95%;
@@ -121,37 +123,37 @@ page-add {
                         margin-right:10px;
                     }
                 }
-                .div5{
-                    //border: rgb(155, 151, 151) 1px solid;
-                    height: 35px;
-                    .span{
-                        height: 35px;
-                        float: left;
-                        text-align: center;
-                        line-height: 35px;
-                       //display: inline-block;
-                        width: 33.3%;
-                        //border:1px solid red;
-                        font-size: 18px;
-                        ion-icon{
-                            font-size:23px;
-                            line-height: 35px;
-                            color: rgb(212, 208, 208);
-                        }
-                        .heart{
-                            color:#fd273f;
-                        }
-                        .star{
-                            color:rgb(252, 249, 63);
-                        }
-                        span{
-                            // float:left;
-                            display: inline-block;
-                            width:20px;
-                            margin-left:10px;
-                        }
-                    }
-                }
+                // .div5{
+                //     border: rgb(155, 151, 151) 1px solid;
+                //     height: 35px;
+                //     .span{
+                //         // float:right;
+                //         border:1px red solid;
+                //         height: 35px;
+                //         float: left;
+                //         text-align: center;
+                //         line-height: 35px;
+                //         width: 33.3%;
+                //         font-size: 18px;
+                //         ion-icon{
+                //             font-size:23px;
+                //             line-height: 35px;
+                //             color: rgb(212, 208, 208);
+                //         }
+                //         .heart{
+                //             color:#fd273f;
+                //         }
+                //         .star{
+                //             color:rgb(252, 249, 63);
+                //         }
+                //         span{
+                //             // float:left;
+                //             display: inline-block;
+                //             width:20px;
+                //             margin-left:10px;
+                //         }
+                //     }
+                // }
             }
         }
         .hideList{
@@ -161,8 +163,8 @@ page-add {
             // top:0;
             top:20px;
             right: 5px;
-            width:170px;
-            height:120px;
+            width:150px;
+            height:80px;
             //border:1px solid black;
             background:rgba(0, 0, 0,0.8);
             display: none;
