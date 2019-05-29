@@ -15,8 +15,8 @@
   <ul>
       <li class="box" *ngFor="let item of userdetail;let i=index">
           <!-- <p>{{item.time.substr(0,10)+" "+item.time.substr(11,5)}}</p> -->
-          <a ><img src="{{item.imgs.split('|')[0]}}" (click)='detail(item.projectID)'></a>
-          <p class="text">{{item.context}}</p>
+          <a ><img src="{{item.imgs?item.imgs.split('|')[0]:item.pictureORvideo}}" (click)='detail(item.projectID?item.projectID:item.pID)'></a>
+          <span class="text">{{item.context?item.context:item.text}}</span>
       </li>
   </ul>
 
