@@ -1,76 +1,64 @@
-
-    // .ion-ios-pin,.ion-md-pin,{
-    //     font-size: 23px!important;
-    //     color: #FD273F!important;
-    // }
-    // .ion-ios-search,.ion-md-search{
-    //     font-size: 23px!important;
-    // }
-        
-
 page-home{
-    .head{
-        height: 60px;
-        //border:1px solid pink;
-        text-align: center;
-        // ion-icon{
-        //     font-size: 23px!important;
-        //     color: #FD273F!important;
-        // }
-        #search{
+    ion-header{
+        height:103px;
+        background-color: white;
+        #head{
+            height: 60px;
             text-align: center;
-            //line-height: 60px;
-            margin-top:15px;
-            width: 300px;
-            height: 30px;
-            border-radius: 18px;
-            border:1px solid gray;
-            position: relative;
-            font-size:14px;
-            // line-height: 60px;
+            #search{
+                text-align: center;
+                margin-top:15px;
+                width: 300px;
+                height: 30px;
+                border-radius: 18px;
+                border:1px solid gray;
+                position: relative;
+                font-size:14px;
+            }
+            i{
+                position: absolute;
+                left:40px;
+                line-height: 60px;
+                color:#FD273F;
+                font-size:24px;
+            }
         }
-        i{
-            position: absolute;
-            left:40px;
-            line-height: 60px;
-            color:#FD273F;
-            font-size:24px;
+        .navList{
+            border-radius:20px;
+            border: #FD273F 1px solid;
+            padding-left: 0!important;
+            margin: 0 auto;
+            height: 35px;
+            line-height: 35px;
+            width: 95%;
+            .first{
+                border-radius:30px  0  0 30px  ;
+                color: white;
+                background-color: #FD273F;
+            }
+            .second{
+                border-radius:0  30px  30px  0 ;
+                color: white;
+                background-color: #FD273F;
+            }
+            li{
+                height: 34px;
+                text-align: center;
+                float: left;
+                width: 50%;
+            }
         }
     }
-    .navList{
-        border-radius:20px;
-        border: #FD273F 1px solid;
-        padding-left: 0!important;
-        margin: 0 auto;
-        height: 35px;
-        line-height: 35px;
-        .first{
-            border-radius:30px  0  0 30px  ;
-            color: white;
-            background-color: #FD273F;
-        }
-        .second{
-            border-radius:0  30px  30px  0 ;
-            color: white;
-            background-color: #FD273F;
-        }
-        li{
-            height: 34px;
-            text-align: center;
-            float: left;
-            width: 50%;
-        }
-    }
+    
     #switch{
-        margin: 10px auto;
-        // border: #FD273F 1px solid;
-        width: 350px;
-        // height: 300px;
+        padding:0;
+        margin: 3px auto;
+        width: 96%;
         .goods{
             padding: 0;
             img{
-                    width: 100%;
-                    height: 182px;
+                width: 100%;
+                height: 182px;
             }
             li{
                  
@@ -79,7 +67,7 @@ page-home{
                 //margin: 2px 0 0 2%;
                 margin-left:4px;
                 margin-right: 3px;
-                margin-top:10px;
+                margin-top:8px;
                 #text{
                     // border: 1px solid green;
                     // word-break: break-all;
