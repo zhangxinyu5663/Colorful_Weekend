@@ -1,0 +1,61 @@
+<!--
+  Generated template for the Content02Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+<ion-header>
+    <img src="assets/icon/left.png" alt="" (click)="close()" style="float:left;margin-top:14px">
+    <!-- <i class="iconfont icon-back" (click)="close()"></i> -->
+    <img id="tou" src="{{homeDetail?.head}}"><div id="name">{{homeDetail?.userName}}</div>
+    <button id="abtn" ion-button small item-end [style.backgroundColor]="Myattention==1?'rgb(212, 208, 208)':'#fd273f'" (click)="attention()">关注</button> 
+</ion-header>
+<ion-content >
+<div class="c">
+   <div *ngIf="imgs.length>0">
+    <ion-slides autoplay="2000" loop=true>
+        <ion-slide *ngFor="let item of imgs;let i=index;">
+            <img src="{{item}}" class="slide-image">
+        </ion-slide>
+    </ion-slides>
+  </div>
+  <div id="box"></div>
+  <div class="tubiao">
+      <span class="outspan">
+        <ion-icon  (click)='collect()' [style.color]="Mycollection==1?'rgb(241, 220, 23)':'rgb(212, 208, 208)'" id="collection" md="md-star" ios="ios-star"></ion-icon>
+        <span id="collectionNum">{{homeDetail?.collection}}</span>
+      </span>
+      <span class="outspan">
+        <ion-icon isclick="true" (click)='zan()' [style.color]="Myzan==1?'#fd273f':'rgb(212, 208, 208)'" id="heart" ios="ios-heart" md="md-heart"></ion-icon>
+        <span id="zanNum">{{homeDetail?.zan}}</span>
+      </span>  
+  </div>
+
+  <div id="line">
+    <span>评论 {{homeDetail?.comment}}</span>
+  </div>
+  <div class="comment">
+      <ul class="exter">
+        <li *ngFor="let item of homeComments;let i = index" class="exterli">
+            <span id="user" ><img src="{{item?.head}}"></span>
+            <div id="commentdetail">
+                <p style="margin:0  ">{{item?.userName}}</p>
+                <p style="margin:0  ">{{item?.CommentText}}</p>
+                <p style="margin:0  " class="data">
+                    {{item.CommentDate}}
+                </p>
+            </div>
+        </li>
+      </ul>
+      <br>
+    </div> 
+  
+</div>
+</ion-content>
+
+<ion-footer>
+    <input type="text" id="inpcomment">
+    <button id="btncomment" (click)='addComment()'>评论</button>
+</ion-footer>
