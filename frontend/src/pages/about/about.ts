@@ -1,27 +1,45 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,NavParams } from 'ionic-angular';
 import { ZanPage } from '../zan/zan';
 import { CommentPage } from '../comment/comment';
 import { AtPage } from '../at/at';
+import { HttpClient } from '@angular/common/http';
+import { HomeDetailPage } from '../homedetail/homedetail';
+
 // import {  }
 @Component({
   selector: 'page-about',
   templateUrl: 'about.html'
 })
 export class AboutPage {
-  items=[];
-  list="privateletter";
-  constructor(public navCtrl: NavController) {}
-  setlist(str){
-    this.list=str;
-    console.log(this.list);
+  close(){
+    this.navCtrl.pop();
   }
-  gozan(){
-    this.navCtrl.push(ZanPage);
+
+  isActive=0;
+  isClick(i){
+    this.isActive=i;
   }
-  goat(){
-    this.navCtrl.push(AtPage);
+  constructor(public http:HttpClient,public navCtrl: NavController, public navParams: NavParams) {
   }
-  
+  userID;//用于标记是哪个用户
+  Mycomment;//我评论的
+  commentMy;//评论我的
+  ionViewWillEnter(){
+    this.userID=localStorage.getItem('id');
+    // {userID:this.userID}
+    this.http.post('/api/comment',{userID:this.userID}).subscribe(data=>{
+        this.commentMy=data['commentMy'];
+        this.Mycomment=data['Mycomment'];
+        console.log(this.Mycomment);
+        
+    })
+  }
+  good:string="a";
+
+  goProject(i){
+    localStorage.setItem('homedetailID',this.Mycomment[i].ProjectID);
+    this.navCtrl.push(HomeDetailPage);
+  }
 
 }

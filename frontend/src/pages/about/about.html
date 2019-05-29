@@ -1,94 +1,49 @@
-<ion-header text-center>
-      <ion-title>消息</ion-title>
-  </ion-header>
-  <ion-content padding>
-      <ul class="list1">
-           <li (click)="setlist('privateletter')" [class.bottom]="list=='privateletter'">
-                <ion-icon ios="ios-text" md="md-text" class="tubiao"></ion-icon><br/><br/>
-                私信
-           </li>
-           <li (click)="gozan()" [class.bottom]="list=='zan'">
-                <ion-icon ios="ios-heart" md="md-heart" class="tubiao"></ion-icon><br/><br/>
-                赞
-           </li>
-           <li (click)="goat()" [class.bottom]="list=='at'">
-                <ion-icon ios="ios-chatboxes" md="md-chatboxes" class="tubiao"></ion-icon><br/><br/>
-                评论
-           </li>
+<ion-header>
+  <div>
+      <ion-title color="primary">消息</ion-title>
+      <ul class="navList">
+          <li (click)="isClick(0)" [class.first]="isActive==0" >发出评论</li>
+          <li (click)="isClick(1)" [class.second]="isActive==1">收到评论</li>
       </ul>
-      <div [ngSwitch]="list">
-          <div *ngSwitchCase="'privateletter'" class="privateletter">
-              <!-- <ion-list>
-                  <ion-item>
-                    <div class="tou" item-start>
-                    <img src="../../assets/imgs/嘻嘻.jpg" alt="图片">
-                    </div>
-                    <h4>嘻嘻</h4>
-                    <h4 item-end>15:03<button><ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon></button></h4>
-                  </ion-item>
-                  <ion-item>
-                      <div class="tou" item-start>
-                      <img src="../../assets/imgs/张三.jpg" alt="图片">
-                      </div>
-                      <h4>张三</h4>
-                      <h4 item-end>16:13<button><ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon></button></h4>
-                 </ion-item>
-                 <ion-item>
-                    <div class="tou" item-start>
-                    <img src="../../assets/imgs/系统消息.jpg" alt="图片">
-                    </div>
-                    <h4>系统消息</h4>
-                    <h4 item-end>昨天<button><ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon></button></h4>
-                 </ion-item>
-              </ion-list> -->
-              <ion-list ng-controller="AppCtrl">
-                <ion-item-sliding>
-                  <ion-item>
-                      <ion-avatar item-start>
-                        <img src="../../assets/imgs/张三.jpg">
-                      </ion-avatar>
-                      <h2>张三</h2>
-                      <p>This town ain't big enough for the two of us!</p>
-                      <ion-note item-end>3:43 pm</ion-note>
-                  </ion-item>
-                  <ion-item-options slid="left">
-                      <button ion-button color="primary">
-                          <ion-icon ios="ios-trash" md="md-trash"></ion-icon>删除
-                      </button>
-                  </ion-item-options>
-               </ion-item-sliding>
-               <ion-item-sliding>
-                  <ion-item>
-                    <ion-avatar item-start>
-                      <img src="../../assets/imgs/嘻嘻.jpg">
-                    </ion-avatar>
-                    <h2>嘻嘻</h2>
-                    <p>你这是去哪里了？</p>
-                    <ion-note item-end>5:12 pm</ion-note>
-                  </ion-item>
-                  <ion-item-options slid="left">
-                        <button ion-button color="primary">
-                           <ion-icon ios="ios-trash" md="md-trash"></ion-icon>删除
-                        </button>
-                  </ion-item-options>
-                </ion-item-sliding>
-                <ion-item-sliding>
-                  <ion-item>
-                    <ion-avatar item-start>
-                      <img src="../../assets/imgs/系统消息.jpg">
-                    </ion-avatar>
-                    <h2>官方消息</h2>
-                    <p>系统可以更新啦。</p>
-                    <ion-note item-end>9:43 am</ion-note>
-                  </ion-item>
-                  <ion-item-options>
-                      <button ion-button color="primary">
-                         <ion-icon ios="ios-trash" md="md-trash"></ion-icon>删除
-                      </button>
-                </ion-item-options>
-                </ion-item-sliding>
-              </ion-list>
-          </div>
-      </div>
+  </div>
+</ion-header>
+<ion-content >
+    <div [ngSwitch]='isActive' class="switch">
+      <ion-list *ngSwitchCase="0">
+        <ion-item *ngFor="let item of Mycomment;let i=index">
+          <ion-thumbnail item-start>
+            <img src="{{item.head}}" alt="图片" >
+          </ion-thumbnail>
+          <ion-label>
+              <div class="comments">
+                <p>{{item.userName}}</p>
+                <span class="time">{{item.CommentDate.substr(0,10)+" "+item.CommentDate.substr(11,5)}}</span>
+                <textarea cols="28" rows="3" readonly="readonly">{{item.CommentText}}</textarea>
+              </div>
+              <div class="project" (click)="goProject(i)">
+                <img src="{{item.imgs.split('|')[0]}}" alt="">
+              </div>
+          </ion-label> 
+        </ion-item>       
+      </ion-list>
+      <ion-list *ngSwitchCase="1" class="switch">
+          <ion-item *ngFor="let item of commentMy;let i=index">
+            <ion-thumbnail item-start>
+              <img src="{{item.head}}" alt="图片" >
+            </ion-thumbnail>
+            <ion-label>
+                <div class="comments">
+                  <p>{{item.userName}}</p>
+                  <span class="time">{{item.CommentDate.substr(0,10)+" "+item.CommentDate.substr(11,5)}}</span>
+                  <textarea cols="30" rows="3" readonly="readonly">{{item.CommentText}}</textarea>
+                </div>
+                <div class="project">
+                  <img src="{{item.imgs.split('|')[0]}}" alt="">
+                </div>
+              </ion-label> 
+        </ion-item>
+      </ion-list>
+    </div>
   </ion-content>
+
   
