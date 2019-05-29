@@ -101,6 +101,9 @@ page-homedetail {
     .comment{
         margin-top:5px;
         ul,li{ padding:0;margin:0;list-style:none} 
+        li{
+            margin-top:5px;
+        }
         .data{
             font-size: 10px;
             color: gray;
@@ -118,6 +121,7 @@ page-homedetail {
             p{
                 padding-left: 10%;
                 padding-top: 5px;
+                display: block;
             }
             .reply_textarea{
                 display: none;

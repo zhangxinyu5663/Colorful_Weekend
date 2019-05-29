@@ -103,17 +103,26 @@ userName;//用户名
 time;
 addComment(){
   this.inpcomment=document.getElementById('inpcomment');
-  this.time=this.getDate();
-  this.http.post('/api/addComment',{userID:this.userID,date:this.time,context:this.inpcomment.value,projectID:this.homedetailID,commentnum:this.homeDetail.comment+1}).subscribe(data=>{
-    if(data["status"]==1){
-      this.http.post('/api/comments',{hdID:this.homedetailID}).subscribe(data=>{
-        this.homeComments=data['comments'];
-        this.homeDetail.comment+=1; 
-        
-      });
-    }
-    this.inpcomment.value='';
-  }); 
+  if(this.inpcomment.value==''){
+    const alert = this.alertCtrl.create({
+      title: '评论失败',
+      subTitle: '评论不能为空',
+      buttons: ['OK']
+    });
+    alert.present();
+  }else{
+    this.time=this.getDate();
+    this.http.post('/api/addComment',{userID:this.userID,date:this.time,context:this.inpcomment.value,projectID:this.homedetailID,commentnum:this.homeDetail.comment+1}).subscribe(data=>{
+      if(data["status"]==1){
+        this.http.post('/api/comments',{hdID:this.homedetailID}).subscribe(data=>{
+          this.homeComments=data['comments'];
+          this.homeDetail.comment+=1; 
+          
+        });
+      }
+      this.inpcomment.value='';
+    }); 
+  }
 }
 
 month;

@@ -41,11 +41,9 @@
         <li *ngFor="let item of homeComments;let i = index" class="exterli">
             <span id="user" ><img src="{{item?.head}}"></span>
             <div id="commentdetail">
-                <p style="margin:0  ">{{item?.userName}}</p>
-                <p style="margin:0  ">{{item?.CommentText}}</p>
-                <p style="margin:0  " class="data">
-                    {{item.CommentDate}}
-                </p>
+                <p style="margin:0  ">{{item?.userName}}<span style="margin:0;float:right; " class="data">{{item.CommentDate}}</span></p>
+                <span style="margin-left:10px;  ">{{item?.CommentText}}</span>
+
             </div>
         </li>
       </ul>
