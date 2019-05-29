@@ -13,6 +13,16 @@ import { FollowpersonPage } from '../followperson/followperson';
   templateUrl: 'fans.html',
 })
 export class FansPage {
+  userID;//用于标记是哪个用户
+  fans;//盛放粉丝的有关信息
+  ionViewWillEnter(){
+    this.userID=localStorage.getItem('id');
+    console.log(this.userID);
+    this.http.post('/api/my/fans',{userID:this.userID}).subscribe(data=>{
+        this.fans=data['fans'];
+        console.log(this.fans);        
+    })
+  }
   num;
   btn;
   flag=true;
@@ -37,18 +47,7 @@ export class FansPage {
   constructor(public http:HttpClient,public navCtrl: NavController, public navParams: NavParams) {
   }
   goMy(){this.navCtrl.pop();}
-  goFan(){this.navCtrl.push(FansmyPage);}
-
-  userID;//用于标记是哪个用户
-  fans;//盛放我关注的作品数组
-  ionViewWillEnter(){
-    this.userID=localStorage.getItem('id');
-    console.log(this.userID);
-    this.http.post('/api/my/fans',{userID:this.userID}).subscribe(data=>{
-        this.fans=data['fans'];
-        console.log(this.fans);        
-    })
-  }
+  // goFan(){this.navCtrl.push(FansmyPage);}
   gofollow( fansUserID ){
     localStorage.setItem("userIDdetail",fansUserID);
     this.navCtrl.push(FollowpersonPage);
