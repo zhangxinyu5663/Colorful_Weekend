@@ -1,6 +1,6 @@
 <ion-content>
     <div id="head">
-      <img src="{{avatar}}" alt="" (click)="presentActionSheet()">
+      <img src="{{avatar}}" alt="" (click)="presentActionSheet()" id="img">
       <ul>
         <li>{{mine[0]?.userName}}</li>
         <li>ID号:{{mine[0]?.ID}}</li>
@@ -9,10 +9,10 @@
 
     <div id="content">
       <ul>
-        <li (click)="goCollection()"><img src="assets/icon/star.png" alt="">我的收藏&nbsp;{{mine[0]?.collect}}</li>
-        <li (click)="goCreate()"><img src="assets/icon/create.png" alt="">我的发布&nbsp;{{mine[0]?.publish}}</li>
-        <li (click)="goGuanzhu()"><img src="assets/icon/condition.png" alt="">我的关注&nbsp;{{mine[0]?.interest}}</li>
-        <li (click)="goFans()"><img src="assets/icon/fans.png" alt="">我的粉丝&nbsp;{{mine[0]?.fans}}</li>
+        <li (click)="goCollection()"><img src="assets/icon/star.png" alt="">收藏&nbsp;{{mine[0]?.collect}}</li>
+        <li (click)="goZan()"><img src="assets/icon/heart.png" alt="">喜欢&nbsp;{{mine[0]?.zan}}</li>
+        <li (click)="goGuanzhu()"><img src="assets/icon/condition.png" alt="">关注&nbsp;{{mine[0]?.interest}}</li>
+        <li (click)="goFans()"><img src="assets/icon/fans.png" alt="">粉丝&nbsp;{{mine[0]?.fans}}</li>
       </ul>
       <img src="assets/icon/set.png" class="set" (click)="goSet()">
     </div>

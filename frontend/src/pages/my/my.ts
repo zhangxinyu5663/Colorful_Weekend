@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, AlertController } from 'ionic-angular';
 import { SetPage } from '../set/set';
 import { CollectionPage } from '../collection/collection';
-import { CreatePage } from '../create/create';
 import { FansPage } from '../fans/fans';
 import { GuanzhuPage } from '../guanzhu/guanzhu';
 import { HttpClient } from '@angular/common/http';
 import { ToastController } from 'ionic-angular';
 import {ImagePicker, ImagePickerOptions} from "@ionic-native/image-picker";
 import {Camera, CameraOptions} from "@ionic-native/camera";
+import { ZanPage } from '../zan/zan';
 
 // SecurityContext 
 @IonicPage()
@@ -31,8 +31,8 @@ export class MyPage {
   }
   goCollection(){this.navCtrl.push(CollectionPage);}
   goGuanzhu(){this.navCtrl.push(GuanzhuPage);}
-  goSet(){this.navCtrl.push(SetPage);}
-  goCreate(){this.navCtrl.push(CreatePage )}
+  goSet(){this.navCtrl.push(SetPage)}
+  goZan(){this.navCtrl.push(ZanPage )}
   goFans(){this.navCtrl.push(FansPage);}
 
   avatar: string = "";  //图像的src
@@ -64,6 +64,7 @@ export class MyPage {
     });
   }
   img; //存放照片
+  userID;
   takePhoto() {
     const options: CameraOptions = {
       quality: 100,
@@ -78,10 +79,15 @@ export class MyPage {
     var that=this;
     this.camera.getPicture(options).then(imageData => {
       console.log('Image URI: ' + imageData);
-      // this.avatar = image.slice(7);
       that.img=document.getElementById('img');
-      that.img.style.display="block";
+      that.userID=localStorage.getItem('id');
+      // that.img.style.display="block";
       this.avatar='data:image/jpeg;base64,'+imageData;
+      this.http.post('/api/userHeadUpload',{avatar:this.avatar,userID:this.userID}).subscribe(data=>{
+        if(data['status']==1){
+          console.log('头像更换成功');
+        }
+      });
     }, error => {
       console.log('Error: ' + error);
     });
@@ -104,8 +110,13 @@ export class MyPage {
         // console.log('Image URI: ' + imageData[0]);
         //this.avatar = images[0].slice(7);
         this.img=document.getElementById('img');
-        this.img.style.display="block";
+        // this.img.style.display="block";
         this.avatar='data:image/jpeg;base64,'+imageData;
+        this.http.post('/api/userHeadUpload',{avatar:this.avatar,userID:this.userID}).subscribe(data=>{
+          if(data['status']==1){
+            console.log('头像更换成功');
+          }
+        });
       // }
     }, error => {
       console.log('Error: ' + error);
