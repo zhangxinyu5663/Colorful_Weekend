@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { GuanzhuPage } from '../guanzhu/guanzhu';
 import { UserinfoPage } from '../userinfo/userinfo';
 import { HttpClient } from '@angular/common/http';
-import { Content01Page } from '../content01/content01';
+import { HomeDetailPage } from '../homedetail/homedetail';
 
 @IonicPage()
 @Component({
@@ -35,7 +35,7 @@ export class FollowpersonPage {
 
   detail(projectID){
     localStorage.setItem('homedetailID',projectID);
-    this.navCtrl.push(Content01Page);
+    this.navCtrl.push(HomeDetailPage);
   }
 //查看用户详情
   goUserinfo(){
