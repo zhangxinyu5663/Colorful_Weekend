@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MyPage } from '../my/my';
 import { HttpClient } from '@angular/common/http';
-import { Content01Page } from '../content01/content01';
+import { HomeDetailPage } from '../homedetail/homedetail';
 
 @IonicPage()
 @Component({
@@ -29,6 +29,6 @@ export class CollectionPage {
     localStorage.setItem('homedetailID',projectID);
     // console.log(localStorage.getItem('homedetailID'));
     // console.log(this.userID);
-    this.navCtrl.push(Content01Page);
+    this.navCtrl.push(HomeDetailPage);
   }
 }
