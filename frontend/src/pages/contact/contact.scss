@@ -1,17 +1,20 @@
 page-contact {
-    div{
-        margin-top: 5%;
-        p{
-            text-align: center;
+    ion-header{
+        height:180px;
+        .div1{
+            margin-top: 4%;
+            p{
+                text-align: center;
+                color: #FD273F;
+                font-size: 20px;
+                font-weight: 600;
+            }#icon{
+            font-size: 45px;
             color: #FD273F;
-            font-size: 20px;
-            font-weight: 600;
-        }#icon{
-        font-size: 45px;
-        color: #FD273F;
-        margin-left: 45%;
+            margin-left: 45%;
+            }
+    
         }
-
     }
     ul{
         margin:0;
@@ -62,67 +65,13 @@ page-contact {
             }
             line-height: 45px;
             color: #FD273F;        
-            box-shadow:1px 1px  1px 1px rgb(196, 190, 190);
+            box-shadow:1px 1px  1px 1px rgb(180, 180, 170);
             background-color: rgb(236, 236, 236);
             border-radius: 20px;
             margin:10px auto;
             width:90%;
             height:45px;
             width: 330px;
-
         }
     }
-    
-    .date{
-        
-        span{
-            display: inline-block;
-            width:100%;
-            height:30px;
-            text-align: center;
-            line-height: 30px;
-            color:#FD273F;
-            font-size:18px;
-        //border:1px solid black;
-        }
-        // width: 100%;
-        // height:50px;
-        // //border:1px solid red;
-        // // text-align: center;
-        // span{
-        //     color:#fd273f;
-        // }
-        // ion-icon{
-        //     font-size:25px!important;
-        //     color:#fd273f;
-        // }
-        // .year{
-        //     font-size:19px;
-        //     width:70px;
-        //     border:none;
-        //     color: #fd273f;
-        //     //margin-left:50px;
-            
-        //     option{
-        //         height:20px;
-        //         //border:none;
-        //         color:#fd273f;
-        //         border:1px solid #fd273f!important;
-        //     }
-        // }
-        // .month{
-        //     font-size:19px;
-        //     width:40px;
-        //     border:none;
-        //     color: #fd273f;
-        //     margin-left:20px;
-        //     option{
-        //         height:20px;
-        //         //border:none;
-        //         color:#fd273f;
-        //         border:1px solid #fd273f!important;
-        //     }
-        // }
-    }
-        
 }

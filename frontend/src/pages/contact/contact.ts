@@ -13,11 +13,12 @@ export class ContactPage {
   constructor(public modalCtrl:ModalController,public navCtrl: NavController,public http:HttpClient) {
 
   }
+  year;
   userID;
   mySchedule=[];
-  year=[];
   ionViewWillEnter(){
     // console.log(1111)
+    this.year=new Date().getFullYear();
     this.userID=localStorage.getItem('id');
     console.log(this.userID);
     this.http.post('/api/mySchedule',{userID:this.userID}).subscribe(data=>{
@@ -26,16 +27,6 @@ export class ContactPage {
       // this.mySchedule=data;
       console.log(this.mySchedule);
     });
-    // this.http.post('/api/mySchedule/year',{id:this.ID}).subscribe(data=>{
-    //   //this.mySchedule=Array.prototype.slice.call(data); //将类数组对象转换为数组
-    //   // this.year=data;
-    //   // console.log(this.year);
-    // });
-    // document.querySelector('#addcalendar').addEventListener('click',()=>{
-    //   // let profileModal=this.modalCtrl.create(CalendarPage);
-    //   // profileModal.present();
-    //   this.navCtrl.push(CalendarPage)
-    // },false)
   }
   goCalender(){
     this.navCtrl.push(CalendarPage);
@@ -57,6 +48,15 @@ export class ContactPage {
       }
     });
     
+  }
+  public typeTxt:any;
+
+  /*选择select的value*/
+  switchType() {
+    console.log(this.typeTxt);
+    this.http.post('/api/mySchedule/year',{userID:this.userID,typeTxt:this.typeTxt}).subscribe(data=>{
+      this.mySchedule=Array.prototype.slice.call(data); 
+    });
   }
 
 }
