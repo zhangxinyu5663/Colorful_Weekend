@@ -74,13 +74,6 @@ export class RegisterPage {
   judge;  //从后端返回的关于注册验证的信息
   arr; //从后端返回的关于注册是否成功的信息
 
-  // reminderPhone(){ //手机号输入错误提醒
-  //   this.phoneinp=document.getElementById('phoneinp');
-  //   if( this.phoneinp.value.length!=11){
-  //     var reminder=document.getElementById('reminder');
-  //     reminder.innerHTML='!&nbsp;请输入正确的手机号';
-  //   }
-  // }
 
   resetPhone(){ //重置手机号输入框
     var reminder=document.getElementById('reminder');
@@ -125,14 +118,6 @@ export class RegisterPage {
     this.pwdinp=document.getElementById('pwdinp');
     this.againpwdinp=document.getElementById('againpwdinp');
 
-    // if(this.phoneinp.innerHTML=='' || this.pwdinp.innerHTML=='' || this.againpwdinp.innerHTML=='' || this.codeinp.innerHTML==''){
-    //   const alert3 = this.alertCtrl.create({
-    //     title: '注册失败',
-    //     subTitle: '请输入完整的信息',
-    //     buttons: ['OK']
-    //   });
-    //   alert3.present();
-    // }
     if(this.pwd!=this.againpwd){
       const alert3 = this.alertCtrl.create({
         title: '注册失败',
@@ -178,7 +163,7 @@ export class RegisterPage {
     }
   }
   back(){
-    this.navCtrl.push(LoginPage); //返回到登录页
+    this.navCtrl.pop(); //返回到登录页
   }
 }
 
