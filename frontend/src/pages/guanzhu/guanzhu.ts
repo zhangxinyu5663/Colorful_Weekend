@@ -42,7 +42,7 @@ export class GuanzhuPage {
   }
 
   userID;//用于标记是哪个用户
-  Myattention;//盛放我关注的作品数组
+  Myattention;//我关注的人
   ionViewWillEnter(){
     this.userID=localStorage.getItem('id');
     console.log(this.userID);
