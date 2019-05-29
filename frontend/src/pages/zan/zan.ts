@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
-import { Content01Page } from '../content01/content01';
+import { HomeDetailPage } from '../homedetail/homedetail';
 
 /**
  * Generated class for the ZanPage page.
@@ -44,6 +44,6 @@ export class ZanPage {
  
   detail(projectID){
     localStorage.setItem('homedetailID',projectID);
-    this.navCtrl.push(Content01Page);
+    this.navCtrl.push(HomeDetailPage);
   }
 }
