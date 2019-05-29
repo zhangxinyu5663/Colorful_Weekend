@@ -1,0 +1,22 @@
+<ion-header>
+  <i class="iconfont icon-backarrow" id="back" (click)="goBack()"></i>
+  <input type="text" placeholder="请输入搜索内容" [(ngModel)]="searchText">
+  <i class="iconfont icon-sousuo1" id="search" (click)="search()"></i>
+</ion-header>
+<ion-content>
+  <div>
+    <ul class="goods">
+      <li *ngFor="let item of obj;let i=index">
+          <a (click)='detail(i)'><img src="{{item.imgs.split('|')[0]}}"></a>
+          <p id="text">{{item.context}}</p>
+          <div id="below">
+              <img id="tou" src="{{item.head}}">&nbsp;&nbsp;{{item.userName}}
+              <div id="right"> 
+                  <ion-icon ios="ios-heart" md="md-heart" (click)="clickZan(i)" [style.color]="Flag[i]?'#fd273f':'rgb(212, 208, 208)'"></ion-icon>&nbsp;
+                  <span class="zanNum">{{item.zan}}</span>
+              </div>
+          </div>
+      </li> 
+  </ul>
+  </div>
+</ion-content>
