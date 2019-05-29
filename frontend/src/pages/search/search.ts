@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { SearchtwoPage } from '../searchtwo/searchtwo';
 import { HttpClient } from '@angular/common/http';
+import { SearchresultPage } from '../searchresult/searchresult';
 
 /**
  * Generated class for the SearchPage page.
@@ -37,13 +37,13 @@ export class SearchPage {
     }else{
       localStorage.setItem('searchText','拍照');
     }
-    this.navCtrl.push(SearchtwoPage);
+    this.navCtrl.push(SearchresultPage);
   }
 
   searchText;
   search(){
     localStorage.setItem('searchText',this.searchText);
-    this.navCtrl.push(SearchtwoPage);
+    this.navCtrl.push(SearchresultPage);
   }
 
 }
