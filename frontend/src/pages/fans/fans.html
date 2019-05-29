@@ -9,9 +9,9 @@
           <img src="{{item.head}}" (click)="gofollow(item.ID)">
           <div id="right">
             <p id="p1">{{item.userName}}</p>
-            <p style="margin:0 ;color:gray ">{{item.introduction}}</p>
+            <p style="margin:0 ;color:gray ">关注了你</p>
           </div>
-          <button class="btn" ion-button small item-end [class.color]="'num'" (click)="change(i,item.ID)">已关注</button>
+          <button class="btn" ion-button small item-end [class.color]="'num'" (click)="change(i,item.ID)">关注</button>
       </div> 
     </li>
   </ul>

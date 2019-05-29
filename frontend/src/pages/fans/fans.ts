@@ -42,12 +42,11 @@ export class FansPage {
   userID;//用于标记是哪个用户
   fans;//盛放我关注的作品数组
   ionViewWillEnter(){
-    this.userID=localStorage.getItem('userID');
+    this.userID=localStorage.getItem('id');
     console.log(this.userID);
     this.http.post('/api/my/fans',{userID:this.userID}).subscribe(data=>{
         this.fans=data['fans'];
-        console.log(this.fans);
-        
+        console.log(this.fans);        
     })
   }
   gofollow( fansUserID ){
