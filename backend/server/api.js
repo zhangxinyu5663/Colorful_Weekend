@@ -17,8 +17,8 @@ app.use(require('body-parser').urlencoded({extended: true}));
 
 const connection = mysql.createConnection({
       host:"localhost",
-      user:"root",
-      password:"ddd",
+      user:"master",
+      password:"master2018",
       database:"weekend"
 });
 connection.connect();
@@ -794,6 +794,6 @@ app.all('*', function(req, res, next) {
 
 app.use(router);
 
-app.listen(8080);
+app.listen(8000);
 
 
