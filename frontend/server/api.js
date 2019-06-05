@@ -300,7 +300,7 @@ router.post('/api/mySchedule/year',function(req,res){
 
 //查询个人信息
 router.post('/api/info',function(req,res){
-  const sql='select info.*,userName from info,mine where info.ID=mine.ID and info.ID=?';
+  const sql='select info.*,userName,head from info,mine where info.ID=mine.ID and info.ID=?';
   connection.query(sql,[req.body.id],function(err,results){
     if(err){
       console.error(err);
