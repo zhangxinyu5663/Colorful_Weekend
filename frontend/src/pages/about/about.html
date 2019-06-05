@@ -9,21 +9,21 @@
 </ion-header>
 <ion-content >
     <div [ngSwitch]='isActive' class="switch">
-      <ion-list *ngSwitchCase="0">
-        <ion-item *ngFor="let item of Mycomment;let i=index">
+      <ul *ngSwitchCase="0">
+        <li *ngFor="let item of Mycomment;let i=index">
             <div class="headimg">
               <img src="{{item.head}}" alt="图片" >
             </div>
             <div class="comments">
-              <p>{{item.userName}}</p>
+              <span class="username">{{item.userName}}</span>
               <span class="time">{{item.CommentDate.substr(0,10)+" "+item.CommentDate.substr(11,5)}}</span>
               <textarea cols="28" rows="3" readonly="readonly">{{item.CommentText}}</textarea>
             </div>
             <div class="project" (click)="goProject(i)">
               <img src="{{item.imgs.split('|')[0]}}" alt="">
             </div>
-        </ion-item>       
-      </ion-list>
+        </li>      
+      </ul>
       <ion-list *ngSwitchCase="1" class="switch">
           <ion-item *ngFor="let item of commentMy;let i=index">
               <div class="headimg">

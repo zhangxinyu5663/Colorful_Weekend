@@ -27,7 +27,6 @@ export class AboutPage {
   commentMy;//评论我的
   ionViewWillEnter(){
     this.userID=localStorage.getItem('id');
-    // {userID:this.userID}
     this.http.post('/api/comment',{userID:this.userID}).subscribe(data=>{
         this.commentMy=data['commentMy'];
         this.Mycomment=data['Mycomment'];

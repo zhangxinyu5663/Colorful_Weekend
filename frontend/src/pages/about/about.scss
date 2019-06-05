@@ -36,20 +36,23 @@ page-about {
     ion-content{
          .switch{
             //  margin-top:15px;
-             ion-list{
-                 margin-top: 10px;
-                 ion-item{
-                    padding: 0px;
-
-                    // border:1px solid red;
-                    margin-top:3px;
+             ul{
+                padding:0;
+                // margin:0;
+                margin-top:5px;
+                 li{
+                    width:98%;
+                    margin:8px auto;
+                    margin-top: 5px;
+                    height:80px;
+                 // margin-top:3px;
                     .headimg{
-                        width:50px;
+                        width:15%;
+                        margin:auto 1%;
                         height:50px;
-                        // background: green;
                         float: left;
-                        margin-left:10px;
                         img{
+                            margin-top:10px;
                             border-radius: 50%;
                         }
                     }
@@ -57,9 +60,10 @@ page-about {
                         float:left;
                         height:65px;
                         width:66%;
-                        margin-left:5px;
-                        // background: blue;
-                        p{
+                        padding: 0;
+                        margin:0;
+                        margin-top:10px;
+                        .username{
                             display:inline-block;
                             font-size: 14px;
                             color: black;
@@ -67,9 +71,9 @@ page-about {
                         }
                         .time{
                             display:block;
-                            font-size:12px;color: grey;
+                            font-size:13px;color: grey;
                             float:right;
-                            margin-right:30px;
+                            margin-right:15px;
                         }
                         textarea{
                             border: 1px solid lightgrey;
@@ -77,19 +81,18 @@ page-about {
                             width:100%;
                             height: 40px;
                             display: block;
-                            font-size: 12px;
+                            font-size: 14px;
                             // margin-bottom: 5px;
                             margin-left:0px;
                         }
                     }
                     .project{
                         float: left;
-                        margin-top:5px;
-                        height:52px;
-                        width:52px;
-                        margin-left:5px;
-                        // background: red;
+                        height:60px;
+                        width:15%;
+                        margin:auto 1%;
                         img{
+                            margin-top:10px;
                             width:100%;
                             height:100%;
                         }
