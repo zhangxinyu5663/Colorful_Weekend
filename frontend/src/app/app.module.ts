@@ -19,7 +19,6 @@ import { AddPage } from '../pages/add/add';
 import { PlanonePage } from '../pages/planone/planone';
 import { CalendarPage } from '../pages/calendar/calendar';
 import { GuanzhuPage } from '../pages/guanzhu/guanzhu';
-import { FollowpersonPage } from '../pages/followperson/followperson';
 import { ZanPage } from '../pages/zan/zan';
 import { MyPage } from '../pages/my/my';
 import { AccountPage } from '../pages/account/account';
@@ -27,12 +26,10 @@ import { ChangepwdetailsPage } from '../pages/changepwdetails/changepwdetails';
 import { ChangephonePage } from '../pages/changephone/changephone';
 import { ChangepwPage } from '../pages/changepw/changepw';
 import { CollectionPage } from '../pages/collection/collection';
-import { CreatePage } from '../pages/create/create';
 import { FansPage } from '../pages/fans/fans';
 import { PhonenumPage } from '../pages/phonenum/phonenum';
 import { SetPage } from '../pages/set/set';
 import { SetdataPage } from '../pages/setdata/setdata';
-import { FansmyPage } from '../pages/fansmy/fansmy';
 import { ReleaseonePage } from '../pages/releaseone/releaseone';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
@@ -45,9 +42,10 @@ import { EditmypublishPage } from '../pages/editmypublish/editmypublish';
 import { SearchPage } from '../pages/search/search';
 import { EditmyschedulePage } from '../pages/editmyschedule/editmyschedule';
 import { CommentPage } from '../pages/comment/comment';
-import { AtPage } from '../pages/at/at';
 import {HomeDetailPage} from '../pages/homedetail/homedetail';
 import {SearchresultPage} from '../pages/searchresult/searchresult';
+import { AttentionuserprojectPage } from '../pages/attentionuserproject/attentionuserproject';
+import { FansuserprojectPage } from '../pages/fansuserproject/fansuserproject';
 
 @NgModule({
   declarations: [
@@ -58,23 +56,19 @@ import {SearchresultPage} from '../pages/searchresult/searchresult';
     TabsPage,
     MyPage,
     AddPage,
-    AtPage,
     PlanonePage,
     CalendarPage,
     GuanzhuPage,
-    FollowpersonPage,
     ZanPage,
     AccountPage,
     ChangepwdetailsPage,
     ChangephonePage,
     ChangepwPage,
     CollectionPage,
-    CreatePage,
     FansPage,
     PhonenumPage,
     SetPage,
     SetdataPage,
-    FansmyPage,
     ReleaseonePage,
     LoginPage,
     RegisterPage,
@@ -89,6 +83,8 @@ import {SearchresultPage} from '../pages/searchresult/searchresult';
     EditmyschedulePage,
     CommentPage,
     HomeDetailPage,
+    AttentionuserprojectPage,
+    FansuserprojectPage
   ],
   imports: [
     BrowserModule,
@@ -109,23 +105,19 @@ import {SearchresultPage} from '../pages/searchresult/searchresult';
     TabsPage,
     MyPage,
     AddPage,
-    AtPage,
     PlanonePage,
     CalendarPage,
     GuanzhuPage,
-    FollowpersonPage,
     ZanPage,
     AccountPage,
     ChangepwdetailsPage,
     ChangephonePage,
     ChangepwPage,
     CollectionPage,
-    CreatePage,
     FansPage,
     PhonenumPage,
     SetPage,
     SetdataPage,
-    FansmyPage,
     ReleaseonePage,
     LoginPage,
     RegisterPage,
@@ -142,6 +134,9 @@ import {SearchresultPage} from '../pages/searchresult/searchresult';
     EditmyschedulePage,
     CommentPage,
     HomeDetailPage,
+    AttentionuserprojectPage,
+    FansuserprojectPage
+
   ],
   providers: [
     StatusBar,
