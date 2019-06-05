@@ -35,8 +35,12 @@ export class AttentionuserprojectPage {
   }
 
   detail(projectID){
-    localStorage.setItem('homedetailID',projectID);
-    this.navCtrl.push(HomeDetailPage);
+    if(this.userdetail.imgs==undefined){
+      console.log('该用户还未在首页发表过作品')
+    }else{
+      localStorage.setItem('homedetailID',projectID);
+      this.navCtrl.push(HomeDetailPage);
+    }
   }
 //查看用户详情
   goUserinfo(){
