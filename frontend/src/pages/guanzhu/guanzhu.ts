@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FollowpersonPage } from '../followperson/followperson';
 import { MyPage } from '../my/my';
 import { HttpClient } from '@angular/common/http';
+import { AttentionuserprojectPage } from '../attentionuserproject/attentionuserproject';
 /**
  * Generated class for the GuanzhuPage page.
  *
@@ -55,7 +56,7 @@ export class GuanzhuPage {
   
   gofollow( attentionUserID ){
     localStorage.setItem("userIDdetail",attentionUserID);
-    this.navCtrl.push(FollowpersonPage);
+    this.navCtrl.push(AttentionuserprojectPage);
   }
   goMy(){this.navCtrl.pop();}
  
