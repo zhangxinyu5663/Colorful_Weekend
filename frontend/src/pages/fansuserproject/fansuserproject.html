@@ -1,0 +1,29 @@
+<ion-header>
+    <img src="assets/icon/left.png" alt="" (click)="goFans()">
+    <span>我的粉丝</span>
+</ion-header>
+<ion-content>
+    <div id="div1">
+        <div id="head">
+          <img src="{{userHead}}" alt="图片"  (click)="goUserinfo()">
+        </div>
+        <!-- <ul>
+          <li>{{userName}}</li>
+          <li>ID号:{{userID}}</li>
+        </ul> -->
+        <div id="info">
+          <span>{{userName}}</span>
+          <span>ID号:{{userID}}</span>
+        </div>
+    </div>
+    <div id="div2">
+        <ul id="ul" class="{{isShow==0?'hide':'display'}}">
+            <li *ngFor="let item of userdetail;let i=index">
+                <div ><img id="pimg" src="{{item.imgs?item.imgs.split('|')[0]:''}}" (click)='detail(item.projectID?item.projectID:item.pID)'></div>
+                <span class="text">{{item.context?item.context:''}}</span>
+            </li>
+            <hr>
+        </ul>
+    </div>
+      
+</ion-content>
