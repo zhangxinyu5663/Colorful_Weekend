@@ -1,9 +1,9 @@
 import { Component, style } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MyPage } from '../my/my';
-import { FansmyPage } from '../fansmy/fansmy';
 import { HttpClient } from '@angular/common/http';
 import { FollowpersonPage } from '../followperson/followperson';
+import { FansuserprojectPage } from '../fansuserproject/fansuserproject';
 
 
 
@@ -50,6 +50,6 @@ export class FansPage {
   // goFan(){this.navCtrl.push(FansmyPage);}
   gofollow( fansUserID ){
     localStorage.setItem("userIDdetail",fansUserID);
-    this.navCtrl.push(FollowpersonPage);
+    this.navCtrl.push(FansuserprojectPage);
   }
 }
