@@ -56,6 +56,10 @@ page-home{
         width: 96%;
         .goods{
             padding: 0;
+            width: 100%;
+            // height:100%;
+            background: pink;
+            margin:0 auto;
             img{
                 width: 100%;
                 height: 182px;
@@ -64,9 +68,9 @@ page-home{
                  
                 width: 48%;
                 float: left;
-                //margin: 2px 0 0 2%;
-                margin-left:4px;
-                margin-right: 3px;
+                margin: 2px 1% 0 1%;
+                // margin-left:8px;
+                // margin-right: 3px;
                 margin-top:8px;
                 #text{
                     // border: 1px solid green;
