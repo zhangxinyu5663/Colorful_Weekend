@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController,NavParams } from 'ionic-angular';
 import { ZanPage } from '../zan/zan';
 import { CommentPage } from '../comment/comment';
-import { AtPage } from '../at/at';
 import { HttpClient } from '@angular/common/http';
 import { HomeDetailPage } from '../homedetail/homedetail';
 
