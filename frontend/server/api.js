@@ -12,8 +12,8 @@ app.use(require('body-parser').urlencoded({extended: true}));
 app.use(express.static('./public'));
 const connection = mysql.createConnection({
       host:"localhost",
-      user:"root",
-      password:"yyy",
+      user:"master",
+      password:"master2018",
       database:"weekend"
 });
 connection.connect();
@@ -193,7 +193,7 @@ router.post('/api/mine',function(req,res){
 
   const sql5='select COUNT(*) num from zan where userID=?';
 
-  const sql6='update mine set collect=?,publish=?,interest=?,fans=?,zan=? where ID=?';
+  const sql6='update mine set collect=?,zan=?,interest=?,fans=?,publish=? where ID=?';
   connection.query(sql2,[req.body.id],function(err,results){
     if(err){
       console.error(err);
@@ -218,7 +218,7 @@ router.post('/api/mine',function(req,res){
             process.exit(1);
           }
           zanNum=results[0].num;
-          connection.query(sql6,[collectNum,publishNum,attentionNum,fansNum,zanNum,req.body.id],function(err,results){
+          connection.query(sql6,[collectNum,zanNum,attentionNum,fansNum,publishNum,req.body.id],function(err,results){
             if(err){
               console.error(err);
               process.exit(1);
@@ -284,19 +284,19 @@ router.post('/api/mySchedule',function(req,res){
   });
 });
 
-/*
+//查询特定年份对应的日程
 router.post('/api/mySchedule/year',function(req,res){
-  const sql='select distinct year from mySchedule where ID=?';
-  connection.query(sql,[req.body.id],function(err,results){
+  const sql='select * from mySchedule where ID=? and date like ?';
+  connection.query(sql,[req.body.userID,req.body.typeTxt+'%'],function(err,results){
     if(err){
       console.log(err);
       process.exit(1);
     }
-    //log(results);
+    log(results);
     res.json(results);
-  });
+  })
 });
-*/
+
 
 //查询个人信息
 router.post('/api/info',function(req,res){
@@ -584,7 +584,7 @@ router.post('/api/addcomment',function(req,res){
 //我评论的和评论我的。
 router.post('/api/comment',function(req,res){
   const sql1="select comment.CommentText,CommentDate,comment.ProjectID,mine.head,userName,homeRecommend.imgs from comment,mine,homeRecommend where comment.CommentUserID=mine.ID and comment.CommentUserID=? and comment.ProjectID=homeRecommend.projectID order by CommentDate desc"; 
-  const sql2="select comment.CommentText,comment.ProjectID,CommentDate,mine.head,userName,homeRecommend.imgs from homeRecommend,comment,mine where homeRecommend.userID=? and mine.ID=homeRecommend.userID and homeRecommend.projectID=comment.ProjectID" 
+  const sql2="select comment.CommentText,comment.ProjectID,CommentDate,mine.head,userName,homeRecommend.imgs from homeRecommend,comment,mine where comment.ToUserID=? and mine.ID=comment.CommentUserID and homeRecommend.projectID=comment.ProjectID;" 
 
   var Mycomment=[],commentMy=[];
   connection.query(sql1,[req.body.userID],function(err,results){
@@ -620,6 +620,47 @@ router.post('/api/search',function(req,res){
   });
 });
 
+//用户上传头像
+router.post('/api/userHeadUpload',function(req,res){
+  var imgData=req.body.avatar;
+
+  var base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
+  var dataBuffer = new Buffer(base64Data, 'base64');
+  var uploadUrl='./public/upload/userHead/';
+  
+  var filename=req.body.userID+'.jpg';
+  fs.writeFile('./public/upload/userHead/'+filename,dataBuffer,function(err){
+    // console.log(req.body.avatar);
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    //console.log('success');
+  });
+
+  var imgUrl='http://47.93.236.222:8001/upload/userHead/'+filename;
+  const sql='update mine set head=? where ID=?';
+  const sql2='select head from mine where ID=?';
+  connection.query(sql,[imgUrl,req.body.userID],function(err,results){
+      if(err){
+        console.error(err);
+        process.exit(1);
+      }
+      console.log('头像更换成功');
+	 /*
+      connection.query(sql2,[req.body.userID],function(err,results){
+      	if(err){
+	  console.log(err);
+          process.exit(1);
+	}
+	console.log(results);
+      });
+      */
+	res.json({status:1});
+    });
+
+
+});
 
 //用户上传作品
 router.post('/api/userPublishUpload',function(req,res){
@@ -696,7 +737,7 @@ router.post('/api/userPublishUpload',function(req,res){
       //console.log('success');
     });
 
-    var imgUrl='http://192.168.204.144:8080/upload/userPublish/'+filename;
+    var imgUrl='http://47.93.236.222:8001/upload/userPublish/'+filename;
     const sql3='insert into myPublish values(?,?,?,?,?,?,?,?,?,?)';
     connection.query(sql3,[randomPID,req.body.userID,req.body.time,imgUrl,req.body.text,0,0,0,'false','false'],function(err,results){
       if(err){
@@ -709,6 +750,42 @@ router.post('/api/userPublishUpload',function(req,res){
 
   });
 
+});
+
+//用户上传文本作品
+router.post('/api/userPublishTxt',function(req,res){
+  var getRandom=function(){ //生成作品ID
+    var arr=new Array();
+    for(var j=1;j<=8;j++){
+      arr.push(j);
+    }
+
+    var len=arr.length;
+    //console.log(len);
+    var result=[];
+    var r;
+    for(var i=0;i<len;i++){
+      r=Math.floor(Math.random()*arr.length);
+      result.push(arr[r]);
+      //arr.splice(r,1);
+    }
+    //console.log(result.length);
+    var number='';
+    for(var k=0;k<result.length;k++){
+      number+=result[k];
+    }
+    return parseInt(number);
+  }
+  var randomPID=getRandom();
+  const sql='insert into myPublish values(?,?,?,?,?,?,?,?,?,?)';
+  connection.query(sql,[randomPID,req.body.userID,req.body.time,req.body.avatar,req.body.text,0,0,0,'false','false'],function(err,results){
+    if(err){
+      console.error(err);
+      process.exit(1);
+    }
+    //console.log('insert success');
+    res.json({status:1}); //发表成功
+  });
 });
 
 //编辑用户发布的作品
@@ -737,7 +814,7 @@ router.post('/api/edit/userPublish',function(req,res){
       //console.log('success');
     });
  
-    var imgUrl='http://192.168.204.144:8080/upload/userPublish/'+filename;
+    var imgUrl='http://47.93.236.222:8001/upload/userPublish/'+filename;
     const sql2='update myPublish set pictureORvideo=?,text=? where pID=? and ID=?';
     connection.query(sql2,[imgUrl,req.body.text,req.body.pID,req.body.userID],function(err,results){
       if(err){
@@ -749,7 +826,7 @@ router.post('/api/edit/userPublish',function(req,res){
   });
 });
 
-//请求用户发布的所有品信息
+//请求用户发布的所有作品信息
 router.post('/api/userPublish',function(req,res){
  // console.log(req.body.userID);
  
@@ -1187,19 +1264,42 @@ router.post('/api/my/fans',function(req,res){
 });
 
 //关注的用户的作品详情
-router.post('/api/my/attentUserDetail',function(req,res){
-  const sql1="select mine.ID,head,userName,homeRecommend.* from mine,homeRecommend where mine.ID=? and mine.ID=homeRecommend.userID"; 
-  console.log(1);
-  var MyattentionUser=[];
-  connection.query(sql1,[req.body.userID],function(err,results){
+router.post('/api/my/userDetail',function(req,res){
+  const sql="select mine.ID,head,userName,homeRecommend.* from mine,homeRecommend where mine.ID=? and mine.ID=homeRecommend.userID"; 
+  var userDetail=[];
+  connection.query(sql,[req.body.userID],function(err,results){
     if(err){
       console.log(err);
       process.exit(1);
     }
-    console.log(results[0]);
-    MyattentionUser=results;
-
-    res.json({"MyattentionUser":MyattentionUser});
+	  console.log('results:',results);
+    if(results[0]===undefined){
+	    
+      console.log('该用户未在首页发表过作品');
+      /*
+      const sql1="select mine.ID,head,userName,myPublish.* from mine,myPublish where mine.ID=? and mine.ID=myPublish.ID";
+      connection.query(sql1,[req.body.userID],function(err,results){
+	if(err){
+	  console.log(err);
+		process.exit(1);
+	}
+	userDetail=results;      
+        res.json({"userDetail":userDetail});
+      });
+      */
+      const sql1="select mine.ID,head,userName from mine  where mine.ID=?";
+      connection.query(sql1,[req.body.userID],function(err,results){
+	if(err){
+	  console.log(err);
+		process.exit(1);
+	}
+	userDetail=results;      
+        res.json({"userDetail":userDetail});
+      });
+    }else{
+      userDetail=results;
+      res.json({"userDetail":userDetail});
+    }	
   })
 
 });
@@ -1219,6 +1319,6 @@ router.post('/api/userInfo',function(req,res){
 
 app.use(router);
 
-app.listen(8080);
+app.listen(8001);
 
 
