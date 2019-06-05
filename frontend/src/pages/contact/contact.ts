@@ -45,6 +45,9 @@ export class ContactPage {
     this.http.post('/api/delmySchedule',{sID:this.mySchedule[i].scheduleID}).subscribe(data=>{
       if(data['status']==1){
         console.log('删除成功');
+        this.http.post('/api/mySchedule',{userID:this.userID}).subscribe(data=>{
+          this.mySchedule=Array.prototype.slice.call(data); //将类数组对象转换为数组
+        });
       }
     });
     

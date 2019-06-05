@@ -1,17 +1,21 @@
 page-contact {
     ion-header{
-        height:180px;
+        height:160px;
+        // background: yellow;
         .div1{
-            margin-top: 4%;
+            margin:20px auto;
+            // border:1px solid black;
+            width:200px;
+            text-align: center;
             p{
-                text-align: center;
                 color: #FD273F;
                 font-size: 20px;
                 font-weight: 600;
-            }#icon{
-            font-size: 45px;
-            color: #FD273F;
-            margin-left: 45%;
+            }
+            #icon{
+                font-size: 45px;
+                color: #FD273F;
+                // margin-left: 45%;
             }
     
         }
