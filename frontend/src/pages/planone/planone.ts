@@ -42,7 +42,7 @@ export class PlanonePage {
           j=j-1;
         }
       }
-      document.getElementById("out").style.backgroundImage="url("+this.schedule[0].bkimg+")";
+      document.getElementById("bk").style.backgroundImage="url("+this.schedule[0].bkimg+")";
     });
   }
   goBack(){
