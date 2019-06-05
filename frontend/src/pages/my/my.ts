@@ -22,10 +22,21 @@ export class MyPage {
   }
   mine=[] ;
   ID;
+  avatar: string = "";  //图像的src
+
+  // ionViewDidLoad(){
+  //   this.ID=localStorage.getItem('id');
+  //   this.http.post('/api/mine',{id:this.ID}).subscribe(data=>{
+  //     this.mine=Array.prototype.slice.call(data); //将类数组对象转换为数组
+  //     console.log(this.mine)
+  //     this.avatar=this.mine[0].head;
+  //   });
+  // }
   ionViewWillEnter(){
     this.ID=localStorage.getItem('id');
     this.http.post('/api/mine',{id:this.ID}).subscribe(data=>{
       this.mine=Array.prototype.slice.call(data); //将类数组对象转换为数组
+      console.log(this.mine)
       this.avatar=this.mine[0].head;
     });
   }
@@ -35,7 +46,6 @@ export class MyPage {
   goZan(){this.navCtrl.push(ZanPage )}
   goFans(){this.navCtrl.push(FansPage);}
 
-  avatar: string = "";  //图像的src
   presentActionSheet() {
     let actionSheet = this.actionSheetCtrl.create({
       buttons: [{
@@ -64,7 +74,6 @@ export class MyPage {
     });
   }
   img; //存放照片
-  userID;
   takePhoto() {
     const options: CameraOptions = {
       quality: 100,
@@ -79,15 +88,17 @@ export class MyPage {
     var that=this;
     this.camera.getPicture(options).then(imageData => {
       console.log('Image URI: ' + imageData);
+      // this.avatar = image.slice(7);
       that.img=document.getElementById('img');
-      that.userID=localStorage.getItem('id');
-      // that.img.style.display="block";
-      this.avatar='data:image/jpeg;base64,'+imageData;
-      this.http.post('/api/userHeadUpload',{avatar:this.avatar,userID:this.userID}).subscribe(data=>{
-        if(data['status']==1){
-          console.log('头像更换成功');
-        }
-      });
+      that.avatar='data:image/jpeg;base64,'+imageData;
+      that.http.post('/api/userHeadUpload',{avatar:that.avatar,userID:that.ID}).subscribe(data=>{
+        // if(data['status']==1){
+        //   this.http.post('/api/mine',{id:this.ID}).subscribe(data=>{
+        //     this.mine=Array.prototype.slice.call(data); //将类数组对象转换为数组
+        //     this.avatar=this.mine[0].head;
+        //   });
+        // }
+          });
     }, error => {
       console.log('Error: ' + error);
     });
@@ -95,32 +106,43 @@ export class MyPage {
 
   chooseFromAlbum() {
     const options: ImagePickerOptions = {
-      //maximumImagesCount: 1,
+      //maximumImagesCount: 1,s
       quality: 100,
       width: 200,
       height: 200,
       outputType:1
     };
-   // var that=this;
+   var that=this;
     this.imagePicker.getPictures(options).then(imageData => {
-      // if (imageData.length > 1) {
-      //   this.presentAlert();
-      // } else if (imageData.length === 1) {
-
-        // console.log('Image URI: ' + imageData[0]);
-        //this.avatar = images[0].slice(7);
-        this.img=document.getElementById('img');
-        // this.img.style.display="block";
-        this.avatar='data:image/jpeg;base64,'+imageData;
-        this.http.post('/api/userHeadUpload',{avatar:this.avatar,userID:this.userID}).subscribe(data=>{
-          if(data['status']==1){
-            console.log('头像更换成功');
-          }
-        });
+      that.img=document.getElementById('img');
+      that.avatar='data:image/jpeg;base64,'+imageData;
+      that.http.post('/api/userHeadUpload',{avatar:that.avatar,userID:that.ID}).subscribe(data=>{
+    // if(data['status']==1){
+    //   this.http.post('/api/mine',{id:this.ID}).subscribe(data=>{
+    //     this.mine=Array.prototype.slice.call(data); //将类数组对象转换为数组
+    //     this.avatar=this.mine[0].head;
+    //   });
+    // }
+      });
       // }
     }, error => {
       console.log('Error: ' + error);
     });
   }
 
+  presentAlert() {
+    let alert = this.alertCtrl.create({title: "上传失败", message: "只能选择一张图片作为头像哦", buttons: ["确定"]});
+    alert.present().then(value => {
+      return value;
+    });
+  }
+
+  // this.http.post('/api/userHeadUpload',{avatar:this.avatar,userID:this.userID}).subscribe(data=>{
+  //   // if(data['status']==1){
+  //   //   this.http.post('/api/mine',{id:this.ID}).subscribe(data=>{
+  //   //     this.mine=Array.prototype.slice.call(data); //将类数组对象转换为数组
+  //   //     this.avatar=this.mine[0].head;
+  //   //   });
+  //   // }
+  // });
 }
